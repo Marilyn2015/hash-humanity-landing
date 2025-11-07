@@ -9,7 +9,6 @@
   <style>
     :root {
       --bg: #030712;
-      --bg-soft: #020309;
       --ink: #f9fafb;
       --muted: #9ca3af;
       --accent: #38bdf8;
@@ -30,41 +29,55 @@
 
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: radial-gradient(circle at top, #020817 0%, #020817 40%, #000 100%);
+      background:
+        radial-gradient(circle at top, #020817 0%, #020817 40%, #000 100%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-    }
-
-    .page {
       min-height: 100vh;
-      padding: 40px 32px 48px;
-      max-width: 1280px;
-      margin: 0 auto;
-      position: relative;
     }
 
-    /* subtle glowing globe background */
     .globe-bg {
       position: fixed;
-      inset: -20vh -10vw auto;
+      inset: -10vh -15vw auto;
       margin: auto;
-      opacity: 0.2;
+      opacity: 0.22;
       background:
-        radial-gradient(circle at 50% 30%, rgba(56,189,248,0.14), transparent 65%),
-        radial-gradient(circle at 50% 80%, rgba(15,23,42,0.95), transparent 80%);
+        radial-gradient(circle at 50% 30%, rgba(56,189,248,0.16), transparent 70%),
+        radial-gradient(circle at 50% 80%, rgba(15,23,42,0.98), transparent 85%);
       mix-blend-mode: screen;
       pointer-events: none;
       z-index: -2;
       filter: blur(1px);
     }
 
+    .page {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 40px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* forces full-screen fill */
+    }
+
+    main {
+      flex: 1; /* pushes footer to bottom so no awkward gap */
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* HERO */
+
     .hero {
       display: grid;
       grid-template-columns: minmax(0, 2fr) auto;
       gap: 32px;
       align-items: center;
-      margin-bottom: 40px;
+      padding-bottom: 24px;
+      /* make hero dominate first screen on larger viewports */
+      min-height: 55vh;
     }
 
     .brand-lockup {
@@ -87,7 +100,7 @@
       font-size: 15px;
       color: var(--muted);
       margin-bottom: 24px;
-      max-width: 480px;
+      max-width: 520px;
     }
 
     .hero-actions {
@@ -95,6 +108,7 @@
       flex-wrap: wrap;
       gap: 14px;
       align-items: center;
+      margin-bottom: 6px;
     }
 
     .btn-primary,
@@ -111,6 +125,7 @@
       transition: all var(--transition-fast);
       text-decoration: none;
       color: inherit;
+      white-space: nowrap;
     }
 
     .btn-primary {
@@ -143,15 +158,15 @@
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      margin-top: 4px;
     }
 
     .qr-wrap {
       align-self: flex-start;
       padding: 16px 18px 14px;
       border-radius: var(--radius-xl);
-      background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent),
-                  rgba(3,7,18,0.98);
+      background:
+        radial-gradient(circle at top, rgba(56,189,248,0.18), transparent),
+        rgba(3,7,18,0.98);
       box-shadow: var(--shadow-soft);
       border: 1px solid var(--border-subtle);
       display: flex;
@@ -173,13 +188,12 @@
       padding: 4px;
     }
 
-    /* feature grid */
+    /* FEATURES */
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
-      margin-bottom: 32px;
     }
 
     .card {
@@ -221,7 +235,7 @@
         linear-gradient(
           to right,
           transparent,
-          rgba(56,189,248,0.3),
+          rgba(56,189,248,0.38),
           transparent
         );
       mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20'%3E%3Cpolyline fill='none' stroke='%23fff' stroke-width='2' points='0,10 15,10 25,2 35,18 48,4 60,16 75,3 90,17 105,8 120,10'/%3E%3C/svg%3E");
@@ -230,11 +244,11 @@
       opacity: 0.7;
     }
 
-    /* community + join */
+    /* COMMUNITY + JOIN */
 
     .bottom-grid {
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(220px, 1.1fr);
+      grid-template-columns: minmax(0, 2fr) minmax(260px, 1.1fr);
       gap: 18px;
       align-items: stretch;
     }
@@ -330,7 +344,7 @@
       margin-bottom: 6px;
     }
 
-    .join .mini-phones {
+    .mini-phones {
       display: flex;
       gap: 6px;
       margin-bottom: 6px;
@@ -353,7 +367,6 @@
     }
 
     footer {
-      margin-top: 26px;
       font-size: 9px;
       color: var(--muted);
       display: flex;
@@ -361,6 +374,7 @@
       gap: 14px;
       justify-content: center;
       padding-top: 10px;
+      margin-top: 10px;
       border-top: 1px solid rgba(31,41,55,0.9);
     }
 
@@ -374,19 +388,27 @@
       color: var(--accent);
     }
 
+    /* MOBILE */
+
     @media (max-width: 900px) {
       .page {
-        padding: 28px 16px 32px;
+        padding: 24px 16px 22px;
       }
+
       .hero {
         grid-template-columns: 1fr;
+        gap: 18px;
+        min-height: 65vh; /* hero fills phone screen */
       }
+
       .qr-wrap {
         justify-self: flex-start;
       }
+
       .features-grid {
         grid-template-columns: 1fr;
       }
+
       .bottom-grid {
         grid-template-columns: 1fr;
       }
@@ -395,117 +417,119 @@
 </head>
 <body>
 <div class="globe-bg"></div>
+
 <div class="page">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="brand-lockup">HASH HUMANITY • POWERED BY WORLD ID</div>
-      <h1>You are the proof.<br />Not the product.</h1>
-      <p class="hero-sub">
-        Hash Humanity is a human-verified social network. World ID login only.
-        No bots, no spam farms, no surveillance bullshit — just people.
-      </p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="https://hashhumanity.world">
-          Verify with World ID
-        </a>
-        <a class="btn-ghost" href="https://hashhumanity.world">
-          Explore the Universe
-        </a>
-      </div>
-      <div class="hero-label">NO BOTS. ALL PEOPLE. YOU ARE THE PROOF.</div>
-    </div>
-
-    <!-- QR CARD (real, working QR) -->
-    <div class="qr-wrap">
-      <span>Scan to join</span>
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhashhumanity.world"
-        alt="QR code to hashhumanity.world"
-      />
-      <span>hashhumanity.world</span>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features-grid">
-    <div class="card">
-      <div class="card-label">Proof of Human Login</div>
-      <h3>World ID verification</h3>
-      <p>
-        One human, one account. Zero throwaway bots, zero script farms.
-        Your cryptographic proof, your privacy intact.
-      </p>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Pulse Feature</div>
-      <h3>Tip authenticity</h3>
-      <p>
-        Pulse lets you boost real humans &amp; real voices — micro-support
-        for people who add value to the network.
-      </p>
-      <div class="pulse-line"></div>
-    </div>
-
-    <div class="card">
-      <div class="card-label">Signal over noise</div>
-      <h3>No bots. All people.</h3>
-      <p>
-        Every interaction comes from a verified human. No algorithmic rage-bait,
-        no fake reach. Just human media.
-      </p>
-    </div>
-  </section>
-
-  <!-- COMMUNITY + JOIN -->
-  <section class="bottom-grid">
-    <div class="community">
-      <div class="community-title">Community Showcase</div>
-      <h2>Real humans. Real conversations.</h2>
-
-      <div class="post">
-        <div class="avatar">H</div>
-        <div>
-          <div class="name">@admin • <span class="meta">Verified • 5m</span></div>
-          <div class="body">Welcome to Hash Humanity. No bots. No farmed clout. Just us.</div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="avatar">M</div>
-        <div>
-          <div class="name">@marilyn • <span class="meta">Verified • 12m</span></div>
-          <div class="body">“Feels like the first social network that doesn’t treat me like data.”</div>
-        </div>
-      </div>
-
-      <div class="post">
-        <div class="avatar">T</div>
-        <div>
-          <div class="name">@tim • <span class="meta">Verified • 21m</span></div>
-          <div class="body">Built for humans who actually give a damn about the future.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="join">
+  <main>
+    <!-- HERO -->
+    <section class="hero">
       <div>
-        <div class="join-label">Join the human internet</div>
-        <h2>Hash Humanity Universe</h2>
-        <p>
-          A secure, human-only layer for conversation, coordination, and culture.
-          Scan, verify, and step inside.
+        <div class="brand-lockup">HASH HUMANITY • POWERED BY WORLD ID</div>
+        <h1>You are the proof.<br />Not the product.</h1>
+        <p class="hero-sub">
+          Hash Humanity is a human-verified social network. World ID login only.
+          No bots, no spam farms, no surveillance bullshit — just people.
         </p>
-        <div class="mini-phones">
-          <div class="mini-phone"></div>
-          <div class="mini-phone"></div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="https://hashhumanity.world">
+            Verify with World ID
+          </a>
+          <a class="btn-ghost" href="https://hashhumanity.world">
+            Explore the Universe
+          </a>
+        </div>
+        <div class="hero-label">NO BOTS. ALL PEOPLE. YOU ARE THE PROOF.</div>
+      </div>
+
+      <!-- QR (real working) -->
+      <div class="qr-wrap">
+        <span>Scan to join</span>
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhashhumanity.world"
+          alt="QR code to hashhumanity.world"
+        />
+        <span>hashhumanity.world</span>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-grid">
+      <div class="card">
+        <div class="card-label">Proof of Human Login</div>
+        <h3>World ID verification</h3>
+        <p>
+          One human, one account. Zero throwaway bots, zero script farms.
+          Your cryptographic proof, your privacy intact.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Pulse Feature</div>
+        <h3>Tip authenticity</h3>
+        <p>
+          Pulse lets you boost real humans &amp; real voices — micro-support
+          for people who add value to the network.
+        </p>
+        <div class="pulse-line"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Signal over noise</div>
+        <h3>No bots. All people.</h3>
+        <p>
+          Every interaction comes from a verified human. No algorithmic rage-bait,
+          no fake reach. Just human media.
+        </p>
+      </div>
+    </section>
+
+    <!-- COMMUNITY + JOIN -->
+    <section class="bottom-grid">
+      <div class="community">
+        <div class="community-title">Community Showcase</div>
+        <h2>Real humans. Real conversations.</h2>
+
+        <div class="post">
+          <div class="avatar">H</div>
+          <div>
+            <div class="name">@admin • <span class="meta">Verified • 5m</span></div>
+            <div class="body">Welcome to Hash Humanity. No bots. No farmed clout. Just us.</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="avatar">M</div>
+          <div>
+            <div class="name">@marilyn • <span class="meta">Verified • 12m</span></div>
+            <div class="body">“Feels like the first social network that doesn’t treat me like data.”</div>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="avatar">T</div>
+          <div>
+            <div class="name">@tim • <span class="meta">Verified • 21m</span></div>
+            <div class="body">Built for humans who actually give a damn about the future.</div>
+          </div>
         </div>
       </div>
-      <a class="btn-primary" href="https://hashhumanity.world">Open Hash Humanity</a>
-    </div>
-  </section>
+
+      <div class="join">
+        <div>
+          <div class="join-label">Join the human internet</div>
+          <h2>Hash Humanity Universe</h2>
+          <p>
+            A secure, human-only layer for conversation, coordination, and culture.
+            Scan, verify, and step inside.
+          </p>
+          <div class="mini-phones">
+            <div class="mini-phone"></div>
+            <div class="mini-phone"></div>
+          </div>
+        </div>
+        <a class="btn-primary" href="https://hashhumanity.world">Open Hash Humanity</a>
+      </div>
+    </section>
+  </main>
 
   <footer>
     <span>Hash Humanity — You are the proof, not the product.</span>
@@ -516,5 +540,6 @@
     <a href="https://hashhumanity.world/support">Support</a>
   </footer>
 </div>
+
 </body>
 </html>
