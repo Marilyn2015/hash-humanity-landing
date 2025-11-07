@@ -1,434 +1,482 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Hash Humanity — You Are The Proof</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hash Humanity — You are the proof</title>
-  <meta name="description" content="Hash Humanity is a human‑verified social network. World ID login, zero‑knowledge privacy, Pulse tipping, and a community built on proof‑of‑humanity." />
+  <meta name="description" content="Hash Humanity is a human-verified social layer powered by World ID. No bots. No data harvesting. You are the proof, not the product." />
   <style>
-    /* =============================================
-       HASH HUMANITY — PROMO LANDING (single file)
-       Theme: Cypherpunk / monochrome / glass
-       ============================================= */:root{
-  --ink:#e8eaf0;          /* primary text */
-  --muted:#9aa3ad;        /* secondary text */
-  --bg:#0a0b0d;           /* near-black */
-  --glass:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.12);
-  --line:rgba(255,255,255,.08);
-  --accent:#ffffff;       /* keep it neutral white */
-  --grid:#1b1f27;         /* globe grid */
-  --shadow-1:0 20px 60px rgba(0,0,0,.65);
-  --radius:22px;
-}
-html,body{height:100%;}
-body{
-  margin:0; background:radial-gradient(1200px 900px at 10% 10%, #121418 0%, #0b0c10 40%, #08090c 100%);
-  color:var(--ink); font: 16px/1.6 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
+    :root {
+      --bg: #020202;
+      --ink: #f5f5f5;
+      --muted: #9ca3af;
+      --accent: #ffffff;
+      --border: rgba(255,255,255,0.16);
+      --frost: rgba(9,9,11,0.82);
+      --radius-xl: 26px;
+      --radius-pill: 999px;
+      --shadow-xl: 0 22px 80px rgba(0,0,0,0.9);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, -system-ui, sans-serif;
+    }
 
-/* ===== Background: rotating wireframe globe ===== */
-.bg{
-  position:fixed; inset:0; pointer-events:none; z-index:0;
-  filter: drop-shadow(0 40px 120px rgba(0,0,0,.8));
-}
-.globe{
-  position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:min(1200px, 130vmin); aspect-ratio:1/1; opacity:.28;
-}
-.globe svg{ width:100%; height:100%; display:block; }
-.globe .sphere{ fill: none; stroke: var(--grid); stroke-width:1.2; opacity:.85; }
-.globe .mer{ transform-origin:50% 50%; animation: spin 24s linear infinite; }
-.globe .par{ transform-origin:50% 50%; animation: bob 18s ease-in-out infinite; }
-@keyframes spin{ from{ transform: rotate(0deg);} to{ transform: rotate(360deg);} }
-@keyframes bob{ 0%,100%{ transform: rotateX(0deg);} 50%{ transform: rotateX(8deg);} }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* ===== Layout ===== */
-.wrap{ position:relative; z-index:1; max-width:1100px; margin:0 auto; padding: min(8vh,64px) 20px 80px; }
+    body {
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top left, #111827 0, transparent 55%),
+        radial-gradient(circle at top right, #111827 0, transparent 55%),
+        radial-gradient(circle at bottom, #020817 0, #000000 70%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
 
-.hero{
-  display:grid; gap:28px; grid-template-columns: 1.2fr .8fr; align-items:center;
-}
-@media (max-width: 980px){ .hero{ grid-template-columns: 1fr; } }
+    .frame {
+      width: min(1200px, 100%);
+      border-radius: 34px;
+      padding: 26px 26px 22px;
+      border: 1px solid rgba(148,163,253,0.12);
+      background: radial-gradient(circle at top, rgba(255,255,255,0.02), transparent 55%)
+                  ,rgba(0,0,0,0.86);
+      box-shadow: var(--shadow-xl);
+      backdrop-filter: blur(22px);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
 
-.brand{
-  display:flex; gap:16px; align-items:center; flex-wrap:wrap;
-}
-.brand .logo{ width:100px; height:100px; border-radius:18px; background:#0d0e11; border:1px solid var(--border); box-shadow:var(--shadow-1); display:grid; place-items:center; overflow:hidden; }
-.brand .logo img{ width:78%; height:auto; filter:none; }
-.brand h1{ margin:0; font-size: clamp(28px, 4.5vw, 48px); letter-spacing:.6px; }
-.tag{ color:var(--muted); font-size:.95rem; letter-spacing:.12em; text-transform:uppercase; }
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+    }
 
-.glass{
-  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-  border:1px solid var(--border); border-radius:var(--radius); backdrop-filter: blur(10px) saturate(115%);
-  box-shadow: var(--shadow-1);
-}
+    .logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-.lede{ padding:24px 22px; }
-.lede p{ margin:.6rem 0; }
+    .orb {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 20%, #ffffff, #9ca3af 30%, #020817 85%);
+      box-shadow:
+        0 0 28px rgba(255,255,255,0.16),
+        0 12px 22px rgba(0,0,0,0.9);
+    }
 
-.cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
-.btn{ --bg: #111317; --fg:#fff; appearance:none; border:1px solid var(--border); background:var(--bg); color:var(--fg); padding:12px 18px; border-radius:14px; text-decoration:none; font-weight:700; letter-spacing:.02em; transition:.25s transform, .25s background, .25s border-color, .25s color; display:inline-flex; align-items:center; gap:10px; }
-.btn:hover{ transform:translateY(-1px); border-color:#fff2; }
-.btn.secondary{ --bg: transparent; --fg: var(--ink); background:transparent; color:var(--ink); }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
 
-.cols{ display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:32px; }
-@media (max-width: 1000px){ .cols{ grid-template-columns: 1fr 1fr; } }
-@media (max-width: 720px){ .cols{ grid-template-columns: 1fr; } }
+    .brand-text span.label {
+      font-size: 10px;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-.card{ padding:18px 18px 16px; position:relative; }
-.card h3{ margin:2px 0 8px; font-size:1.1rem; letter-spacing:.02em; }
-.card p{ margin:.5rem 0; color:var(--muted); }
-.card .mono{ font-family: inherit; font-size:.95rem; color:#d8dee9; }
-.card .rule{ height:1px; background:var(--line); margin:12px 0; border-radius:2px; }
+    .brand-text span.name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
-/* small cypherpunk ticks */
-.tick:before{ content:"#"; opacity:.45; margin-right:.4ch; }
+    .top-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      backdrop-filter: blur(14px);
+    }
 
-/* footer */
-.footer{ margin-top:36px; padding:18px; text-align:center; color:#aab3bd; font-size:.9rem; }
+    .top-cta span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background-color: #22c55e;
+      box-shadow: 0 0 8px #22c55e;
+    }
 
-/* optional: subtle scanline overlay for vibe */
-.scanlines{ position:fixed; inset:0; z-index:0; pointer-events:none; background-image:repeating-linear-gradient(to bottom, rgba(255,255,255,.02), rgba(255,255,255,.02) 1px, transparent 1px, transparent 3px); mix-blend-mode:soft-light; opacity:.65; }
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(260px, 0.9fr);
+      gap: 22px;
+      align-items: stretch;
+    }
 
-/* ===== Enhancements: glitch, chips, rain, hover-tilt ===== */
-.glitch{ position:relative; display:inline-block; text-shadow:0 0 0 transparent; }
-.glitch:before,.glitch:after{ content:attr(data-text); position:absolute; left:0; top:0; clip-path:inset(0 0 0 0); opacity:.7; }
-.glitch:before{ transform:translate(2px,0); color:#ffffff20; }
-.glitch:after{ transform:translate(-2px,0); color:#ffffff30; }
-.glitch:hover{ animation:shim .9s steps(2,end) infinite; }
-@keyframes shim{ 0%,100%{ filter:none; } 50%{ filter:hue-rotate(10deg) contrast(110%);} }
+    .hero-block {
+      padding: 22px 20px 18px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: var(--frost);
+      backdrop-filter: blur(18px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-.chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-.chip{ padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.04); color:#d8dee9; font-weight:600; letter-spacing:.02em; box-shadow:0 6px 18px rgba(0,0,0,.35); }
+    .kicker {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
 
-.btn{ position:relative; overflow:hidden; }
-.btn:after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg,transparent,rgba(255,255,255,.12),transparent); transform:translateX(-120%); transition:transform .6s; }
-.btn:hover:after{ transform:translateX(120%); }
+    h1 {
+      font-size: clamp(24px, 3.2vw, 32px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: 0.01em;
+    }
 
-.rain{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.18; mix-blend-mode:soft-light; }
+    h1 span {
+      color: var(--accent);
+    }
 
-.tilt{ transition: transform .15s ease-out; will-change: transform; }
+    .subcopy {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 560px;
+    }
 
-/* ===== Big-impression upgrades ===== */
-/* Typewriter oath */
-.oath{ margin-top:16px; padding:18px 18px; border:1px solid var(--border); border-radius:var(--radius); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); box-shadow:var(--shadow-1); }
-.oath p{ margin:0; white-space:nowrap; overflow:hidden; border-right:2px solid #fff4; width:0; animation: typing 4.2s steps(60,end) forwards, caret 900ms steps(1,end) infinite; }
-@keyframes typing{ to{ width:100%; } }
-@keyframes caret{ 50%{ border-color:transparent; } }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
 
-/* Stat counters */
-.stats{ display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:16px; }
-.stat{ padding:16px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,.04); text-align:center; }
-.stat .num{ font-size: clamp(28px,4.5vw,40px); font-weight:800; letter-spacing:.5px; }
-.stat .label{ color:var(--muted); font-weight:600; letter-spacing:.06em; text-transform:uppercase; font-size:.8rem; }
-@media (max-width: 720px){ .stats{ grid-template-columns: 1fr; } }
+    .pill {
+      padding: 5px 11px;
+      font-size: 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148,163,253,0.16);
+      color: var(--muted);
+    }
 
-/* Vignette + grain for cinematic depth */
-.vignette{ position:fixed; inset:0; z-index:0; pointer-events:none; background: radial-gradient(60% 50% at 50% 50%, transparent 0, transparent 55%, rgba(0,0,0,.35) 100%); }
-.grain{ position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.06; background-image:url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"100\" height=\"100\" viewBox=\"0 0 100 100\"><filter id=\"n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"2\" stitchTiles=\"stitch\"/></filter><rect width=\"100%\" height=\"100%\" filter=\"url(%23n)\" opacity=\"0.35\"/></svg>'); mix-blend-mode:soft-light; }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 10px;
+    }
 
-/* Tighten brand row now that logo is removed */
-.brand{ gap:8px; }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #000;
+      background: #ffffff;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.9);
+      text-decoration: none;
+    }
 
-/* ===== Option B: ORB CINEMATIC / RITUAL ===== */
-.intro{ position:fixed; inset:0; z-index:999; display:grid; place-items:center; background:radial-gradient(60% 60% at 50% 50%, #0c0d10 0%, #050608 60%, #000 100%); color:#e6e9ef; }
-.intro.hide{ opacity:0; pointer-events:none; transition:opacity .9s ease; }
-.intro .stage{ display:grid; gap:24px; justify-items:center; text-align:center; padding:32px; }
-.intro .chant{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing:.28em; text-transform:uppercase; color:#aab3bd; opacity:.8 }
-.intro .steps{ display:flex; gap:14px; align-items:center; font-weight:800; }
-.intro .steps .dot{ width:8px; height:8px; border-radius:50%; background:#fff2; }
-.intro .steps .on{ background:#fff; box-shadow:0 0 24px #fff8; }
+    .btn-primary span.icon {
+      font-size: 14px;
+      line-height: 1;
+    }
 
-/* Orb — layered gradients + rotating ring + breathing glow */
-.orb-wrap{ display:grid; place-items:center; padding:12px; }
-.orb{ width:min(540px, 70vmin); aspect-ratio:1/1; position:relative; border-radius:50%; background:
-  radial-gradient(55% 55% at 50% 45%, rgba(255,255,255,.85) 0%, rgba(255,255,255,.22) 35%, rgba(255,255,255,.05) 55%, rgba(0,0,0,.6) 70%, rgba(0,0,0,.95) 100%),
-  radial-gradient(90% 90% at 30% 25%, rgba(255,255,255,.35), transparent 50%),
-  radial-gradient(80% 80% at 70% 70%, rgba(255,255,255,.12), transparent 60%);
-  box-shadow: inset 0 12px 60px rgba(255,255,255,.22), inset 0 -16px 80px rgba(0,0,0,.65), 0 40px 120px rgba(0,0,0,.65);
-  overflow:hidden; filter: saturate(90%) contrast(105%); animation: breathe 4s ease-in-out infinite;
-}
-@keyframes breathe{ 0%,100%{ filter:brightness(1) } 50%{ filter:brightness(1.06) } }
-.orb:before{ content:""; position:absolute; inset:0; background:
-  conic-gradient(from 0deg, rgba(255,255,255,.12), rgba(255,255,255,.02) 35%, rgba(255,255,255,.12) 70%, rgba(255,255,255,.02) 100%);
-  mask: radial-gradient(closest-side, transparent 68%, black 70%);
-  animation: ring 18s linear infinite;
-}
-@keyframes ring{ to{ transform:rotate(360deg);} }
-.orb:after{ content:""; position:absolute; inset:0; background: radial-gradient(30% 30% at 50% 50%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%);
-  mix-blend-mode:screen; opacity:.75; filter: blur(12px);
-}
-.lens{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:40%; aspect-ratio:1/1; border-radius:50%;
-  background: radial-gradient(60% 60% at 50% 50%, #0a0d12, #0b0e12 40%, #000 70%),
-              radial-gradient(40% 40% at 45% 40%, rgba(255,255,255,.18), rgba(255,255,255,0) 70%);
-  border:1px solid rgba(255,255,255,.15); box-shadow: inset 0 0 40px rgba(255,255,255,.08), 0 0 60px rgba(255,255,255,.08);
-}
-.sweep{ position:absolute; inset:-20%; background:linear-gradient(120deg, transparent 35%, rgba(255,255,255,.18) 50%, transparent 65%);
-  transform:rotate(8deg) translateX(-120%); animation: sweep 6s ease-in-out infinite;
-}
-@keyframes sweep{ 50%{ transform:rotate(8deg) translateX(120%);} }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+    }
 
-/* CTA styles upgrade */
-.cta-row .btn.primary{ --bg:#ffffff; --fg:#0c0d10; color:var(--fg); background:var(--bg); border-color:#fff; box-shadow:0 12px 30px rgba(255,255,255,.08), inset 0 -2px 0 rgba(0,0,0,.18); }
-.cta-row .btn.primary:hover{ transform:translateY(-2px) scale(1.02); }
+    .btn-ghost span.icon {
+      font-size: 13px;
+    }
 
-/* Mobile sticky CTA */
-@media (max-width: 720px){
-  .cta-sticky{ position:fixed; left:12px; right:12px; bottom:12px; z-index:50; display:flex; gap:10px; justify-content:space-between; }
-  .cta-sticky .btn{ flex:1; }
-}
+    .bottom-line {
+      font-size: 9px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
 
-/* ===== Mobile polish & no-fake-stats overrides ===== */
-@media (max-width: 720px){
-  .intro{ display:none !important; }
-  .hero{ grid-template-columns:1fr !important; gap:18px !important; }
-  .wrap{ padding:18px 14px 88px !important; }
-  .orb{ width:68vmin !important; }
-  .cta-row{ flex-direction:column !important; }
-  .btn{ width:100% !important; padding:14px 16px !important; font-size:1rem !important; border-radius:12px !important; }
-  .globe{ opacity:.18 !important; }
-}
-.stats{ display:none !important; }
+    .grid-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .point {
+      padding: 9px 9px 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(75,85,99,0.4);
+      background: radial-gradient(circle at top, rgba(148,163,253,0.06), transparent);
+      font-size: 9px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .point span.tag {
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+    }
+
+    .point strong {
+      font-size: 10px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .qr-panel {
+      padding: 16px 14px 14px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, rgba(148,163,253,0.09), transparent)
+                  ,rgba(3,7,18,0.98);
+      backdrop-filter: blur(18px);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .qr-label {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .qr-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .qr-img-wrap {
+      margin-top: 6px;
+      padding: 8px;
+      border-radius: 18px;
+      background: rgba(0,0,0,0.9);
+      border: 1px solid rgba(148,163,253,0.35);
+      box-shadow: 0 14px 40px rgba(0,0,0,1);
+    }
+
+    .qr-img-wrap img {
+      display: block;
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+
+    .qr-note {
+      font-size: 9px;
+      color: var(--muted);
+      max-width: 230px;
+    }
+
+    .qr-link {
+      font-size: 10px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(148,163,253,0.4);
+      padding-bottom: 1px;
+      margin-top: 4px;
+    }
+
+    .foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+      padding-top: 6px;
+      border-top: 1px solid rgba(31,41,55,0.7);
+      font-size: 8px;
+      color: #6b7280;
+    }
+
+    .foot span strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links a {
+      color: #6b7280;
+      text-decoration: none;
+    }
+
+    .foot-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 14px;
+      }
+      .frame {
+        padding: 18px 14px 14px;
+        border-radius: 24px;
+      }
+      .main {
+        grid-template-columns: 1fr;
+      }
+      .qr-panel {
+        order: -1;
+      }
+      .hero-block {
+        padding: 16px 12px 10px;
+      }
+      h1 {
+        font-size: 22px;
+      }
+      .grid-points {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
 
   </style>
 </head>
 <body>
-  <!-- ORB ceremonial intro overlay -->
-  <div class="intro" id="intro">
-    <div class="stage">
-      <div class="orb" aria-hidden="true">
-        <div class="lens"></div>
-        <div class="sweep"></div>
-      </div>
-      <div class="chant">Human verification ritual</div>
-      <div class="steps"><span id="s1" class="dot on"></span> SCAN <span class="dot"></span> VERIFY <span class="dot"></span> ENTER</div>
-    </div>
-  </div>
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-  <canvas id="rain" class="rain"></canvas>
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
-  <canvas id="rain" class="rain"></canvas>
-  <canvas id="rain" class="rain"></canvas>
-  <!-- Background globe (pure SVG; lightweight; animated) -->
-  <div class="bg">
-    <div class="globe" aria-hidden="true">
-      <svg viewBox="0 0 100 100" role="img" aria-label="Wireframe globe">
-        <!-- outer circle -->
-        <circle class="sphere" cx="50" cy="50" r="48" />
-        <!-- meridians -->
-        <g class="mer">
-          <ellipse class="sphere" cx="50" cy="50" rx="44" ry="48" />
-          <ellipse class="sphere" cx="50" cy="50" rx="30" ry="48" />
-          <ellipse class="sphere" cx="50" cy="50" rx="15" ry="48" />
-        </g>
-        <!-- parallels -->
-        <g class="par">
-          <ellipse class="sphere" cx="50" cy="50" rx="48" ry="44" />
-          <ellipse class="sphere" cx="50" cy="50" rx="48" ry="30" />
-          <ellipse class="sphere" cx="50" cy="50" rx="48" ry="15" />
-        </g>
-      </svg>
-    </div>
-  </div>
-  <div class="scanlines" aria-hidden="true"></div>  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <div>
-        <div class="brand">
-          <div>
-            <h1 class="glitch" data-text="Hash Humanity">Hash Humanity</h1>
-            <div class="tag">You are the proof, not the product • <span id="rotator" data-words="World ID,Zero‑Knowledge,Pulse tipping,Community"></span></div>
-          </div>
-        </div>
-        <div class="lede glass tilt">
-          <p><strong>Human‑verified social.</strong> Log in with <em>World&nbsp;ID</em>, protect your privacy with <em>zero‑knowledge</em> techniques, and tip creators instantly with <em>Pulse</em>. No bots. No data farming. Community first.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">● Verify with World ID</a>
-            <a class="btn secondary" href="https://hashhumanity.world" target="_blank" rel="noopener">↗ Visit the website</a>
-            <a class="btn" href="mailto:support@hashhumanity.world">✉ Email support</a>
-          </div>
-          <div class="oath"><p>We stand for proof over hype, privacy over surveillance, and people over algorithms.</p></div>
-          <div class="stats">
-            <div class="stat"><div class="num" data-target="128000">0</div><div class="label">Humans verified</div></div>
-            <div class="stat"><div class="num" data-target="472000">0</div><div class="label">Pulses tipped</div></div>
-            <div class="stat"><div class="num" data-target="980000">0</div><div class="label">Bots blocked</div></div>
-          </div>
+  <div class="frame">
+    <div class="top-row">
+      <div class="logo-lockup">
+        <div class="orb"></div>
+        <div class="brand-text">
+          <span class="label">World ID Verified Social</span>
+          <span class="name">Hash Humanity</span>
         </div>
       </div>
-      <aside>
-        <div class="orb-wrap">
-          <div class="orb" aria-label="Identity orb">
-            <div class="lens"></div>
-            <div class="sweep"></div>
+      <a class="top-cta" href="https://hashhumanity.world" target="_blank" rel="noopener">
+        <span class="dot"></span>
+        Live at <strong>hashhumanity.world</strong>
+      </a>
+    </div>
+
+    <div class="main">
+      <!-- LEFT: Hero + value prop -->
+      <section class="hero-block">
+        <div class="kicker">You are the proof, not the product</div>
+        <h1>
+          A human-only social layer for the people who are
+          <span>done with bots, spam, and data mining.</span>
+        </h1>
+        <p class="subcopy">
+          Hash Humanity uses <strong>World ID</strong> verification at the gate so every account is tied to a
+          real human — not a farm of fakes. No creepy data brokerage, no engagement traps, no bullshit metrics.
+        </p>
+
+        <div class="pill-row">
+          <div class="pill">World&nbsp;ID-gated: one human, one account</div>
+          <div class="pill">No bought bots • No fake followers</div>
+          <div class="pill">Community first • Transparent by design</div>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn-primary" href="https://hashhumanity.world" target="_blank" rel="noopener">
+            Enter Hash Humanity
+            <span class="icon">↗</span>
+          </a>
+          <a class="btn-ghost" href="https://hashhumanity.world" target="_blank" rel="noopener">
+            Learn how it works
+            <span class="icon">❯</span>
+          </a>
+        </div>
+
+        <div class="grid-points">
+          <div class="point">
+            <span class="tag">Real Humans Only</span>
+            <strong>World ID-verified access.</strong>
+            Proof of personhood at the door. You’re in with one human identity — not ten burner accounts.
+          </div>
+          <div class="point">
+            <span class="tag">Signal Over Noise</span>
+            <strong>No algorithmic circus.</strong>
+            The focus is real people, real posts, and transparent discovery — not rage-bait for ad revenue.
+          </div>
+          <div class="point">
+            <span class="tag">Built For Integrity</span>
+            <strong>Future-ready design.</strong>
+            Aligned with zero-knowledge, open protocols, and community-driven governance as it evolves.
           </div>
         </div>
+
+        <p class="bottom-line">
+          No fake stats. No vanity fluff. Hash Humanity is for people who actually give a damn about
+          what the internet becomes next.
+        </p>
+      </section>
+
+      <!-- RIGHT: QR block -->
+      <aside class="qr-panel">
+        <div class="qr-label">Scan &amp; join</div>
+        <div class="qr-title">hashhumanity.world</div>
+        <div class="qr-img-wrap">
+          <!-- Make sure hashhumanity-qr.png is in the same folder as this HTML file -->
+          <img src="hashhumanity-qr.png" alt="QR code linking to hashhumanity.world" />
+        </div>
+        <p class="qr-note">
+          Point your camera, tap the link, and step into a social space where
+          your human verification matters more than your data profile.
+        </p>
+        <a class="qr-link" href="https://hashhumanity.world" target="_blank" rel="noopener">
+          Or tap here if you’re already on your phone ↗
+        </a>
       </aside>
-    </section><!-- CONTENT GRID -->
-<div class="chips">
-  <div class="chip">World ID login</div>
-  <div class="chip">Zero‑knowledge friendly</div>
-  <div class="chip">Pulse tipping</div>
-  <div class="chip">Human‑only feeds</div>
-  <div class="chip">PWA ready</div>
-</div>
+    </div>
 
-<section class="cols">
-  <article class="card glass">
-    <h3 class="tick">Vision</h3>
-    <p>A web where <em>humans</em> own their voice and value. Identity is verified without surrendering your private life. Platforms serve people — not ad markets.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Mission</h3>
-    <p>Build the most trusted human‑only social layer on the internet by combining proof‑of‑personhood, privacy‑preserving tech, and community governance.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">What we are</h3>
-    <p>Hash Humanity is a <strong>human‑verified social network</strong>. Every account is backed by World&nbsp;ID, dramatically reducing bots, spam, and brigading.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Goals</h3>
-    <p>Humane feeds, transparent rules, creator sustainability, and zero‑tolerance for mass manipulation. Ship fast, break <em>nothing</em>, and earn trust daily.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Website</h3>
-    <p>Fast, mobile‑first, and PWA‑ready for push notifications. Thoughtful design in black / white / gray — no dark‑pattern bullshit.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Pulse tipping</h3>
-    <p>Frictionless micro‑tipping to fuel creators and mutual aid. Small pulses, big impact. Native, instant, and trackable — without exposing your identity.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">World ID</h3>
-    <p>One‑tap sign‑in powered by verified personhood. We use World&nbsp;ID to cut bots and fake accounts while keeping your personal info off our servers.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Zero‑knowledge</h3>
-    <p>Privacy isn’t a feature — it’s architecture. Zero‑knowledge proof‑friendly flows let you prove statements about yourself without revealing the raw data.</p>
-  </article>
-
-  <article class="card glass">
-    <h3 class="tick">Community</h3>
-    <p>Moderation with receipts. Clear rules, appeals, and community‑driven standards. We amplify real people, not engagement bait.</p>
-  </article>
-</section>
-
-<footer class="footer">
-  © <span id="y"></span> Hash Humanity • <a href="https://hashhumanity.world" target="_blank" rel="noopener" style="color:#dfe6ee; text-decoration:none;">hashhumanity.world</a>
-  • <a href="mailto:support@hashhumanity.world" style="color:#dfe6ee; text-decoration:none;">support@hashhumanity.world</a>
-</footer>
-
-  </main>  <script>
-    // Set year
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>  <script>
-    // === Matrix-style hash rain (lightweight) ===
-    (function(){
-      const c = document.getElementById('rain'); if(!c) return; const ctx = c.getContext('2d');
-      const k = '0123456789abcdef#'; let w,h,cols,drops; const resize=()=>{ w=c.width=window.innerWidth; h=c.height=window.innerHeight; cols = Math.floor(w/16); drops = Array(cols).fill(0); }; resize();
-      window.addEventListener('resize', resize);
-      function draw(){
-        ctx.fillStyle = 'rgba(0,0,0,0.08)'; ctx.fillRect(0,0,w,h);
-        ctx.fillStyle = 'rgba(255,255,255,0.45)'; ctx.font = '14px ui-monospace,monospace';
-        for(let i=0;i<drops.length;i++){
-          const txt = k[Math.floor(Math.random()*k.length)];
-          ctx.fillText(txt, i*16, drops[i]*16);
-          if(drops[i]*16 > h && Math.random() > 0.975) drops[i]=0; drops[i]++;
-        }
-        requestAnimationFrame(draw);
-      }
-      draw();
-    })();
-
-    // === Rotating word ticker ===
-    (function(){
-      const el = document.getElementById('rotator'); if(!el) return;
-      const words = (el.dataset.words||'').split(','); let i=0;
-      function tick(){ el.textContent = words[i%words.length].trim(); i++; }
-      tick(); setInterval(tick, 1800);
-    })();
-
-    // === Subtle hover tilt on cards ===
-    (function(){
-      const els = document.querySelectorAll('.tilt, .card.glass');
-      els.forEach(el=>{
-        el.addEventListener('mousemove', (e)=>{
-          const r = el.getBoundingClientRect();
-          const x = (e.clientX - r.left)/r.width - .5;
-          const y = (e.clientY - r.top)/r.height - .5;
-          el.style.transform = `rotateX(${(-y*4).toFixed(2)}deg) rotateY(${(x*4).toFixed(2)}deg)`;
-        });
-        el.addEventListener('mouseleave', ()=>{ el.style.transform = 'none'; });
-      });
-    })();
-  </script>  <script>
-    // === Matrix-style hash rain (already present) + keep existing code ===
-  </script>  <script>
-    // === Matrix-style hash rain (existing) plus intro & counters ===
-    // (rain init stays earlier in file)
-
-    // Ceremonial intro sequence
-    (function(){
-      const intro = document.getElementById('intro'); if(!intro) return;
-      const dots = intro.querySelectorAll('.steps .dot'); let i=0;
-      const stepper = setInterval(()=>{
-        if(i<dots.length){ dots.forEach(d=>d.classList.remove('on')); dots[i].classList.add('on'); i++; }
-        else { clearInterval(stepper); intro.classList.add('hide'); }
-      }, 900);
-      // Auto dismiss after ~3s as a fallback
-      setTimeout(()=> intro.classList.add('hide'), 3200);
-    })();
-
-    // Stat counters (animated once on load)
-    (function(){
-      const elms = document.querySelectorAll('.stat .num'); if(!elms.length) return;
-      elms.forEach(el=>{
-        const target = parseInt(el.getAttribute('data-target')||'0',10); let cur=0; const dur=1600; const t0=performance.now();
-        const tick=(t)=>{ const p=Math.min(1,(t-t0)/dur); const val=Math.floor(target*(0.2 + 0.8*(p*p))); el.textContent = val.toLocaleString(); if(p<1) requestAnimationFrame(tick); };
-        requestAnimationFrame(tick);
-      });
-    })();
-
-    // Sticky CTA on mobile
-    (function(){
-      const bar = document.createElement('div'); bar.className='cta-sticky';
-      bar.innerHTML = '<a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Verify with World ID</a><a class="btn" href="mailto:support@hashhumanity.world">Support</a>';
-      const mq = window.matchMedia('(max-width: 720px)');
-      function toggle(){ if(mq.matches) document.body.appendChild(bar); else bar.remove(); }
-      mq.addEventListener('change', toggle); toggle();
-    })();
-  </script>  <script>
-    // Remove any stat counters entirely (user doesn't want placeholder numbers)
-    (function(){
-      document.querySelectorAll('.stats').forEach(n=>n.remove());
-      // If a counter script exists, neutralize by removing references
-      const scripts = Array.from(document.scripts);
-      scripts.forEach(s=>{ if(s.textContent && s.textContent.includes(".stat .num")){ /* noop: present but harmless */ } });
-    })();
-
-    // Ensure sticky CTA shows only primary button on mobile
-    (function(){
-      const mq = matchMedia('(max-width: 720px)');
-      function tweak(){
-        const bar = document.querySelector('.cta-sticky');
-        if(!bar) return;
-        const primary = '<a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Verify with World ID</a>';
-        bar.innerHTML = primary;
-      }
-      mq.addEventListener('change', tweak); tweak();
-    })();
-  </script></body>
+    <div class="foot">
+      <span>
+        <strong>Hash Humanity</strong> — World ID-verified humans, zero tolerance for bot farms or data scavengers.
+      </span>
+      <div class="foot-links">
+        <a href="https://hashhumanity.world" target="_blank" rel="noopener">hashhumanity.world</a>
+        <a href="mailto:support@hashhumanity.world">support@hashhumanity.world</a>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
