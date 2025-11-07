@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hash Humanity — You Are The Proof</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Hash Humanity is a human-verified social layer powered by World ID. No bots. No data harvesting. You are the proof, not the product." />
+  <title>Hash Humanity — You are the proof. Not the product.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hash Humanity — a human-verified social network powered by World ID. No bots. All people. You are the proof, not the product." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #020202;
-      --ink: #f5f5f5;
+      --bg: #030712;
+      --bg-soft: #020309;
+      --ink: #f9fafb;
       --muted: #9ca3af;
-      --accent: #ffffff;
-      --border: rgba(255,255,255,0.16);
-      --frost: rgba(9,9,11,0.82);
-      --radius-xl: 26px;
-      --radius-pill: 999px;
-      --shadow-xl: 0 22px 80px rgba(0,0,0,0.9);
-      --font-main: system-ui, -apple-system, BlinkMacSystemFont, -system-ui, sans-serif;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56,189,248,0.16);
+      --card-bg: rgba(6,11,25,0.96);
+      --radius-xl: 24px;
+      --radius-md: 18px;
+      --border-subtle: rgba(148,163,253,0.14);
+      --shadow-soft: 0 24px 60px rgba(15,23,42,0.9);
+      --transition-fast: 0.22s ease-out;
     }
 
     * {
@@ -26,457 +29,492 @@
     }
 
     body {
-      font-family: var(--font-main);
-      background:
-        radial-gradient(circle at top left, #111827 0, transparent 55%),
-        radial-gradient(circle at top right, #111827 0, transparent 55%),
-        radial-gradient(circle at bottom, #020817 0, #000000 70%);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #020817 0%, #020817 40%, #000 100%);
       color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .page {
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
+      padding: 40px 32px 48px;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
     }
 
-    .frame {
-      width: min(1200px, 100%);
-      border-radius: 34px;
-      padding: 26px 26px 22px;
-      border: 1px solid rgba(148,163,253,0.12);
-      background: radial-gradient(circle at top, rgba(255,255,255,0.02), transparent 55%)
-                  ,rgba(0,0,0,0.86);
-      box-shadow: var(--shadow-xl);
-      backdrop-filter: blur(22px);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .logo-lockup {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .orb {
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
+    /* subtle glowing globe background */
+    .globe-bg {
+      position: fixed;
+      inset: -20vh -10vw auto;
+      margin: auto;
+      opacity: 0.2;
       background:
-        radial-gradient(circle at 30% 20%, #ffffff, #9ca3af 30%, #020817 85%);
-      box-shadow:
-        0 0 28px rgba(255,255,255,0.16),
-        0 12px 22px rgba(0,0,0,0.9);
+        radial-gradient(circle at 50% 30%, rgba(56,189,248,0.14), transparent 65%),
+        radial-gradient(circle at 50% 80%, rgba(15,23,42,0.95), transparent 80%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: -2;
+      filter: blur(1px);
     }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) auto;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
     }
 
-    .brand-text span.label {
-      font-size: 10px;
-      letter-spacing: 0.17em;
+    .brand-lockup {
+      font-size: 13px;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 4vw, 46px);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-sub {
+      font-size: 15px;
       color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 480px;
     }
 
-    .brand-text span.name {
-      font-size: 18px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .top-cta {
+      border: 1px solid transparent;
+      cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 16px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
-      font-size: 11px;
-      color: var(--muted);
+      transition: all var(--transition-fast);
       text-decoration: none;
-      backdrop-filter: blur(14px);
-    }
-
-    .top-cta span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background-color: #22c55e;
-      box-shadow: 0 0 8px #22c55e;
-    }
-
-    .main {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(260px, 0.9fr);
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .hero-block {
-      padding: 22px 20px 18px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border);
-      background: var(--frost);
-      backdrop-filter: blur(18px);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .kicker {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-    }
-
-    h1 {
-      font-size: clamp(24px, 3.2vw, 32px);
-      font-weight: 600;
-      line-height: 1.18;
-      letter-spacing: 0.01em;
-    }
-
-    h1 span {
-      color: var(--accent);
-    }
-
-    .subcopy {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 560px;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .pill {
-      padding: 5px 11px;
-      font-size: 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148,163,253,0.16);
-      color: var(--muted);
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-top: 10px;
+      color: inherit;
     }
 
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 9px 22px;
-      border-radius: var(--radius-pill);
-      border: none;
-      outline: none;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: #000;
-      background: #ffffff;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.9);
-      text-decoration: none;
+      background:
+        radial-gradient(circle at 0 0, rgba(56,189,248,0.32), transparent 70%),
+        linear-gradient(to right, #111827, #020617);
+      border-color: rgba(148,163,253,0.3);
+      box-shadow: var(--shadow-soft);
     }
 
-    .btn-primary span.icon {
-      font-size: 14px;
-      line-height: 1;
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 26px 70px rgba(15,23,42,1);
     }
 
     .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 16px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
-      font-size: 11px;
+      background: transparent;
+      border-color: rgba(148,163,253,0.2);
+      color: var(--accent);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15,23,42,0.9);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+      transform: translateY(-1px);
+    }
+
+    .hero-label {
+      font-size: 10px;
       color: var(--muted);
-      text-decoration: none;
-      backdrop-filter: blur(10px);
-    }
-
-    .btn-ghost span.icon {
-      font-size: 13px;
-    }
-
-    .bottom-line {
-      font-size: 9px;
-      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
       margin-top: 4px;
     }
 
-    .grid-points {
+    .qr-wrap {
+      align-self: flex-start;
+      padding: 16px 18px 14px;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, rgba(56,189,248,0.12), transparent),
+                  rgba(3,7,18,0.98);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qr-wrap span {
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .qr-wrap img {
+      width: 132px;
+      height: 132px;
+      border-radius: 12px;
+      background: #fff;
+      padding: 4px;
+    }
+
+    /* feature grid */
+
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 10px;
+      gap: 18px;
+      margin-bottom: 32px;
     }
 
-    .point {
-      padding: 9px 9px 8px;
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: 0 14px 40px rgba(15,23,42,0.88);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .card p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .card-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .pulse-line {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      height: 26px;
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          rgba(56,189,248,0.3),
+          transparent
+        );
+      mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20'%3E%3Cpolyline fill='none' stroke='%23fff' stroke-width='2' points='0,10 15,10 25,2 35,18 48,4 60,16 75,3 90,17 105,8 120,10'/%3E%3C/svg%3E");
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      opacity: 0.7;
+    }
+
+    /* community + join */
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(220px, 1.1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .community {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 14px 14px 10px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .community-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .community h2 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .post {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 8px 8px 6px;
       border-radius: 14px;
-      border: 1px solid rgba(75,85,99,0.4);
-      background: radial-gradient(circle at top, rgba(148,163,253,0.06), transparent);
-      font-size: 9px;
-      color: var(--muted);
+      background: rgba(9,9,11,0.96);
+      margin-bottom: 6px;
+      border: 1px solid rgba(75,85,99,0.55);
+    }
+
+    .avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(145deg, #111827, #020817);
       display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .point span.tag {
-      font-size: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-    }
-
-    .point strong {
-      font-size: 10px;
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .qr-panel {
-      padding: 16px 14px 14px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top, rgba(148,163,253,0.09), transparent)
-                  ,rgba(3,7,18,0.98);
-      backdrop-filter: blur(18px);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
       align-items: center;
-      text-align: center;
-    }
-
-    .qr-label {
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .qr-title {
-      font-size: 14px;
-      font-weight: 500;
+      justify-content: center;
+      font-size: 11px;
       color: var(--accent);
     }
 
-    .qr-img-wrap {
-      margin-top: 6px;
-      padding: 8px;
-      border-radius: 18px;
-      background: rgba(0,0,0,0.9);
-      border: 1px solid rgba(148,163,253,0.35);
-      box-shadow: 0 14px 40px rgba(0,0,0,1);
+    .post .name {
+      font-size: 11px;
+      font-weight: 600;
     }
 
-    .qr-img-wrap img {
-      display: block;
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
-    }
-
-    .qr-note {
+    .post .meta {
       font-size: 9px;
       color: var(--muted);
-      max-width: 230px;
     }
 
-    .qr-link {
-      font-size: 10px;
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(148,163,253,0.4);
-      padding-bottom: 1px;
-      margin-top: 4px;
-    }
-
-    .foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-top: 2px;
-      padding-top: 6px;
-      border-top: 1px solid rgba(31,41,55,0.7);
-      font-size: 8px;
-      color: #6b7280;
-    }
-
-    .foot span strong {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .foot-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .foot-links a {
-      color: #6b7280;
-      text-decoration: none;
-    }
-
-    .foot-links a:hover {
+    .post .body {
+      font-size: 11px;
       color: #e5e7eb;
     }
 
-    @media (max-width: 800px) {
-      body {
-        padding: 14px;
-      }
-      .frame {
-        padding: 18px 14px 14px;
-        border-radius: 24px;
-      }
-      .main {
-        grid-template-columns: 1fr;
-      }
-      .qr-panel {
-        order: -1;
-      }
-      .hero-block {
-        padding: 16px 12px 10px;
-      }
-      h1 {
-        font-size: 22px;
-      }
-      .grid-points {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .join {
+      background: radial-gradient(circle at top, var(--accent-soft), transparent),
+                  var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 14px 14px 10px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
     }
 
+    .join-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .join h2 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .join p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .join .mini-phones {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .mini-phone {
+      flex: 1;
+      height: 62px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.18), transparent),
+                  #020817;
+      border: 1px solid rgba(75,85,99,0.9);
+    }
+
+    .join .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding-block: 9px;
+      font-size: 12px;
+    }
+
+    footer {
+      margin-top: 26px;
+      font-size: 9px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      padding-top: 10px;
+      border-top: 1px solid rgba(31,41,55,0.9);
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    footer a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        padding: 28px 16px 32px;
+      }
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .qr-wrap {
+        justify-self: flex-start;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .bottom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="frame">
-    <div class="top-row">
-      <div class="logo-lockup">
-        <div class="orb"></div>
-        <div class="brand-text">
-          <span class="label">World ID Verified Social</span>
-          <span class="name">Hash Humanity</span>
-        </div>
-      </div>
-      <a class="top-cta" href="https://hashhumanity.world" target="_blank" rel="noopener">
-        <span class="dot"></span>
-        Live at <strong>hashhumanity.world</strong>
-      </a>
-    </div>
+<div class="globe-bg"></div>
+<div class="page">
 
-    <div class="main">
-      <!-- LEFT: Hero + value prop -->
-      <section class="hero-block">
-        <div class="kicker">You are the proof, not the product</div>
-        <h1>
-          A human-only social layer for the people who are
-          <span>done with bots, spam, and data mining.</span>
-        </h1>
-        <p class="subcopy">
-          Hash Humanity uses <strong>World ID</strong> verification at the gate so every account is tied to a
-          real human — not a farm of fakes. No creepy data brokerage, no engagement traps, no bullshit metrics.
-        </p>
-
-        <div class="pill-row">
-          <div class="pill">World&nbsp;ID-gated: one human, one account</div>
-          <div class="pill">No bought bots • No fake followers</div>
-          <div class="pill">Community first • Transparent by design</div>
-        </div>
-
-        <div class="cta-row">
-          <a class="btn-primary" href="https://hashhumanity.world" target="_blank" rel="noopener">
-            Enter Hash Humanity
-            <span class="icon">↗</span>
-          </a>
-          <a class="btn-ghost" href="https://hashhumanity.world" target="_blank" rel="noopener">
-            Learn how it works
-            <span class="icon">❯</span>
-          </a>
-        </div>
-
-        <div class="grid-points">
-          <div class="point">
-            <span class="tag">Real Humans Only</span>
-            <strong>World ID-verified access.</strong>
-            Proof of personhood at the door. You’re in with one human identity — not ten burner accounts.
-          </div>
-          <div class="point">
-            <span class="tag">Signal Over Noise</span>
-            <strong>No algorithmic circus.</strong>
-            The focus is real people, real posts, and transparent discovery — not rage-bait for ad revenue.
-          </div>
-          <div class="point">
-            <span class="tag">Built For Integrity</span>
-            <strong>Future-ready design.</strong>
-            Aligned with zero-knowledge, open protocols, and community-driven governance as it evolves.
-          </div>
-        </div>
-
-        <p class="bottom-line">
-          No fake stats. No vanity fluff. Hash Humanity is for people who actually give a damn about
-          what the internet becomes next.
-        </p>
-      </section>
-
-      <!-- RIGHT: QR block -->
-      <aside class="qr-panel">
-        <div class="qr-label">Scan &amp; join</div>
-        <div class="qr-title">hashhumanity.world</div>
-        <div class="qr-img-wrap">
-          <!-- Make sure hashhumanity-qr.png is in the same folder as this HTML file -->
-          <img src="hashhumanity-qr.png" alt="QR code linking to hashhumanity.world" />
-        </div>
-        <p class="qr-note">
-          Point your camera, tap the link, and step into a social space where
-          your human verification matters more than your data profile.
-        </p>
-        <a class="qr-link" href="https://hashhumanity.world" target="_blank" rel="noopener">
-          Or tap here if you’re already on your phone ↗
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="brand-lockup">HASH HUMANITY • POWERED BY WORLD ID</div>
+      <h1>You are the proof.<br />Not the product.</h1>
+      <p class="hero-sub">
+        Hash Humanity is a human-verified social network. World ID login only.
+        No bots, no spam farms, no surveillance bullshit — just people.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://hashhumanity.world">
+          Verify with World ID
         </a>
-      </aside>
+        <a class="btn-ghost" href="https://hashhumanity.world">
+          Explore the Universe
+        </a>
+      </div>
+      <div class="hero-label">NO BOTS. ALL PEOPLE. YOU ARE THE PROOF.</div>
     </div>
 
-    <div class="foot">
-      <span>
-        <strong>Hash Humanity</strong> — World ID-verified humans, zero tolerance for bot farms or data scavengers.
-      </span>
-      <div class="foot-links">
-        <a href="https://hashhumanity.world" target="_blank" rel="noopener">hashhumanity.world</a>
-        <a href="mailto:support@hashhumanity.world">support@hashhumanity.world</a>
+    <!-- QR CARD (real, working QR) -->
+    <div class="qr-wrap">
+      <span>Scan to join</span>
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fhashhumanity.world"
+        alt="QR code to hashhumanity.world"
+      />
+      <span>hashhumanity.world</span>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-grid">
+    <div class="card">
+      <div class="card-label">Proof of Human Login</div>
+      <h3>World ID verification</h3>
+      <p>
+        One human, one account. Zero throwaway bots, zero script farms.
+        Your cryptographic proof, your privacy intact.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Pulse Feature</div>
+      <h3>Tip authenticity</h3>
+      <p>
+        Pulse lets you boost real humans &amp; real voices — micro-support
+        for people who add value to the network.
+      </p>
+      <div class="pulse-line"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Signal over noise</div>
+      <h3>No bots. All people.</h3>
+      <p>
+        Every interaction comes from a verified human. No algorithmic rage-bait,
+        no fake reach. Just human media.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMMUNITY + JOIN -->
+  <section class="bottom-grid">
+    <div class="community">
+      <div class="community-title">Community Showcase</div>
+      <h2>Real humans. Real conversations.</h2>
+
+      <div class="post">
+        <div class="avatar">H</div>
+        <div>
+          <div class="name">@admin • <span class="meta">Verified • 5m</span></div>
+          <div class="body">Welcome to Hash Humanity. No bots. No farmed clout. Just us.</div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="avatar">M</div>
+        <div>
+          <div class="name">@marilyn • <span class="meta">Verified • 12m</span></div>
+          <div class="body">“Feels like the first social network that doesn’t treat me like data.”</div>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="avatar">T</div>
+        <div>
+          <div class="name">@tim • <span class="meta">Verified • 21m</span></div>
+          <div class="body">Built for humans who actually give a damn about the future.</div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div class="join">
+      <div>
+        <div class="join-label">Join the human internet</div>
+        <h2>Hash Humanity Universe</h2>
+        <p>
+          A secure, human-only layer for conversation, coordination, and culture.
+          Scan, verify, and step inside.
+        </p>
+        <div class="mini-phones">
+          <div class="mini-phone"></div>
+          <div class="mini-phone"></div>
+        </div>
+      </div>
+      <a class="btn-primary" href="https://hashhumanity.world">Open Hash Humanity</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Hash Humanity — You are the proof, not the product.</span>
+    <a href="https://hashhumanity.world/about">About</a>
+    <a href="https://hashhumanity.world/guidelines">Guidelines</a>
+    <a href="https://hashhumanity.world/privacy">Privacy</a>
+    <a href="https://hashhumanity.world/terms">Terms</a>
+    <a href="https://hashhumanity.world/support">Support</a>
+  </footer>
+</div>
 </body>
 </html>
