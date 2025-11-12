@@ -24,18 +24,14 @@
   .wrap{max-width:980px; margin:0 auto; padding:28px 20px 80px}
   header{display:flex; align-items:center; justify-content:space-between; gap:14px; padding:10px 0 18px}
   .brand{display:flex; align-items:center; gap:14px}
-  .brand img{width:60px; height:60px; border-radius:999px; object-fit:cover} /* was 36px */
-  .brand strong{
-    letter-spacing:.10em;
-    font-weight:800;
-    font-size: clamp(18px, 3vw, 30px); /* bigger wordmark */
-  }
-  .actions{display:flex; gap:10px}
+  .brand img{width:60px; height:60px; border-radius:999px; object-fit:cover}
+  .brand strong{letter-spacing:.10em; font-weight:800; font-size: clamp(18px, 3vw, 30px)}
+  .actions{display:flex; gap:10px; flex-wrap:wrap}
   .btn{
     appearance:none; border:1px solid var(--ring); color:#fff; background:var(--glass);
     padding:10px 16px; border-radius:999px; font-weight:600; letter-spacing:.02em;
     backdrop-filter: blur(8px) saturate(120%); box-shadow:var(--shadow);
-    text-decoration:none; display:inline-flex; align-items:center; gap:10px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:10px; cursor:pointer;
   }
   .btn.primary{ background:#fff; color:#000; border-color:#fff }
   h1{font-size: clamp(32px, 5vw, 60px); line-height:1.05; margin:6px 0 10px}
@@ -60,7 +56,8 @@
         <strong>HASH HUMANITY</strong>
       </div>
       <nav class="actions">
-        <a class="btn" href="index.html">← Back</a>
+        <!-- Back button with robust routing to index.html -->
+        <button class="btn" type="button" onclick="goBack()">← Back</button>
         <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Open App</a>
       </nav>
     </header>
@@ -109,8 +106,27 @@
       © <span id="y"></span> Hash Humanity — “You are the proof, not the product.”
     </footer>
   </div>
+
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  async function probe(url){
+    try { const r = await fetch(url, { method: 'HEAD', cache: 'no-store' }); return r.ok; }
+    catch { return false; }
+  }
+  async function goBack(){
+    const candidates = [
+      "index.html",     // same folder
+      "./index.html",   // explicit relative
+      "../index.html",  // one level up (if this ended up in /pages/)
+      "/index.html",    // site root
+      "promo.html"      // fallback if your entry file is named promo.html
+    ];
+    for (const url of candidates){
+      if (await probe(url)) { location.href = url; return; }
+    }
+    history.back(); // last resort
+  }
 </script>
 </body>
 </html>
