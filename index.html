@@ -6,6 +6,10 @@
 <title>Hash Humanity — You are the proof, not the product.</title>
 <meta name="description" content="A human-verified social network powered by World ID. No bots. No spam. Pulse tipping built-in." />
 <link rel="icon" href="logo.png" />
+
+<!-- Fancy fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
 <style>
   :root{
     --bg:#000; --ink:#fff; --muted:#bfbfbf;
@@ -14,14 +18,16 @@
     --ring:rgba(255,255,255,0.25);
     --radius:18px;
     --shadow:0 20px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06);
-    --headerH:96px; /* was 80px */
+    --headerH:108px; /* taller to fit bigger logo */
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   html{scroll-behavior:smooth}
   body{
-    margin:0; background: radial-gradient(1000px 600px at 50% -10%, #222 0%, #0d0d0d 35%, #000 70%) #000;
-    color:var(--ink); font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
+    margin:0;
+    background: radial-gradient(1000px 600px at 50% -10%, #222 0%, #0d0d0d 35%, #000 70%) #000;
+    color:var(--ink);
+    font:16px/1.55 "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
     -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
   }
   .stars:before,.stars:after{
@@ -44,12 +50,18 @@
     position:sticky; top:0; background:linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,0));
     backdrop-filter:saturate(140%) blur(6px); z-index:10; height:var(--headerH);
   }
-  .brand{display:flex; align-items:center; gap:16px}
-  .brand img{width:72px; height:72px; border-radius:999px; object-fit:cover; filter:drop-shadow(0 6px 16px rgba(0,0,0,.6))}
+  .brand{display:flex; align-items:center; gap:18px}
+  .brand img{
+    width:96px; height:96px; border-radius:999px; object-fit:cover;
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.6))
+  }
   .brand span{
-    font-weight:800;
-    letter-spacing:.10em;
-    font-size: clamp(20px, 3.2vw, 34px); /* bigger wordmark */
+    font-family:"Cinzel", serif;
+    font-weight:900;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size: clamp(28px, 4.3vw, 56px); /* bigger wordmark */
+    line-height:1.05;
   }
 
   .actions{display:flex; gap:12px}
@@ -66,24 +78,30 @@
 
   section{ scroll-margin-top: calc(var(--headerH) + 16px); }
 
-  .hero{display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; padding:24px 0;}
+  .hero{
+    display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; padding:24px 0;
+  }
   @media (max-width:980px){ .hero{grid-template-columns:1fr; text-align:center} .actions{justify-content:center} }
-  h1{font-size: clamp(40px, 6vw, 72px); line-height:1.05; margin:0 0 12px} /* slightly larger */
+
+  h1{
+    font-family:"Cinzel", serif;
+    font-weight:800;
+    font-size: clamp(48px, 6.8vw, 88px); /* bigger headline */
+    line-height:1.04; margin:0 0 12px
+  }
   .lead{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px)}
 
   /* ---------- PHONE MOCK ---------- */
   .mock{
-    width:min(460px, 92%); margin: 12px auto; aspect-ratio: 9/18; border-radius:36px;
-    /* Screen image FIRST so it sits above gradients */
+    width:min(500px, 92%); margin: 12px auto; aspect-ratio: 9/18; border-radius:36px;
     background:
       var(--screen, none) center/cover no-repeat,
       radial-gradient(120px 180px at 70% 15%, rgba(255,255,255,.14), transparent 60%),
       linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     border:1px solid rgba(255,255,255,.15);
-    box-shadow:0 40px 120px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.05);
+    box-shadow:0 40px 120px rgba(0,0,0,.85), inset 0 0 0 1px rgba(255,255,255,.06);
     position:relative; overflow:hidden;
   }
-  /* Decorative globe layer */
   .mock:before{
     content:""; position:absolute; inset:0;
     background:
@@ -91,12 +109,9 @@
       url('globe-grid.svg') center/cover no-repeat;
     opacity:.75; mix-blend-mode:screen; filter:contrast(120%);
   }
-  /* Big HH watermark */
   .mock:after{
-    content:"HH"; position:absolute; inset:auto 0 16% 0; text-align:center;
-    font-weight:800; letter-spacing:.4em; color:rgba(255,255,255,.08); font-size:48px;
+    content:""; /* hide watermark by default so the screen is clean */
   }
-  /* Hide overlays when a real screen image is present */
   .mock.has-image:before, .mock.has-image:after { content:none !important; }
 
   .grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin:56px 0 }
@@ -105,7 +120,9 @@
     background:var(--glass); border:1px solid var(--ring); border-radius:var(--radius);
     padding:22px; box-shadow:var(--shadow);
   }
-  .card h3{ margin:0 0 8px; font-size:20px }
+  .card h3{
+    font-family:"Cinzel", serif; font-weight:700; margin:0 0 8px; font-size:22px
+  }
   .card p{ margin:0; color:var(--muted) }
 
   .cta{
@@ -114,9 +131,9 @@
     border:1px solid var(--ring); display:flex; gap:22px; align-items:center; justify-content:space-between; flex-wrap:wrap;
     box-shadow:var(--shadow);
   }
-  .cta img{ width:140px; height:140px; background:#fff; border-radius:12px; padding:8px } /* a touch larger */
+  .cta img{ width:160px; height:160px; background:#fff; border-radius:12px; padding:8px }
   .cta .txt{flex:1 1 280px}
-  .cta h2{margin:0 0 6px; font-size:28px}
+  .cta h2{font-family:"Cinzel", serif; font-weight:800; margin:0 0 6px; font-size:32px}
   .cta p{margin:0; color:var(--muted)}
 
   footer{opacity:.7; font-size:13px; padding:22px 0 60px}
@@ -158,7 +175,7 @@
       </div>
     </div>
 
-    <!-- PHONE: now shows app-preview.png -->
+    <!-- PHONE with your screenshot -->
     <div>
       <div
         class="mock has-image"
