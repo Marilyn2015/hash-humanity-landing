@@ -12,17 +12,19 @@
     --glass:rgba(255,255,255,0.06);
     --glass-strong:rgba(255,255,255,0.12);
     --ring:rgba(255,255,255,0.25);
-    --accent:#ffffff;
     --radius:18px;
     --shadow:0 20px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.06);
+    --headerH:80px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
+  html{scroll-behavior:smooth}
   body{
     margin:0; background: radial-gradient(1000px 600px at 50% -10%, #222 0%, #0d0d0d 35%, #000 70%) #000;
     color:var(--ink); font:16px/1.5 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial;
     -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; overflow-x:hidden;
   }
+  /* starfield */
   .stars:before,.stars:after{
     content:""; position:fixed; inset:0; pointer-events:none; mix-blend-mode:screen; opacity:.35;
     background-image:
@@ -42,20 +44,23 @@
   header{
     display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0;
     position:sticky; top:0; background:linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,0));
-    backdrop-filter:saturate(140%) blur(6px);
+    backdrop-filter:saturate(140%) blur(6px); z-index:10; height:var(--headerH);
   }
   .brand{display:flex; align-items:center; gap:14px}
   .brand img{width:40px; height:40px; border-radius:999px; filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
   .brand span{font-weight:700; letter-spacing:.06em}
 
-  .hero{display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; padding:44px 0 24px;}
+  /* anchor offset so header doesn't cover target */
+  section, .anchor { scroll-margin-top: calc(var(--headerH) + 16px); }
+
+  .hero{display:grid; grid-template-columns: 1.2fr 1fr; gap:40px; align-items:center; padding:24px 0;}
   @media (max-width:980px){ .hero{grid-template-columns:1fr; text-align:center} .actions{justify-content:center} }
   h1{font-size: clamp(36px, 5vw, 62px); line-height:1.05; margin:0 0 12px}
   .lead{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px)}
 
   .actions{display:flex; flex-wrap:wrap; gap:12px; margin:22px 0 0}
   .btn{
-    appearance:none; border:1px solid var(--ring); color:var(--ink); background:var(--glass);
+    appearance:none; border:1px solid var(--ring); color:#fff; background:var(--glass);
     padding:12px 18px; border-radius:999px; font-weight:600; letter-spacing:.02em;
     backdrop-filter: blur(8px) saturate(120%); box-shadow:var(--shadow);
     transition: transform .12s ease, background .2s ease, border-color .2s ease;
@@ -108,12 +113,15 @@
 
   footer{opacity:.7; font-size:13px; padding:22px 0 60px}
   .fine{color:var(--muted)}
-  .ring{
-    width:108px; height:108px; border-radius:999px; display:grid; place-items:center;
-    background: radial-gradient(120px 120px at 50% 50%, rgba(255,255,255,.12), rgba(255,255,255,0) 70%);
-    border:1px solid rgba(255,255,255,.22); box-shadow: 0 0 0 6px rgba(255,255,255,.03), var(--shadow);
+
+  /* tiny toast for support */
+  .toast{
+    position:fixed; left:50%; bottom:24px; transform:translateX(-50%);
+    background:rgba(255,255,255,.1); color:#fff; border:1px solid var(--ring);
+    padding:10px 14px; border-radius:10px; backdrop-filter:blur(8px) saturate(120%);
+    box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .2s ease;
   }
-  .ring img{ width:76px; height:76px; border-radius:999px; object-fit:cover }
+  .toast.show{opacity:1}
 </style>
 </head>
 <body>
@@ -121,13 +129,13 @@
 <div class="wrap">
   <header>
     <div class="brand">
-      <div class="ring"><img src="logo.png" alt="Hash Humanity" /></div>
+      <img src="logo.png" alt="Hash Humanity" />
       <span>HASH HUMANITY</span>
     </div>
     <nav class="actions">
       <a class="btn" href="#features">Features</a>
       <a class="btn" href="#community">Community</a>
-      <a class="btn" href="mailto:support@hashhumanity.world">Support</a>
+      <button id="supportBtn" class="btn" type="button">Support</button>
     </nav>
   </header>
 
@@ -144,11 +152,10 @@
         <a class="btn" href="#why">Why Verify?</a>
       </div>
     </div>
-    <div>
-      <div class="mock" aria-hidden="true"></div>
-    </div>
+    <div><div class="mock" aria-hidden="true"></div></div>
   </section>
 
+  <!-- FEATURES -->
   <section id="features" class="grid">
     <article class="card">
       <h3>World ID-gated</h3>
@@ -164,8 +171,11 @@
     </article>
   </section>
 
+  <!-- create a real anchor point BEFORE the next grid -->
+  <div id="community" class="anchor"></div>
+
+  <!-- VERIFY / CTA -->
   <section id="verify" class="cta">
-    <!-- Updated filename -->
     <img src="hashhumanity-qr.png" alt="QR to hashhumanity.world" />
     <div class="txt">
       <h2>Join in 10 seconds</h2>
@@ -177,6 +187,7 @@
     </div>
   </section>
 
+  <!-- WHY / COMMUNITY CONTENT -->
   <section id="why" class="grid">
     <article class="card">
       <h3>Why verify?</h3>
@@ -186,8 +197,8 @@
       <h3>Open standards</h3>
       <p>We play nice with the open web and will document our public endpoints and export tools.</p>
     </article>
-    <article class="card" id="community">
-      <h3>Built with integrity</h3>
+    <article class="card">
+      <h3>Community</h3>
       <p>No dark patterns. No fake metrics. Just people talking — and tipping — in the open.</p>
     </article>
   </section>
@@ -197,8 +208,39 @@
   </footer>
 </div>
 
+<div id="toast" class="toast" role="status" aria-live="polite">support@hashhumanity.world copied</div>
+
 <script>
+  // Set year
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  // Ensure smooth scroll works consistently (Safari fallback)
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el){
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        history.pushState(null, "", "#"+id);
+      }
+    });
+  });
+
+  // Support button: try mailto, also copy email for users without a mail client
+  const email = "support@hashhumanity.world";
+  const btn = document.getElementById('supportBtn');
+  const toast = document.getElementById('toast');
+  btn.addEventListener('click', async ()=>{
+    // copy
+    try {
+      await navigator.clipboard.writeText(email);
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 1800);
+    } catch(e) {}
+    // open mailto (will no-op if no client, but copy already succeeded)
+    window.location.href = "mailto:"+email+"?subject=Hash%20Humanity%20Support";
+  });
 </script>
 </body>
 </html>
