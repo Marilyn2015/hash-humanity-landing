@@ -71,15 +71,19 @@
   h1{font-size: clamp(40px, 6vw, 72px); line-height:1.05; margin:0 0 12px} /* slightly larger */
   .lead{color:var(--muted); font-size:clamp(16px, 2.2vw, 20px)}
 
+  /* ---------- PHONE MOCK ---------- */
   .mock{
     width:min(460px, 92%); margin: 12px auto; aspect-ratio: 9/18; border-radius:36px;
+    /* Screen image FIRST so it sits above gradients */
     background:
+      var(--screen, none) center/cover no-repeat,
       radial-gradient(120px 180px at 70% 15%, rgba(255,255,255,.14), transparent 60%),
       linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
     border:1px solid rgba(255,255,255,.15);
     box-shadow:0 40px 120px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.05);
     position:relative; overflow:hidden;
   }
+  /* Decorative globe layer */
   .mock:before{
     content:""; position:absolute; inset:0;
     background:
@@ -87,10 +91,13 @@
       url('globe-grid.svg') center/cover no-repeat;
     opacity:.75; mix-blend-mode:screen; filter:contrast(120%);
   }
+  /* Big HH watermark */
   .mock:after{
     content:"HH"; position:absolute; inset:auto 0 16% 0; text-align:center;
     font-weight:800; letter-spacing:.4em; color:rgba(255,255,255,.08); font-size:48px;
   }
+  /* Hide overlays when a real screen image is present */
+  .mock.has-image:before, .mock.has-image:after { content:none !important; }
 
   .grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; margin:56px 0 }
   @media (max-width:980px){ .grid{ grid-template-columns:1fr } }
@@ -150,7 +157,15 @@
         <a class="btn" href="mission.html">Learn More</a>
       </div>
     </div>
-    <div><div class="mock" aria-hidden="true"></div></div>
+
+    <!-- PHONE: now shows app-preview.png -->
+    <div>
+      <div
+        class="mock has-image"
+        style="--screen: url('app-preview.png?v=1');"
+        aria-label="Hash Humanity app preview">
+      </div>
+    </div>
   </section>
 
   <section class="grid">
