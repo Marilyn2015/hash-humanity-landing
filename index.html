@@ -14,7 +14,7 @@
     --ring:rgba(255,255,255,0.22); --ring-2:rgba(255,255,255,0.35);
     --radius:20px; --shadow:0 24px 70px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.05);
     --headerH:110px; --wrap:1280px;
-    --brandMax:50px; /* wordmark cap on desktop (slightly smaller) */
+    --brandMax:44px; /* wordmark cap on desktop (smaller so it isn’t crowded) */
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -29,10 +29,11 @@
 
   /* ===== Header ===== */
   .wrap{max-width:var(--wrap); margin:0 auto; padding:0 28px}
-  /* Shift header content slightly left */
+
+  /* Shift header content slightly left / balance */
   header > .wrap{
-    padding-left:12px;
-    padding-right:32px;
+    padding-left:4px;   /* closer to left */
+    padding-right:36px; /* a hair more space on right */
   }
 
   header{
@@ -67,7 +68,7 @@
   section{scroll-margin-top:calc(var(--headerH) + 16px)}
   .hero{
     display:grid; grid-template-columns: 1.1fr 1fr; align-items:center; gap:54px;
-    padding:26px 0 14px;
+    padding:46px 0 24px; /* dropped hero down a bit for better balance */
   }
   @media (max-width:1050px){ .hero{grid-template-columns:1fr; gap:26px} }
   h1{
@@ -138,7 +139,7 @@
 
   /* ===== Mobile polish ===== */
   @media (max-width:540px){
-    :root{ --brandMax:42px } /* smaller cap on mobile too */
+    :root{ --brandMax:38px } /* smaller cap on mobile too */
     .brand img{ width:82px; height:82px }
     .device{ width:100%; padding:12px; border-radius:34px }
     .screen{ border-radius:24px }
