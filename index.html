@@ -14,7 +14,7 @@
     --ring:rgba(255,255,255,0.22); --ring-2:rgba(255,255,255,0.40);
     --radius:20px; --shadow:0 26px 80px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.05);
     --headerH:108px; --wrap:1280px;
-    --brandMax:44px;
+    --brandMax:32px; /* smaller brand max size */
   }
 
   *{box-sizing:border-box}
@@ -39,8 +39,8 @@
   /* ---------- HEADER ---------- */
 
   header > .wrap{
-    padding-left:4px;
-    padding-right:36px;
+    padding-left:16px;  /* bring brand closer to left edge */
+    padding-right:24px;
   }
 
   header{
@@ -67,8 +67,9 @@
   .brand{
     display:flex;
     align-items:center;
-    gap:16px;
+    gap:14px;
     position:relative;
+    margin-left:0; /* no negative margin */
   }
 
   .brand::after{
@@ -84,9 +85,9 @@
   }
 
   .brand img{
-    width:70px;
-    height:70px;
-    border-radius:18px;
+    width:60px;
+    height:60px;
+    border-radius:16px;
     object-fit:cover;
     box-shadow:0 10px 30px rgba(0,0,0,.9);
   }
@@ -94,9 +95,9 @@
   .brand span{
     font-family:"Cinzel", serif;
     font-weight:900;
-    letter-spacing:.24em;
+    letter-spacing:.20em;
     text-transform:uppercase;
-    font-size:clamp(26px, 3.9vw, var(--brandMax));
+    font-size:clamp(20px, 2.4vw, var(--brandMax)); /* smaller wordmark */
     line-height:1.02;
     text-shadow:0 0 16px rgba(255,255,255,.28);
     white-space:nowrap;
@@ -411,27 +412,33 @@
   /* ---------- RESPONSIVE ---------- */
 
   @media (max-width:720px){
-    :root{ --brandMax:34px }
+    :root{ --brandMax:28px }
 
     header{
       height:auto;
       padding:10px 0 8px;
     }
 
+    header > .wrap{
+      padding-left:14px;
+      padding-right:16px;
+    }
+
     .header-inner{
-      flex-direction:row;
+      flex-direction:column;          /* brand on top, nav under it */
       align-items:flex-start;
+      gap:10px;
     }
 
     .brand img{
-      width:58px;
-      height:58px;
+      width:52px;
+      height:52px;
       border-radius:14px;
     }
 
     .brand span{
-      letter-spacing:.18em;
-      font-size:22px;
+      letter-spacing:.16em;
+      font-size:20px;
     }
 
     .brand::after{
@@ -441,7 +448,7 @@
     .actions{
       gap:8px;
       flex-wrap:wrap;
-      justify-content:flex-end;
+      justify-content:flex-start;     /* buttons left-aligned under logo/text */
     }
 
     .btn{
@@ -473,13 +480,14 @@
     }
   }
 </style>
+</head>
+<body>
 <header>
-  <div class="wrap header-inner" style="padding-left: 0px; padding-right: 20px;">
-    <div class="brand" style="margin-left: -12px;">
-      <img src="logo.png">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <img src="logo.png" alt="Hash Humanity logo" />
       <span>HASH&nbsp;HUMANITY</span>
     </div>
-    <div style="flex-grow:1;"></div>
     <nav class="actions">
       <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Open App</a>
       <a class="btn" href="mission.html">Learn More</a>
@@ -488,83 +496,83 @@
   </div>
 </header>
 
-  <main class="wrap">
-    <section class="hero" id="home">
-      <div>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          <span>Human-verified • World ID only</span>
-        </div>
-
-        <h1>You are the proof,<br>not the product.</h1>
-
-        <p class="lead">
-          Human-verified social with World ID at the gate. Bots out, real people in.
-          Pulse tipping built-in — black-and-white, cypher-punk, ruthlessly simple.
-        </p>
-
-        <div class="subline">
-          No ads • No trackers • No bot swarms
-        </div>
-
-        <div class="actions">
-          <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Launch Now</a>
-          <a class="btn" href="mission.html">Why Verify?</a>
-        </div>
+<main class="wrap">
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        <span>Human-verified • World ID only</span>
       </div>
 
-      <div class="device-orbit" aria-hidden="true">
-        <div class="device">
-          <div class="screen"></div>
-        </div>
+      <h1>You are the proof,<br>not the product.</h1>
+
+      <p class="lead">
+        Human-verified social with World ID at the gate. Bots out, real people in.
+        Pulse tipping built-in — black-and-white, cypher-punk, ruthlessly simple.
+      </p>
+
+      <div class="subline">
+        No ads • No trackers • No bot swarms
       </div>
-    </section>
 
-    <section class="grid">
-      <article class="card">
-        <h3>World ID-gated network</h3>
-        <p>
-          Every account is human-verified (device or orb). No bot farms, no burner spam.
-          Your feed is humans — full stop.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Pulse tipping in WLD</h3>
-        <p>
-          Tip creators instantly via World App. Deep-links on mobile, WalletConnect on desktop.
-          Support what actually moves you.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Privacy-first by design</h3>
-        <p>
-          No creepy tracking, no dark-pattern ad funnels. You are not the product here —
-          your voice and your proof are.
-        </p>
-      </article>
-    </section>
-
-    <section class="cta">
-      <img src="hashhumanity-qr.png" alt="QR to hashhumanity.world" />
-      <div class="txt">
-        <h2>Join in 10 seconds</h2>
-        <p>
-          Point your camera, open <strong>hashhumanity.world</strong>, and verify with World ID.
-          No username land-grab, no bullshit funnels — just in.
-        </p>
-      </div>
       <div class="actions">
         <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Launch Now</a>
-        <a class="btn" href="mission.html">Read the Mission</a>
+        <a class="btn" href="mission.html">Why Verify?</a>
       </div>
-    </section>
+    </div>
 
-    <footer class="fine">
-      © <span id="y"></span> Hash Humanity — “You are the proof, not the product.”
-    </footer>
-  </main>
+    <div class="device-orbit" aria-hidden="true">
+      <div class="device">
+        <div class="screen"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h3>World ID-gated network</h3>
+      <p>
+        Every account is human-verified (device or orb). No bot farms, no burner spam.
+        Your feed is humans — full stop.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Pulse tipping in WLD</h3>
+      <p>
+        Tip creators instantly via World App. Deep-links on mobile, WalletConnect on desktop.
+        Support what actually moves you.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Privacy-first by design</h3>
+      <p>
+        No creepy tracking, no dark-pattern ad funnels. You are not the product here —
+        your voice and your proof are.
+      </p>
+    </article>
+  </section>
+
+  <section class="cta">
+    <img src="hashhumanity-qr.png" alt="QR to hashhumanity.world" />
+    <div class="txt">
+      <h2>Join in 10 seconds</h2>
+      <p>
+        Point your camera, open <strong>hashhumanity.world</strong>, and verify with World ID.
+        No username land-grab, no bullshit funnels — just in.
+      </p>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Launch Now</a>
+      <a class="btn" href="mission.html">Read the Mission</a>
+    </div>
+  </section>
+
+  <footer class="fine">
+    © <span id="y"></span> Hash Humanity — “You are the proof, not the product.”
+  </footer>
+</main>
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
