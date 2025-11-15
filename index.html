@@ -6,7 +6,8 @@
 <title>Hash Humanity — You are the proof, not the product.</title>
 <meta name="description" content="A human-verified social network powered by World ID. No bots. No spam. Pulse tipping built-in." />
 <link rel="icon" href="logo.png" />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- Added Cinzel Decorative for a fancier brand/headline font -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Cinzel+Decorative:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root{
     --bg:#000; --ink:#fff; --muted:#bdbdbd;
@@ -14,7 +15,7 @@
     --ring:rgba(255,255,255,0.22); --ring-2:rgba(255,255,255,0.40);
     --radius:20px; --shadow:0 26px 80px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.05);
     --headerH:108px; --wrap:1280px;
-    --brandMax:32px; /* smaller brand max size */
+    --brandMax:34px;
   }
 
   *{box-sizing:border-box}
@@ -51,18 +52,20 @@
   }
 
   header > .wrap{
-    padding-left:12px;  /* bring brand closer to left edge */
+    padding-left:8px;   /* pull brand closer to the left */
     padding-right:24px;
   }
 
   .header-inner{
     display:flex;
     align-items:center;
-    gap:16px;
+    justify-content:space-between; /* brand left, buttons right */
+    gap:24px;
   }
 
+  /* spacer no longer needed on desktop */
   .header-spacer{
-    flex:1; /* pushes buttons all the way to the right */
+    display:none;
   }
 
   .brand{
@@ -70,7 +73,7 @@
     align-items:center;
     gap:14px;
     position:relative;
-    margin-left:0; /* keep logo clean against left padding */
+    margin-left:0;
   }
 
   .brand::after{
@@ -91,18 +94,20 @@
     border-radius:16px;
     object-fit:cover;
     box-shadow:0 10px 30px rgba(0,0,0,.9);
-    background:#111; /* fallback so box is visible even if logo.png fails */
+    background:#111;
     display:block;
   }
 
   .brand span{
-    font-family:"Cinzel", serif;
+    font-family:"Cinzel Decorative", "Cinzel", serif;
     font-weight:900;
-    letter-spacing:.20em;
+    letter-spacing:.22em;
     text-transform:uppercase;
-    font-size:clamp(20px, 2.4vw, var(--brandMax));
+    font-size:clamp(22px, 2.6vw, var(--brandMax));
     line-height:1.02;
-    text-shadow:0 0 16px rgba(255,255,255,.28);
+    text-shadow:
+      0 0 18px rgba(255,255,255,.35),
+      0 0 40px rgba(255,255,255,.25);
     white-space:nowrap;
   }
 
@@ -199,10 +204,10 @@
   }
 
   h1{
-    font-family:"Cinzel", serif;
+    font-family:"Cinzel Decorative", "Cinzel", serif;
     font-weight:900;
-    letter-spacing:.02em;
-    font-size:clamp(42px, 6.7vw, 96px);
+    letter-spacing:.03em;
+    font-size:clamp(44px, 6.9vw, 98px);
     line-height:1.04;
     margin:0 0 10px;
   }
@@ -428,13 +433,10 @@
     }
 
     .header-inner{
-      flex-direction:column;      /* brand on top, buttons under */
+      flex-direction:column;
       align-items:flex-start;
       gap:10px;
-    }
-
-    .header-spacer{
-      display:none;              /* no spacer on mobile */
+      justify-content:flex-start;
     }
 
     .brand img{
@@ -446,6 +448,7 @@
     .brand span{
       letter-spacing:.16em;
       font-size:20px;
+      text-shadow:0 0 14px rgba(255,255,255,.3);
     }
 
     .brand::after{
