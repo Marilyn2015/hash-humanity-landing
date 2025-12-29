@@ -423,6 +423,55 @@
     color:var(--muted);
   }
 
+  /* ---------- AUDIO UI ---------- */
+
+  .audio-gate{
+    position:fixed;
+    left:12px;
+    right:12px;
+    bottom:12px;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+  }
+
+  .audio-btn{
+    width:min(560px, 96vw);
+    height:54px;
+    border-radius:999px;
+    font-weight:800;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border:1px solid var(--ring);
+    background:rgba(255,255,255,0.10);
+    color:#fff;
+    backdrop-filter: blur(14px) saturate(140%);
+    box-shadow:0 26px 80px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.05);
+    cursor:pointer;
+  }
+
+  .audio-toggle{
+    position:fixed;
+    right:16px;
+    bottom:16px;
+    z-index:9998;
+    display:none;
+    border:1px solid var(--ring);
+    background:rgba(255,255,255,0.08);
+    color:#fff;
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:700;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    backdrop-filter: blur(12px) saturate(140%);
+    box-shadow:var(--shadow);
+    cursor:pointer;
+    font-size:11px;
+  }
+
   /* ---------- RESPONSIVE ---------- */
 
   @media (max-width:720px){
@@ -499,6 +548,17 @@
 </style>
 </head>
 <body>
+
+<!-- 🔊 AUDIO: change this path to where your mp3 actually lives -->
+<audio id="hh-audio" preload="auto">
+<source src="intro.mp3" type="audio/mpeg" /></audio>
+
+<div class="audio-gate" id="audioGate">
+  <button class="audio-btn" id="audioStartBtn" type="button">Tap to enable audio</button>
+</div>
+
+<button class="audio-toggle" id="audioToggle" type="button" aria-label="Toggle audio">Audio: On</button>
+
 <header>
   <div class="wrap header-inner">
     <div class="brand">
@@ -594,6 +654,60 @@
 
 <script>
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  (function () {
+    const a = document.getElementById("hh-audio");
+    const gate = document.getElementById("audioGate");
+    const startBtn = document.getElementById("audioStartBtn");
+    const toggle = document.getElementById("audioToggle");
+
+    // tweak these
+    a.volume = 0.65;
+    a.loop = false;
+
+    async function attemptAutoplay() {
+      try {
+        // Some browsers need a tiny delay after load
+        await a.play();
+        gate.style.display = "none";
+        toggle.style.display = "inline-flex";
+        toggle.textContent = "Audio: On";
+      } catch (e) {
+        // Autoplay blocked: show tap gate
+        gate.style.display = "flex";
+        toggle.style.display = "none";
+      }
+    }
+
+    startBtn.addEventListener("click", async () => {
+      try {
+        await a.play();
+        gate.style.display = "none";
+        toggle.style.display = "inline-flex";
+        toggle.textContent = "Audio: On";
+      } catch (e) {
+        // If it still fails, leave gate up
+        gate.style.display = "flex";
+      }
+    });
+
+    toggle.addEventListener("click", () => {
+      if (a.paused) {
+        a.play().then(() => {
+          toggle.textContent = "Audio: On";
+        }).catch(() => {});
+      } else {
+        a.pause();
+        toggle.textContent = "Audio: Off";
+      }
+    });
+
+    // Try on load
+    window.addEventListener("load", () => {
+      setTimeout(attemptAutoplay, 30);
+    });
+  })();
 </script>
+
 </body>
 </html>
