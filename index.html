@@ -414,10 +414,7 @@
 </head>
 <body>
 
-<!-- ✅ Correct URL for a file located at public/intro.mp3 -->
-<audio id="hh-audio" preload="auto" playsinline>
-  <source src="/intro.mp3" type="audio/mpeg" />
-</audio>
+<audio id="hh-audio" preload="auto" playsinline></audio>
 
 <div class="audio-gate" id="audioGate">
   <button class="audio-btn" id="audioStartBtn" type="button">Tap to enable audio</button>
@@ -527,6 +524,9 @@
     const startBtn = document.getElementById("audioStartBtn");
     const toggle = document.getElementById("audioToggle");
 
+    // ✅ GitHub Pages-safe URL (works whether site is / or /REPO/)
+    a.src = new URL("./intro.mp3", window.location.href).toString();
+    a.preload = "auto";
     a.volume = 0.65;
     a.loop = false;
     a.muted = false;
@@ -534,7 +534,7 @@
     function showGate(msg) {
       gate.style.display = "flex";
       toggle.style.display = "none";
-      if (msg) startBtn.textContent = msg;
+      startBtn.textContent = msg || "Tap to enable audio";
     }
 
     function hideGate() {
@@ -548,46 +548,46 @@
 
     async function tryAutoplay() {
       try {
+        a.load();
         await a.play();
         hideGate();
         showToggle();
       } catch (e) {
-        // Mobile autoplay blocked — expected
         showGate("Tap to enable audio");
       }
     }
 
-    startBtn.addEventListener("click", async () => {
+    async function playFromGesture() {
       try {
-        // user gesture -> should succeed on mobile
+        a.load();
         a.currentTime = 0;
         await a.play();
         hideGate();
         showToggle();
       } catch (e) {
+        console.error("Audio play failed:", e);
         showGate("Tap to enable audio");
       }
-    });
+    }
+
+    startBtn.addEventListener("click", playFromGesture);
 
     toggle.addEventListener("click", async () => {
       if (a.paused) {
-        try {
-          await a.play();
-        } catch {}
+        await playFromGesture();
       } else {
         a.pause();
+        showToggle();
       }
-      showToggle();
     });
 
-    // If the file path is wrong, you'll see it
     a.addEventListener("error", () => {
-      console.error("Audio failed to load. Check that /intro.mp3 exists on the deployed site.");
-      showGate("Audio file not found (/intro.mp3). Fix path, then refresh.");
+      console.error("Audio failed to load:", a.src);
+      showGate("Audio file not found — check intro.mp3 path");
     });
 
     window.addEventListener("load", () => {
-      setTimeout(tryAutoplay, 50);
+      setTimeout(tryAutoplay, 80);
     });
   })();
 </script>
