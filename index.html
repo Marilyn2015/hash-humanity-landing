@@ -50,10 +50,7 @@
     border-bottom:1px solid rgba(255,255,255,.06);
   }
 
-  header > .wrap{
-    padding-left:8px;
-    padding-right:24px;
-  }
+  header > .wrap{ padding-left:8px; padding-right:24px; }
 
   .header-inner{
     display:flex;
@@ -61,8 +58,6 @@
     justify-content:space-between;
     gap:24px;
   }
-
-  .header-spacer{display:none}
 
   .brand{
     display:flex;
@@ -124,12 +119,7 @@
     letter-spacing:.08em;
     backdrop-filter: blur(12px) saturate(130%);
     box-shadow:var(--shadow);
-    transition:
-      transform .14s ease,
-      background .2s ease,
-      border-color .2s ease,
-      box-shadow .2s ease,
-      opacity .2s ease;
+    transition: transform .14s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, opacity .2s ease;
     cursor:pointer;
     text-decoration:none;
     display:inline-flex;
@@ -170,11 +160,7 @@
   }
 
   @media (max-width:1050px){
-    .hero{
-      grid-template-columns:1fr;
-      gap:32px;
-      padding:34px 0 28px;
-    }
+    .hero{ grid-template-columns:1fr; gap:32px; padding:34px 0 28px; }
   }
 
   .eyebrow{
@@ -224,11 +210,7 @@
     margin-bottom:14px;
   }
 
-  .hero .actions{
-    gap:12px;
-    margin-top:4px;
-  }
-
+  .hero .actions{ gap:12px; margin-top:4px; }
   .hero .actions .btn{ padding-inline:20px; }
 
   .device-orbit{
@@ -414,6 +396,7 @@
 </head>
 <body>
 
+<!-- AUDIO (m4a in repo root). URL() makes it work on GitHub Pages under /repo/ too. -->
 <audio id="hh-audio" preload="auto" playsinline></audio>
 
 <div class="audio-gate" id="audioGate">
@@ -428,7 +411,6 @@
       <img src="logo.png" alt="Hash Humanity logo" />
       <span>HASH&nbsp;HUMANITY</span>
     </div>
-    <div class="header-spacer"></div>
     <nav class="actions">
       <a class="btn primary" href="https://hashhumanity.world" target="_blank" rel="noopener">Open App</a>
       <a class="btn" href="mission.html">Learn More</a>
@@ -524,12 +506,14 @@
     const startBtn = document.getElementById("audioStartBtn");
     const toggle = document.getElementById("audioToggle");
 
-    // ✅ GitHub Pages-safe URL (works whether site is / or /REPO/)
-    a.src = new URL("./intro.mp3", window.location.href).toString();
-    a.preload = "auto";
+    // ✅ GitHub Pages safe path
+    const audioUrl = new URL("./intro.m4a", window.location.href).toString();
+    a.src = audioUrl;
+
     a.volume = 0.65;
     a.loop = false;
     a.muted = false;
+    a.preload = "auto";
 
     function showGate(msg) {
       gate.style.display = "flex";
@@ -537,9 +521,7 @@
       startBtn.textContent = msg || "Tap to enable audio";
     }
 
-    function hideGate() {
-      gate.style.display = "none";
-    }
+    function hideGate() { gate.style.display = "none"; }
 
     function showToggle() {
       toggle.style.display = "inline-flex";
@@ -548,19 +530,19 @@
 
     async function tryAutoplay() {
       try {
-        a.load();
         await a.play();
         hideGate();
         showToggle();
-      } catch (e) {
+      } catch {
+        // Expected on mobile: user gesture required
         showGate("Tap to enable audio");
       }
     }
 
     async function playFromGesture() {
       try {
+        // some iOS Safari cases need a load() before play()
         a.load();
-        a.currentTime = 0;
         await a.play();
         hideGate();
         showToggle();
@@ -570,7 +552,9 @@
       }
     }
 
-    startBtn.addEventListener("click", playFromGesture);
+    // ✅ bind to both click and touch so taps actually trigger on mobile
+    startBtn.addEventListener("click", playFromGesture, { passive: true });
+    startBtn.addEventListener("touchstart", playFromGesture, { passive: true });
 
     toggle.addEventListener("click", async () => {
       if (a.paused) {
@@ -582,8 +566,8 @@
     });
 
     a.addEventListener("error", () => {
-      console.error("Audio failed to load:", a.src);
-      showGate("Audio file not found — check intro.mp3 path");
+      console.error("Audio failed to load:", audioUrl);
+      showGate("Audio file not found — check intro.m4a path");
     });
 
     window.addEventListener("load", () => {
