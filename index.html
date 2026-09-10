@@ -582,7 +582,7 @@
       left: 15px;
       bottom: 10px;
     }
-    .phone-screen {
+.phone-screen {
       position: absolute;
 
       inset: 7px;
@@ -604,34 +604,62 @@
 
 
     /*
-      Correct Hash Humanity mark on the front-phone preview.
-      The actual repo logo.png is used here, and the black backing
-      cleanly covers the incorrect mark baked into app-preview.png.
+      FRONT PHONE BRAND FIX
+      Covers the incorrect branding baked into app-preview.png,
+      then renders the real repo logo and the full site name.
     */
-    .phone-screen::after {
-      content: "";
+    .phone-brand-fix {
       position: absolute;
 
-      top: 5.2%;
+      top: 4.7%;
       left: 50%;
 
-      width: 8%;
-      aspect-ratio: 1 / 1;
+      width: 72%;
+      height: 7.2%;
 
       transform: translateX(-50%);
 
-      background:
-        #000
-        url("./logo.png")
-        center / contain
-        no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-      box-shadow:
-        0 0 0 3px #000;
+      gap: 5px;
+
+      padding: 2px 7px;
+
+      background: #000;
 
       z-index: 6;
 
+      white-space: nowrap;
       pointer-events: none;
+    }
+
+    .phone-screen .phone-brand-fix-logo {
+      width: 18px;
+      height: 18px;
+
+      flex: 0 0 18px;
+
+      object-fit: contain;
+      object-position: center;
+
+      background: transparent;
+
+      filter: none;
+    }
+
+    .phone-brand-fix-name {
+      color: #fff;
+
+      font-size: clamp(7px, .7vw, 10px);
+      font-weight: 650;
+
+      line-height: 1;
+
+      letter-spacing: .16em;
+
+      text-transform: uppercase;
     }
 
     .phone-topbar {
@@ -1234,7 +1262,7 @@
               <span class="lens two"></span>
               <span class="lens three"></span>
             </div>
-          </div>
+</div>
 
           <div class="phone phone-front">
 
@@ -1244,6 +1272,17 @@
                 src="./app-preview.png"
                 alt=""
               >
+
+              <div class="phone-brand-fix">
+                <img
+                  class="phone-brand-fix-logo"
+                  src="./logo.png"
+                  alt=""
+                >
+                <span class="phone-brand-fix-name">
+                  Hash Humanity
+                </span>
+              </div>
 
               <div class="phone-topbar"></div>
 
