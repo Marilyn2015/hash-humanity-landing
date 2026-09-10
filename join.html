@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
   <meta name="format-detection" content="telephone=no" />
 
   <title>Hash Humanity — Join the Network</title>
@@ -12,35 +15,816 @@
     content="Join Hash Humanity, a human-first network built for real people and real conversations."
   />
 
-  <meta name="theme-color" content="#f4eee5" />
+  <meta name="theme-color" content="#000000" />
   <meta name="robots" content="index,follow" />
 
   <link rel="icon" href="logo.png" />
-  <link rel="stylesheet" href="./style.css?v=1" />
+  <link rel="apple-touch-icon" href="logo.png" />
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
+
+  <style>
+    :root {
+      --bg: #000;
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --soft: #6e6e73;
+      --line: rgba(255,255,255,.10);
+      --line-strong: rgba(255,255,255,.18);
+      --surface: rgba(255,255,255,.035);
+      --max: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #000;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100svh;
+      overflow-x: hidden;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% -8%,
+          rgba(255,255,255,.07),
+          transparent 26%
+        ),
+        #000;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+
+      padding-top: env(safe-area-inset-top);
+
+      background: rgba(0,0,0,.72);
+
+      backdrop-filter:
+        blur(24px)
+        saturate(140%);
+
+      -webkit-backdrop-filter:
+        blur(24px)
+        saturate(140%);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.055);
+    }
+
+    .header-inner {
+      height: 64px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 9px;
+
+      white-space: nowrap;
+
+      font-size: 15px;
+      font-weight: 650;
+
+      letter-spacing: -.02em;
+    }
+
+    .brand img {
+      width: 28px;
+      height: 28px;
+
+      object-fit: contain;
+
+      filter:
+        grayscale(1)
+        brightness(0)
+        invert(1);
+
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-switch {
+      position: relative;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+
+      color: #d4d4d8;
+
+      padding: 8px 7px;
+
+      font-size: 12px;
+      font-weight: 650;
+
+      cursor: pointer;
+    }
+
+    .lang-menu {
+      position: absolute;
+
+      top: calc(100% + 10px);
+      right: 0;
+
+      min-width: 155px;
+
+      margin: 0;
+      padding: 8px;
+
+      display: none;
+
+      list-style: none;
+
+      border: 1px solid var(--line);
+
+      border-radius: 16px;
+
+      background: rgba(18,18,20,.97);
+
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.65);
+
+      z-index: 1200;
+    }
+
+    .nav-link {
+      color: #d5d5d8;
+
+      padding: 9px 11px;
+
+      font-size: 13px;
+      font-weight: 550;
+    }
+
+    .nav-cta {
+      min-height: 36px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 15px;
+
+      border:
+        1px solid rgba(255,255,255,.16);
+
+      border-radius: 999px;
+
+      background:
+        rgba(255,255,255,.07);
+
+      color: #fff;
+
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    /* =========================================================
+       MAIN
+       ========================================================= */
+
+    main {
+      padding-top: 110px;
+      padding-bottom: 70px;
+    }
+
+    .hero {
+      max-width: 820px;
+      margin-bottom: 38px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 8px;
+
+      margin-bottom: 18px;
+
+      color: #c4c4c8;
+
+      font-size: 11px;
+      font-weight: 700;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: #fff;
+
+      box-shadow:
+        0 0 16px rgba(255,255,255,.85);
+    }
+
+    .hero h1 {
+      max-width: 850px;
+
+      margin: 0;
+
+      font-size:
+        clamp(54px, 7vw, 92px);
+
+      line-height: .94;
+
+      letter-spacing: -.06em;
+
+      font-weight: 680;
+    }
+
+    .hero h1 em {
+      color: #7f7f84;
+
+      font-style: normal;
+      font-weight: 570;
+    }
+
+    .lead {
+      max-width: 690px;
+
+      margin: 24px 0 0;
+
+      color: var(--muted);
+
+      font-size:
+        clamp(17px, 1.8vw, 21px);
+
+      line-height: 1.5;
+
+      letter-spacing: -.02em;
+    }
+
+    .lead strong {
+      color: #f2f2f4;
+      font-weight: 600;
+    }
+
+    /* =========================================================
+       FORM PANEL
+       ========================================================= */
+
+    .panel {
+      padding: 34px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 28px;
+
+      background:
+        radial-gradient(
+          circle at 80% 0%,
+          rgba(255,255,255,.05),
+          transparent 25%
+        ),
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.035),
+          rgba(255,255,255,.012)
+        );
+
+      box-shadow:
+        0 34px 90px rgba(0,0,0,.45);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 9px;
+
+      margin-bottom: 18px;
+    }
+
+    label {
+      color: #d6d6da;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      letter-spacing: -.01em;
+    }
+
+    .optional {
+      color: #69696f;
+      font-weight: 500;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+
+      border:
+        1px solid rgba(255,255,255,.11);
+
+      outline: none;
+
+      border-radius: 15px;
+
+      background:
+        rgba(255,255,255,.035);
+
+      color: #f5f5f7;
+
+      transition:
+        border-color .18s ease,
+        background .18s ease,
+        box-shadow .18s ease;
+    }
+
+    input,
+    select {
+      min-height: 50px;
+      padding: 0 15px;
+    }
+
+    textarea {
+      min-height: 135px;
+
+      padding: 14px 15px;
+
+      resize: vertical;
+
+      line-height: 1.5;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #616166;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color:
+        rgba(255,255,255,.28);
+
+      background:
+        rgba(255,255,255,.05);
+
+      box-shadow:
+        0 0 0 3px rgba(255,255,255,.035);
+    }
+
+    select {
+      appearance: none;
+
+      background-image:
+        linear-gradient(45deg, transparent 50%, #89898f 50%),
+        linear-gradient(135deg, #89898f 50%, transparent 50%);
+
+      background-position:
+        calc(100% - 18px) 21px,
+        calc(100% - 13px) 21px;
+
+      background-size:
+        5px 5px,
+        5px 5px;
+
+      background-repeat: no-repeat;
+
+      padding-right: 38px;
+    }
+
+    select option {
+      background: #111113;
+      color: #fff;
+    }
+
+    .submit {
+      min-height: 50px;
+
+      width: 100%;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 9px;
+
+      margin-top: 2px;
+
+      border: 0;
+
+      border-radius: 15px;
+
+      background: #fff;
+
+      color: #000;
+
+      font-size: 14px;
+      font-weight: 680;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 28px rgba(255,255,255,.07);
+
+      transition:
+        transform .18s ease,
+        opacity .18s ease;
+    }
+
+    .submit:hover {
+      transform: translateY(-1px);
+    }
+
+    .submit:disabled {
+      cursor: wait;
+      opacity: .65;
+      transform: none;
+    }
+
+    .spinner {
+      width: 15px;
+      height: 15px;
+
+      display: none;
+
+      border:
+        2px solid rgba(0,0,0,.22);
+
+      border-top-color: #000;
+
+      border-radius: 50%;
+
+      animation:
+        spin .7s linear infinite;
+    }
+
+    .submit.loading .spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .status {
+      display: none;
+
+      margin-top: 15px;
+
+      padding: 12px 14px;
+
+      border-radius: 13px;
+
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.err {
+      color: #f0b3b3;
+
+      border:
+        1px solid rgba(255,120,120,.18);
+
+      background:
+        rgba(255,80,80,.06);
+    }
+
+    .status.success {
+      color: #e8e8ea;
+
+      border:
+        1px solid rgba(255,255,255,.11);
+
+      background:
+        rgba(255,255,255,.035);
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    footer {
+      padding:
+        22px 0
+        calc(22px + env(safe-area-inset-bottom));
+
+      border-top:
+        1px solid var(--line);
+
+      color: #747479;
+
+      font-size: 12px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 16px;
+
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      color: #8d8d92;
+    }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 820px) {
+
+      .wrap {
+        width:
+          calc(100% - 24px);
+      }
+
+      .header-inner {
+        height: 56px;
+      }
+
+      .brand {
+        gap: 7px;
+
+        font-size: 13px;
+      }
+
+      .brand img {
+        width: 25px;
+        height: 25px;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .lang-btn {
+        padding: 6px;
+
+        font-size: 11px;
+      }
+
+      .nav-cta {
+        min-height: 32px;
+
+        padding:
+          0 11px;
+
+        font-size: 11px;
+      }
+
+      main {
+        padding-top: 86px;
+        padding-bottom: 44px;
+      }
+
+      .hero {
+        margin-bottom: 28px;
+
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin-bottom: 14px;
+
+        font-size: 9px;
+      }
+
+      .hero h1 {
+        max-width: 390px;
+
+        margin-inline: auto;
+
+        font-size:
+          clamp(48px, 13vw, 66px);
+
+        line-height: .95;
+      }
+
+      .lead {
+        max-width: 350px;
+
+        margin:
+          18px auto 0;
+
+        font-size: 15px;
+      }
+
+      .panel {
+        padding: 22px;
+
+        border-radius: 23px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+      }
+
+      .field {
+        margin-bottom: 15px;
+      }
+
+      input,
+      select {
+        min-height: 47px;
+      }
+
+      textarea {
+        min-height: 120px;
+      }
+
+      .submit {
+        min-height: 47px;
+
+        border-radius: 13px;
+      }
+
+      footer {
+        justify-content: center;
+        text-align: center;
+      }
+
+      footer .tag {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .wrap {
+        width:
+          calc(100% - 18px);
+      }
+
+      .site-header {
+        background:
+          rgba(0,0,0,.84);
+      }
+
+      main {
+        padding-top: 80px;
+        padding-bottom: 38px;
+      }
+
+      .hero h1 {
+        max-width: 335px;
+
+        font-size:
+          clamp(45px, 13.5vw, 58px);
+      }
+
+      .lead {
+        max-width: 320px;
+
+        font-size: 14px;
+      }
+
+      .panel {
+        padding: 18px;
+
+        border-radius: 20px;
+      }
+
+      label {
+        font-size: 12px;
+      }
+
+      input,
+      select {
+        min-height: 45px;
+      }
+
+      textarea {
+        min-height: 112px;
+      }
+    }
+  </style>
 </head>
 
-<body class="join-page">
-  <header>
+<body>
+
+  <header class="site-header">
+
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="Hash Humanity home">
-        <img src="logo.png" alt="Hash Humanity logo" />
-        <span>Hash Humanity</span>
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="Hash Humanity home"
+      >
+        <img
+          src="logo.png"
+          alt="Hash Humanity logo"
+        />
+
+        <span>
+          Hash Humanity
+        </span>
       </a>
 
-      <nav class="actions" aria-label="Join page navigation">
+
+      <nav
+        class="actions"
+        aria-label="Join page navigation"
+      >
+
         <div class="lang-switch">
+
           <button
-            class="btn lang-btn"
+            class="lang-btn"
             id="langBtn"
             type="button"
             aria-haspopup="listbox"
             aria-expanded="false"
           >
-            <span id="langBtnLabel">EN</span>
+            <span id="langBtnLabel">
+              EN
+            </span>
           </button>
+
 
           <ul
             class="lang-menu"
@@ -48,14 +832,21 @@
             role="listbox"
             aria-label="Language selection"
           ></ul>
+
         </div>
 
-        <a class="btn" href="index.html" data-i18n="back">
+
+        <a
+          class="nav-link"
+          href="index.html"
+          data-i18n="back"
+        >
           ← Back
         </a>
 
+
         <a
-          class="btn primary"
+          class="nav-cta"
           href="https://hashhumanity.world"
           target="_blank"
           rel="noopener"
@@ -63,39 +854,65 @@
         >
           Enter
         </a>
+
       </nav>
+
     </div>
+
   </header>
 
+
+
   <main class="wrap">
+
     <section class="hero">
+
       <div class="eyebrow">
+
         <span class="eyebrow-dot"></span>
 
         <span data-i18n="eyebrow">
           Join · Human-verified · HumanKey protected
         </span>
+
       </div>
+
 
       <h1 data-i18n-html="h1">
         Come be <em>human</em> with us.
       </h1>
 
-      <p class="lead" data-i18n-html="lead">
+
+      <p
+        class="lead"
+        data-i18n-html="lead"
+      >
         Hash Humanity is a network built for
-        <strong>real people</strong>—no bots, duplicate accounts, spam, or
-        artificial noise. Tell us a little about yourself and we will help you
-        get started.
+        <strong>real people</strong>.
+        HumanKey is designed to make bot networks,
+        duplicate identities, spam, and artificial activity
+        dramatically harder to scale.
       </p>
+
     </section>
 
+
+
     <section class="panel">
+
       <div id="formWrap">
+
         <div class="row">
+
           <div class="field">
-            <label for="name" data-i18n="lbl_name">
+
+            <label
+              for="name"
+              data-i18n="lbl_name"
+            >
               Your name
             </label>
+
 
             <input
               id="name"
@@ -104,12 +921,19 @@
               placeholder="First name"
               data-i18n-placeholder="ph_name"
             />
+
           </div>
 
+
           <div class="field">
-            <label for="email" data-i18n="lbl_email">
+
+            <label
+              for="email"
+              data-i18n="lbl_email"
+            >
               Email
             </label>
+
 
             <input
               id="email"
@@ -117,50 +941,90 @@
               autocomplete="email"
               placeholder="you@example.com"
             />
+
           </div>
+
         </div>
 
+
+
         <div class="field">
-          <label for="role" data-i18n="lbl_role">
+
+          <label
+            for="role"
+            data-i18n="lbl_role"
+          >
             What brings you here?
           </label>
 
+
           <select id="role">
-            <option value="" data-i18n="opt_choose">
+
+            <option
+              value=""
+              data-i18n="opt_choose"
+            >
               Choose one…
             </option>
 
-            <option value="member" data-i18n="opt_member">
+            <option
+              value="member"
+              data-i18n="opt_member"
+            >
               I want to join as a member
             </option>
 
-            <option value="creator" data-i18n="opt_creator">
+            <option
+              value="creator"
+              data-i18n="opt_creator"
+            >
               I am a creator
             </option>
 
-            <option value="builder" data-i18n="opt_builder">
+            <option
+              value="builder"
+              data-i18n="opt_builder"
+            >
               I am a builder / developer
             </option>
 
-            <option value="partner" data-i18n="opt_partner">
+            <option
+              value="partner"
+              data-i18n="opt_partner"
+            >
               Partnership / organization
             </option>
 
-            <option value="press" data-i18n="opt_press">
+            <option
+              value="press"
+              data-i18n="opt_press"
+            >
               Press / media
             </option>
 
-            <option value="other" data-i18n="opt_other">
+            <option
+              value="other"
+              data-i18n="opt_other"
+            >
               Something else
             </option>
+
           </select>
+
         </div>
 
+
+
         <div class="field">
-          <label for="message" data-i18n-html="lbl_message">
+
+          <label
+            for="message"
+            data-i18n-html="lbl_message"
+          >
             Anything you would like us to know?
             <span class="optional">(optional)</span>
           </label>
+
 
           <textarea
             id="message"
@@ -168,238 +1032,448 @@
             placeholder="What are you hoping to do on Hash Humanity? Any questions?"
             data-i18n-placeholder="ph_message"
           ></textarea>
+
         </div>
 
-        <button id="submitBtn" class="submit" type="button">
+
+
+        <button
+          id="submitBtn"
+          class="submit"
+          type="button"
+        >
+
           <span class="spinner"></span>
 
-          <span class="submit-label" data-i18n="submit">
+
+          <span
+            class="submit-label"
+            data-i18n="submit"
+          >
             Request an invite
           </span>
+
         </button>
 
-        <div id="status" class="status" role="alert"></div>
+
+        <div
+          id="status"
+          class="status"
+          role="alert"
+          aria-live="polite"
+        ></div>
+
       </div>
 
-      <div id="doneWrap" class="done">
-        <div class="check">
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M20 6L9 17l-5-5"></path>
-          </svg>
-        </div>
-
-        <h2 data-i18n-html="done_h2">
-          You are <em>on the list</em>.
-        </h2>
-
-        <p data-i18n="done_p">
-          Thanks for your interest—we have your details and someone from our
-          team will contact you using the email you provided.
-        </p>
-
-        <a
-          class="btn primary launch"
-          href="https://hashhumanity.world"
-          target="_blank"
-          rel="noopener"
-          data-i18n="launch_full"
-        >
-          Enter Hash Humanity
-        </a>
-      </div>
     </section>
+
   </main>
 
-  <footer class="wrap">
-    <span>© <span id="year"></span> Hash Humanity</span>
 
-    <span class="tag" data-i18n="footer_tag">
-      Real people make better spaces.
+
+  <footer class="wrap">
+
+    <span>
+      © <span id="year"></span> Hash Humanity
     </span>
+
+
+    <span
+      class="tag"
+      data-i18n="footer_tag"
+    >
+      Real is rare.
+    </span>
+
   </footer>
 
+
+
   <noscript>
+
     <div
       style="
         padding:18px;
-        color:#29201f;
-        background:#f4eee5;
-        border-top:1px solid rgba(41,32,31,.14);
+        color:#fff;
+        background:#000;
+        border-top:1px solid rgba(255,255,255,.10);
         text-align:center;
       "
     >
       Hash Humanity is a human-first social network.
+
       <a
         href="https://hashhumanity.world"
-        style="color:#a64b43;font-weight:700;"
+        style="
+          color:#fff;
+          font-weight:700;
+          text-decoration:underline;
+        "
       >
         Enter Hash Humanity
       </a>
     </div>
+
   </noscript>
 
+
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
     let functions = null;
 
-    (function initializeFirebase(tries) {
-      const attempt = tries || 0;
 
-      if (typeof firebase !== "undefined" && firebase.initializeApp) {
+    (function initializeFirebase(tries) {
+
+      const attempt =
+        tries || 0;
+
+
+      if (
+        typeof firebase !== "undefined" &&
+        firebase.initializeApp
+      ) {
+
         try {
-          if (!firebase.apps || !firebase.apps.length) {
+
+          if (
+            !firebase.apps ||
+            !firebase.apps.length
+          ) {
+
             firebase.initializeApp({
-              apiKey: "AIzaSyBT7P7DAfV-I9ESe6f9Jdp5ioCyGIK0d9A",
-              authDomain: "hashhumanity-58b9a.firebaseapp.com",
-              databaseURL: "https://hashhumanity-58b9a-default-rtdb.firebaseio.com",
-              projectId: "hashhumanity-58b9a"
+              apiKey:
+                "AIzaSyBT7P7DAfV-I9ESe6f9Jdp5ioCyGIK0d9A",
+
+              authDomain:
+                "hashhumanity-58b9a.firebaseapp.com",
+
+              databaseURL:
+                "https://hashhumanity-58b9a-default-rtdb.firebaseio.com",
+
+              projectId:
+                "hashhumanity-58b9a"
             });
+
           }
 
-          functions = firebase.app().functions("us-central1");
+
+          functions =
+            firebase
+              .app()
+              .functions("us-central1");
+
           return;
+
         } catch (error) {
-          console.warn("Firebase initialization failed:", error);
+
+          console.warn(
+            "Firebase initialization failed:",
+            error
+          );
+
           return;
         }
+
       }
+
 
       if (attempt < 40) {
-        setTimeout(function () {
-          initializeFirebase(attempt + 1);
-        }, 100);
+
+        setTimeout(
+          function () {
+            initializeFirebase(
+              attempt + 1
+            );
+          },
+          100
+        );
+
       }
+
     })();
 
-    function translate(key, fallback) {
+
+
+    function translate(
+      key,
+      fallback
+    ) {
+
       return (
         window.HH_ACTIVE_STRINGS &&
         window.HH_ACTIVE_STRINGS[key]
       ) || fallback;
+
     }
 
-    const statusElement = document.getElementById("status");
-    const submitButton = document.getElementById("submitBtn");
-    const submitLabel = submitButton.querySelector(".submit-label");
 
-    function showStatus(message) {
-      statusElement.className = "status show err";
-      statusElement.textContent = message;
+
+    const statusElement =
+      document.getElementById(
+        "status"
+      );
+
+    const submitButton =
+      document.getElementById(
+        "submitBtn"
+      );
+
+    const submitLabel =
+      submitButton.querySelector(
+        ".submit-label"
+      );
+
+
+
+    function showError(message) {
+
+      statusElement.className =
+        "status show err";
+
+      statusElement.textContent =
+        message;
+
     }
+
+
+
+    function showSuccess(message) {
+
+      statusElement.className =
+        "status show success";
+
+      statusElement.textContent =
+        message;
+
+    }
+
+
 
     function hideStatus() {
-      statusElement.className = "status";
+
+      statusElement.className =
+        "status";
+
       statusElement.textContent = "";
+
     }
 
+
+
     function validEmail(email) {
+
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
         String(email || "").trim()
       );
+
     }
 
-    submitButton.addEventListener("click", async function () {
-      hideStatus();
 
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const role = document.getElementById("role").value;
-      const message = document.getElementById("message").value.trim();
 
-      if (name.length < 2) {
-        showStatus(
-          translate("err_name", "Please tell us your name.")
+    submitButton.addEventListener(
+      "click",
+      async function () {
+
+        hideStatus();
+
+
+        const name =
+          document
+            .getElementById("name")
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+        const role =
+          document
+            .getElementById("role")
+            .value;
+
+        const message =
+          document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+
+        if (name.length < 2) {
+
+          showError(
+            translate(
+              "err_name",
+              "Please tell us your name."
+            )
+          );
+
+          return;
+        }
+
+
+
+        if (!validEmail(email)) {
+
+          showError(
+            translate(
+              "err_email",
+              "Please enter a valid email so we can reach you."
+            )
+          );
+
+          return;
+        }
+
+
+
+        if (!role) {
+
+          showError(
+            translate(
+              "err_role",
+              "Please choose what brings you here."
+            )
+          );
+
+          return;
+        }
+
+
+
+        if (!functions) {
+
+          showError(
+            translate(
+              "err_offline",
+              "Could not reach our servers. Check your connection and try again."
+            )
+          );
+
+          return;
+        }
+
+
+
+        submitButton.disabled = true;
+
+        submitButton.classList.add(
+          "loading"
         );
-        return;
-      }
 
-      if (!validEmail(email)) {
-        showStatus(
+        submitLabel.textContent =
           translate(
-            "err_email",
-            "Please enter a valid email so we can reach you."
-          )
-        );
-        return;
+            "sending",
+            "Sending…"
+          );
+
+
+        try {
+
+          const submitJoinInquiry =
+            functions.httpsCallable(
+              "submitJoinInquiry"
+            );
+
+
+          await submitJoinInquiry({
+            name,
+            email,
+            role,
+            message,
+            sourceLocation:
+              "onboarding_page"
+          });
+
+
+          submitButton.classList.remove(
+            "loading"
+          );
+
+          submitLabel.textContent =
+            translate(
+              "submit",
+              "Request an invite"
+            );
+
+
+          showSuccess(
+            "Thank you. We’ll be in touch."
+          );
+
+
+          document
+            .getElementById("name")
+            .value = "";
+
+          document
+            .getElementById("email")
+            .value = "";
+
+          document
+            .getElementById("role")
+            .value = "";
+
+          document
+            .getElementById("message")
+            .value = "";
+
+
+          submitButton.disabled = false;
+
+
+        } catch (error) {
+
+          console.error(
+            "submitJoinInquiry failed:",
+            error
+          );
+
+
+          showError(
+            error && error.message
+              ? error.message
+              : translate(
+                  "err_generic",
+                  "Something went wrong. Please try again."
+                )
+          );
+
+
+          submitButton.disabled = false;
+
+          submitButton.classList.remove(
+            "loading"
+          );
+
+          submitLabel.textContent =
+            translate(
+              "submit",
+              "Request an invite"
+            );
+
+        }
+
       }
-
-      if (!role) {
-        showStatus(
-          translate(
-            "err_role",
-            "Please choose what brings you here."
-          )
-        );
-        return;
-      }
-
-      if (!functions) {
-        showStatus(
-          translate(
-            "err_offline",
-            "Could not reach our servers. Check your connection and try again."
-          )
-        );
-        return;
-      }
-
-      submitButton.disabled = true;
-      submitButton.classList.add("loading");
-      submitLabel.textContent = translate("sending", "Sending…");
-
-      try {
-        const submitJoinInquiry =
-          functions.httpsCallable("submitJoinInquiry");
-
-        await submitJoinInquiry({
-          name,
-          email,
-          role,
-          message,
-          sourceLocation: "onboarding_page"
-        });
-
-        document.getElementById("formWrap").style.display = "none";
-        document.getElementById("doneWrap").classList.add("show");
-      } catch (error) {
-        console.error("submitJoinInquiry failed:", error);
-
-        showStatus(
-          error && error.message
-            ? error.message
-            : translate(
-                "err_generic",
-                "Something went wrong. Please try again."
-              )
-        );
-
-        submitButton.disabled = false;
-        submitButton.classList.remove("loading");
-        submitLabel.textContent = translate(
-          "submit",
-          "Request an invite"
-        );
-      }
-    });
+    );
   </script>
 
+
+
   <script src="i18n.js"></script>
+
 
   <script>
     if (window.HH_I18N) {
       window.HH_I18N.init("join");
     }
   </script>
+
 </body>
 </html>
