@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="format-detection" content="telephone=no" />
 
-  <title>Hash Humanity — Real People, Real Conversation</title>
+  <title>Hash Humanity — Social Media for Humans</title>
 
   <meta
     name="description"
-    content="Hash Humanity is a human-first network protected by HumanKey. Real people in. Bots, duplicate accounts, and artificial noise out."
+    content="Hash Humanity is a human-first social network protected by HumanKey. One human. One presence. Less artificial noise."
   />
 
   <meta name="theme-color" content="#ffffff" />
@@ -18,10 +18,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Hash Humanity" />
-  <meta property="og:title" content="Hash Humanity — Real People, Real Conversation" />
+  <meta property="og:title" content="Hash Humanity — Social Media for Humans" />
   <meta
     property="og:description"
-    content="A human-first network protected by HumanKey. Real people in. Bots and duplicate accounts out."
+    content="Real people. Real conversation. HumanKey helps keep bots and duplicate identities outside the conversation."
   />
   <meta property="og:url" content="https://hashhumanity.promo/" />
   <meta
@@ -30,10 +30,10 @@
   />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hash Humanity — Real People, Real Conversation" />
+  <meta name="twitter:title" content="Hash Humanity — Social Media for Humans" />
   <meta
     name="twitter:description"
-    content="A human-first network protected by HumanKey. Real people in. Bots and duplicate accounts out."
+    content="Real people. Real conversation. Protected by HumanKey."
   />
   <meta
     name="twitter:image"
@@ -45,25 +45,30 @@
   <link rel="apple-touch-icon" href="logo.png" />
   <link rel="preload" as="image" href="app-preview.png" />
 
-  <link rel="stylesheet" href="./style.css?v=3" />
+  <link rel="stylesheet" href="./style.css?v=4" />
 </head>
 
 <body class="home-page">
-  <header>
+
+  <!-- HEADER -->
+  <header class="site-header">
     <div class="wrap header-inner">
+
       <a class="brand" href="#home" aria-label="Hash Humanity home">
         <img src="logo.png" alt="Hash Humanity logo" />
         <span>Hash Humanity</span>
       </a>
 
       <nav class="actions" aria-label="Primary navigation">
+
         <div class="lang-switch">
           <button
-            class="btn lang-btn"
+            class="lang-btn"
             id="langBtn"
             type="button"
             aria-haspopup="listbox"
             aria-expanded="false"
+            aria-label="Choose language"
           >
             <span id="langBtnLabel">EN</span>
           </button>
@@ -76,40 +81,64 @@
           ></ul>
         </div>
 
-        <a class="btn" href="mission.html" data-i18n="nav_learn">
-          Why HumanKey
+        <a class="nav-link" href="mission.html" data-i18n="nav_learn">
+          HumanKey
         </a>
 
-        <a class="btn primary" href="join.html" data-i18n="nav_join">
+        <a class="nav-cta" href="join.html" data-i18n="nav_join">
           Join
         </a>
+
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero" id="home">
-      <div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero wrap" id="home">
+
+      <div class="hero-copy">
+
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-
           <span data-i18n="eyebrow">
-            HumanKey verified · Human-first by design
+            Protected by HumanKey
           </span>
         </div>
 
         <h1 data-i18n-html="h1">
-          The internet was built for people.<br />
-          <em>Let’s keep it that way.</em>
+          Social media<br />
+          <em>for humans.</em>
         </h1>
 
         <p class="lead" data-i18n-html="lead">
-          Hash Humanity is a new social layer for real people.
-          <strong>HumanKey</strong> helps reduce bots, duplicate accounts, and
-          artificial engagement before they reach the conversation.
+          Hash Humanity is a social network where being human actually means
+          something. <strong>HumanKey</strong> helps keep bots, duplicate
+          identities, and manufactured engagement outside the conversation.
         </p>
 
-        <div class="proofline">
+        <div class="hero-actions">
+
+          <a
+            class="primary-cta"
+            href="https://hashhumanity.world/universe"
+            target="_blank"
+            rel="noopener"
+            data-i18n="launch"
+          >
+            Enter Hash Humanity
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <a class="secondary-link" href="mission.html">
+            See how HumanKey works
+          </a>
+
+        </div>
+
+        <div class="human-stat">
           <span
             class="num"
             id="humanCount"
@@ -120,132 +149,284 @@
           </span>
 
           <span class="lbl" data-i18n="member_lbl">
-            humans and counting
+            verified humans
           </span>
         </div>
 
-        <div class="subline" data-i18n="subline">
-          No bot swarms · No duplicate identities · No algorithmic rage bait
-        </div>
-
-        <a
-          class="btn primary"
-          href="https://hashhumanity.world/universe"
-          target="_blank"
-          rel="noopener"
-          data-i18n="launch"
-        >
-          Enter now
-        </a>
       </div>
 
-      <div class="device-orbit" aria-hidden="true">
-        <div class="device">
-          <div class="screen"></div>
+
+      <div class="hero-visual" aria-hidden="true">
+
+        <div class="visual-halo"></div>
+
+        <div class="device-frame">
+
+          <div class="device-top">
+            <span class="device-camera"></span>
+          </div>
+
+          <div class="device-screen">
+            <img
+              src="app-preview.png"
+              alt=""
+              loading="eager"
+            />
+          </div>
+
         </div>
+
+        <div class="human-badge">
+          <span class="human-badge-mark">✓</span>
+
+          <div>
+            <small>HUMANKEY</small>
+            <strong>Human confirmed</strong>
+          </div>
+        </div>
+
       </div>
+
     </section>
 
-    <section>
-      <div class="section-head">
+
+    <!-- PRINCIPLE STRIP -->
+    <section class="principles">
+
+      <div class="wrap principles-inner">
+
+        <span data-i18n="subline">
+          One human. One presence.
+        </span>
+
+        <span class="principle-divider"></span>
+
+        <span>
+          No bot swarms.
+        </span>
+
+        <span class="principle-divider"></span>
+
+        <span>
+          No rage-bait ranking.
+        </span>
+
+        <span class="principle-divider"></span>
+
+        <span>
+          No selling your attention.
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- HUMANKEY FEATURE -->
+    <section class="feature-section wrap">
+
+      <div class="feature-intro">
+
         <span class="kicker" data-i18n="sec_kicker">
-          What changes when bots lose access
+          HUMANKEY
         </span>
 
         <h2 data-i18n-html="sec_h2">
-          Built for humans, <em>only humans</em>.
+          The door is open.<br />
+          <em>Bots aren't invited.</em>
         </h2>
+
+        <p>
+          HumanKey adds proof of personhood before participation,
+          changing who gets access to the network before moderation
+          ever becomes necessary.
+        </p>
+
       </div>
 
-      <div class="grid" aria-label="Hash Humanity features">
-        <article class="card">
-          <span class="idx">01</span>
 
-          <h3 data-i18n="card1_h3">
-            HumanKey at the gate
-          </h3>
+      <div class="feature-showcase">
 
-          <p data-i18n="card1_p">
-            One person, one presence. HumanKey helps stop bot farms,
-            impersonation, spam, and duplicate accounts before they enter the
-            conversation.
-          </p>
+        <article class="feature-primary">
+
+          <div class="feature-number">01</div>
+
+          <div class="feature-copy">
+
+            <span class="feature-label">
+              PROOF OF PERSONHOOD
+            </span>
+
+            <h3 data-i18n="card1_h3">
+              One human. One presence.
+            </h3>
+
+            <p data-i18n="card1_p">
+              HumanKey is designed to make large-scale bot farms,
+              automated account creation, and duplicate identities
+              dramatically harder to bring into the network.
+            </p>
+
+          </div>
+
         </article>
 
-        <article class="card">
-          <span class="idx">02</span>
 
-          <h3 data-i18n="card2_h3">
-            Proof without exposure
-          </h3>
+        <div class="feature-secondary">
 
-          <p data-i18n="card2_p">
-            Liveness checks, passkeys, and privacy-preserving proofs help
-            confirm that you are human without making your identity the product.
-          </p>
-        </article>
+          <article class="feature-item">
 
-        <article class="card">
-          <span class="idx">03</span>
+            <span class="feature-number">02</span>
 
-          <h3 data-i18n="card3_h3">
-            A feed worth your time
-          </h3>
+            <h3 data-i18n="card2_h3">
+              Prove you're human.<br />
+              Keep yourself private.
+            </h3>
 
-          <p data-i18n="card3_p">
-            Less manipulation. Less manufactured conflict. More curiosity,
-            creativity, and conversations with people who are actually here.
-          </p>
-        </article>
+            <p data-i18n="card2_p">
+              Liveness verification, passkeys, and privacy-preserving
+              proofs confirm personhood without turning your identity
+              into the product.
+            </p>
 
-        <article class="card">
-          <span class="idx">04</span>
+          </article>
 
-          <h3 data-i18n="card4_h3">
-            Humanity has a key
-          </h3>
 
-          <p data-i18n="card4_p">
-            HumanKey is proof of personhood for a network where humans—not
-            bots—shape what gets seen, shared, and built.
-          </p>
-        </article>
+          <article class="feature-item">
+
+            <span class="feature-number">03</span>
+
+            <h3 data-i18n="card3_h3">
+              Conversation without the machinery.
+            </h3>
+
+            <p data-i18n="card3_p">
+              No engagement system engineered around outrage.
+              No manufactured audience. Just people choosing what
+              deserves their attention.
+            </p>
+
+          </article>
+
+        </div>
+
       </div>
+
     </section>
 
-    <section class="cta" aria-label="Join Hash Humanity">
-      <img
-        src="hashhumanity-qr.png"
-        alt="QR code to Hash Humanity"
-      />
 
-      <div class="txt">
+    <!-- STATEMENT -->
+    <section class="statement-section">
+
+      <div class="wrap statement-inner">
+
+        <span class="statement-mark">
+          #
+        </span>
+
+        <blockquote>
+          “The internet doesn't need more content.
+          It needs more certainty about
+          <em>who is actually human.</em>”
+        </blockquote>
+
+        <span class="statement-credit">
+          HASH HUMANITY
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+    <section class="join-section wrap">
+
+      <div class="join-copy">
+
+        <span class="kicker">
+          THE HUMAN INTERNET
+        </span>
+
         <h2 data-i18n-html="cta_h2">
-          Enter the <em>human internet</em>.
+          Real is <em>rare.</em>
         </h2>
 
         <p data-i18n-html="cta_p">
-          Point your camera, open <strong>hashhumanity.world</strong>, and
-          create your HumanKey. Then enter a network designed to feel human
-          again.
+          Enter Hash Humanity and create your HumanKey.
+          One person. One presence. A social network built around
+          people instead of artificial engagement.
         </p>
 
-        <div class="fineprint" data-i18n-html="fineprint">
-          <strong>Your face is not your password.</strong>
-          HumanKey is designed to minimize the personal information needed to
-          confirm that an account belongs to a real person.
-        </div>
+        <a
+          class="primary-cta"
+          href="https://hashhumanity.world/universe"
+          target="_blank"
+          rel="noopener"
+        >
+          Enter Hash Humanity
+          <span aria-hidden="true">↗</span>
+        </a>
+
       </div>
+
+
+      <div class="join-qr">
+
+        <div class="qr-frame">
+          <img
+            src="hashhumanity-qr.png"
+            alt="QR code to Hash Humanity"
+          />
+        </div>
+
+        <span>
+          SCAN TO ENTER
+        </span>
+
+      </div>
+
     </section>
 
-    <footer>
-      <span>© <span id="year"></span> Hash Humanity</span>
 
-      <span class="tag" data-i18n="footer_tag">
-        The internet was built for people.
-      </span>
+    <!-- PRIVACY -->
+    <section class="privacy-note wrap">
+
+      <span class="privacy-icon">◉</span>
+
+      <p class="fineprint" data-i18n-html="fineprint">
+        <strong>Your face is not your password.</strong>
+        HumanKey is designed to minimize the personal information
+        required to establish that an account belongs to a real person.
+      </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+      <div class="wrap footer-inner">
+
+        <div class="footer-brand">
+          <img src="logo.png" alt="" />
+          <span>Hash Humanity</span>
+        </div>
+
+        <span>
+          © <span id="year"></span>
+        </span>
+
+        <span class="tag" data-i18n="footer_tag">
+          Real is rare.
+        </span>
+
+      </div>
+
     </footer>
+
   </main>
+
 
   <noscript>
     <div
@@ -260,15 +441,21 @@
       Hash Humanity is a human-first social network.
       <a
         href="https://hashhumanity.world/universe"
-        style="color:#111111;font-weight:700;text-decoration:underline;"
+        style="
+          color:#111111;
+          font-weight:700;
+          text-decoration:underline;
+        "
       >
         Enter Hash Humanity
       </a>
     </div>
   </noscript>
 
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
 
   <script src="i18n.js"></script>
@@ -278,5 +465,6 @@
       window.HH_I18N.init("home");
     }
   </script>
+
 </body>
 </html>
