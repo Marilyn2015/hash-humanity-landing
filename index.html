@@ -89,11 +89,6 @@
       text-decoration: none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
     button,
     a {
       -webkit-tap-highlight-color: transparent;
@@ -102,6 +97,50 @@
     .wrap {
       width: min(calc(100% - 40px), var(--max));
       margin-inline: auto;
+    }
+
+
+    /* LOGO */
+
+    .logo-mark {
+      display: inline-block;
+      flex: 0 0 auto;
+
+      width: 27px;
+      height: 27px;
+
+      background: #fff;
+
+      -webkit-mask-image: url("logo.png");
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+
+      mask-image: url("logo.png");
+      mask-repeat: no-repeat;
+      mask-position: center;
+      mask-size: contain;
+    }
+
+    .footer-logo-mark {
+      width: 21px;
+      height: 21px;
+    }
+
+    .phone-logo-mark {
+      position: absolute;
+
+      left: 50%;
+      top: 53%;
+
+      width: 38px;
+      height: 38px;
+
+      transform: translate(-50%, -50%);
+
+      opacity: .55;
+
+      z-index: 2;
     }
 
 
@@ -146,22 +185,6 @@
       letter-spacing: -.02em;
 
       white-space: nowrap;
-    }
-
-    .brand img {
-      width: 27px;
-      height: 27px;
-
-      flex: 0 0 auto;
-
-      object-fit: contain;
-
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-
-      filter: none !important;
     }
 
     .header-actions {
@@ -334,7 +357,6 @@
 
     .lead strong {
       color: #f0f0f2;
-
       font-weight: 600;
     }
 
@@ -357,7 +379,7 @@
 
       padding: 0 18px;
 
-      border-radius: 9px;
+      border-radius: 8px;
 
       font-size: 13px;
       font-weight: 650;
@@ -391,7 +413,6 @@
 
     .mission-cta:hover {
       border-color: rgba(255,255,255,.28);
-
       background: rgba(255,255,255,.05);
     }
 
@@ -419,9 +440,7 @@
 
       overflow: hidden;
 
-      border:
-        1px solid
-        rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.16);
 
       border-radius: 34px;
 
@@ -471,29 +490,6 @@
       z-index: 1;
     }
 
-    .phone-back-logo {
-      position: absolute;
-
-      left: 50%;
-      top: 53%;
-
-      width: 38px;
-      height: 38px;
-
-      transform: translate(-50%, -50%);
-
-      object-fit: contain;
-
-      opacity: .55;
-
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-
-      filter: none !important;
-    }
-
     .camera-island {
       position: absolute;
 
@@ -503,9 +499,7 @@
       left: 14px;
       top: 14px;
 
-      border:
-        1px solid
-        rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.14);
 
       border-radius: 23px;
 
@@ -528,9 +522,7 @@
 
       border-radius: 50%;
 
-      border:
-        2px solid
-        rgba(255,255,255,.12);
+      border: 2px solid rgba(255,255,255,.12);
 
       background:
         radial-gradient(
@@ -604,7 +596,6 @@
       left: 50%;
 
       width: 38%;
-
       height: 18px;
 
       transform: translateX(-50%);
@@ -627,8 +618,7 @@
 
       border-radius: 50%;
 
-      background:
-        rgba(255,255,255,.08);
+      background: rgba(255,255,255,.08);
 
       filter: blur(48px);
 
@@ -651,8 +641,7 @@
     .principles-inner {
       display: grid;
 
-      grid-template-columns:
-        repeat(4, 1fr);
+      grid-template-columns: repeat(4, 1fr);
 
       gap: 0;
     }
@@ -795,9 +784,7 @@
 
       padding-bottom: 4px;
 
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.24);
+      border-bottom: 1px solid rgba(255,255,255,.24);
 
       color: #f2f2f4;
 
@@ -815,9 +802,7 @@
     .join-panel {
       padding: 48px 34px;
 
-      border:
-        1px solid
-        rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.10);
 
       border-radius: 18px;
 
@@ -907,20 +892,6 @@
       gap: 8px;
     }
 
-    .footer-brand img {
-      width: 21px;
-      height: 21px;
-
-      object-fit: contain;
-
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-
-      filter: none !important;
-    }
-
 
     /* DESKTOP PHONE ANIMATION ONLY */
 
@@ -992,13 +963,22 @@
 
       .brand {
         gap: 7px;
-
         font-size: 13px;
       }
 
-      .brand img {
+      .logo-mark {
         width: 25px;
         height: 25px;
+      }
+
+      .footer-logo-mark {
+        width: 20px;
+        height: 20px;
+      }
+
+      .phone-logo-mark {
+        width: 31px;
+        height: 31px;
       }
 
       .header-link {
@@ -1028,7 +1008,6 @@
 
       .hero-copy {
         width: 100%;
-
         max-width: 430px;
 
         margin-inline: auto;
@@ -1036,7 +1015,6 @@
 
       .eyebrow {
         margin-bottom: 14px;
-
         font-size: 9px;
       }
 
@@ -1045,12 +1023,7 @@
 
         margin-inline: auto;
 
-        font-size:
-          clamp(
-            54px,
-            15vw,
-            72px
-          );
+        font-size: clamp(54px, 15vw, 72px);
 
         line-height: .91;
       }
@@ -1058,8 +1031,7 @@
       .lead {
         max-width: 355px;
 
-        margin:
-          18px auto 0;
+        margin: 18px auto 0;
 
         font-size: 15px;
 
@@ -1067,19 +1039,13 @@
       }
 
       .hero-actions {
-        width:
-          min(
-            100%,
-            350px
-          );
+        width: min(100%, 350px);
 
-        margin:
-          22px auto 0;
+        margin: 22px auto 0;
 
         display: grid;
 
-        grid-template-columns:
-          1fr 1fr;
+        grid-template-columns: 1fr 1fr;
 
         gap: 8px;
       }
@@ -1092,24 +1058,19 @@
 
         padding: 0 12px;
 
-        border-radius: 9px;
+        border-radius: 8px;
 
         font-size: 12px;
       }
 
       .phone-stage {
-        width:
-          min(
-            390px,
-            92vw
-          );
+        width: min(390px, 92vw);
 
         max-width: 100%;
 
         aspect-ratio: 1 / .98;
 
-        margin:
-          8px auto 0;
+        margin: 8px auto 0;
 
         perspective: none;
       }
@@ -1124,8 +1085,7 @@
         right: 12%;
         top: 10%;
 
-        transform:
-          rotateZ(5deg);
+        transform: rotateZ(5deg);
 
         animation: none !important;
       }
@@ -1136,8 +1096,7 @@
         left: 14%;
         top: 31%;
 
-        transform:
-          rotateZ(-15deg);
+        transform: rotateZ(-15deg);
 
         animation: none !important;
       }
@@ -1168,8 +1127,7 @@
       }
 
       .principles-inner {
-        grid-template-columns:
-          repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .principle {
@@ -1177,9 +1135,7 @@
 
         font-size: 10px;
 
-        border-bottom:
-          1px solid
-          var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
       .principle:nth-child(2) {
@@ -1196,12 +1152,7 @@
       }
 
       .statement h2 {
-        font-size:
-          clamp(
-            42px,
-            11vw,
-            61px
-          );
+        font-size: clamp(42px, 11vw, 61px);
       }
 
       .statement p {
@@ -1221,12 +1172,7 @@
       }
 
       .humankey h2 {
-        font-size:
-          clamp(
-            42px,
-            11vw,
-            60px
-          );
+        font-size: clamp(42px, 11vw, 60px);
       }
 
       .humankey-copy {
@@ -1248,12 +1194,7 @@
       }
 
       .join-panel h2 {
-        font-size:
-          clamp(
-            47px,
-            12vw,
-            64px
-          );
+        font-size: clamp(47px, 12vw, 64px);
       }
 
       .join-panel p {
@@ -1275,8 +1216,7 @@
     @media (max-width: 430px) {
 
       .wrap {
-        width:
-          calc(100% - 18px);
+        width: calc(100% - 18px);
       }
 
       .header-inner {
@@ -1287,7 +1227,7 @@
         font-size: 12px;
       }
 
-      .brand img {
+      .logo-mark {
         width: 24px;
         height: 24px;
       }
@@ -1300,12 +1240,7 @@
       .hero h1 {
         max-width: 340px;
 
-        font-size:
-          clamp(
-            50px,
-            15vw,
-            64px
-          );
+        font-size: clamp(50px, 15vw, 64px);
       }
 
       .lead {
@@ -1323,4 +1258,54 @@
 
       .primary-cta,
       .mission-cta {
-   
+        min-height: 43px;
+
+        border-radius: 8px;
+      }
+
+      .phone-stage {
+        width: min(355px, 91vw);
+
+        margin-top: 5px;
+      }
+
+      .statement {
+        padding: 46px 0 44px;
+      }
+
+      .humankey {
+        padding: 46px 0 50px;
+      }
+
+      .join-panel {
+        padding: 30px 16px;
+      }
+    }
+
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+
+  <header class="site-header">
+
+    <div class="wrap header-inner">
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="Hash Humanity home"
+      >
+  
