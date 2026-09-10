@@ -582,26 +582,6 @@
       left: 15px;
       bottom: 10px;
     }
-
-    .phone-back-logo {
-      position: absolute;
-
-      left: 50%;
-      top: 55%;
-
-      width: 46px;
-      height: 46px;
-
-      transform:
-        translate(-50%, -50%);
-
-      object-fit: contain;
-
-      opacity: .62;
-
-      filter: none;
-    }
-
     .phone-screen {
       position: absolute;
 
@@ -620,6 +600,38 @@
 
       object-fit: cover;
       object-position: top center;
+    }
+
+
+    /*
+      Correct Hash Humanity mark on the front-phone preview.
+      The actual repo logo.png is used here, and the black backing
+      cleanly covers the incorrect mark baked into app-preview.png.
+    */
+    .phone-screen::after {
+      content: "";
+      position: absolute;
+
+      top: 5.2%;
+      left: 50%;
+
+      width: 8%;
+      aspect-ratio: 1 / 1;
+
+      transform: translateX(-50%);
+
+      background:
+        #000
+        url("./logo.png")
+        center / contain
+        no-repeat;
+
+      box-shadow:
+        0 0 0 3px #000;
+
+      z-index: 6;
+
+      pointer-events: none;
     }
 
     .phone-topbar {
@@ -1222,13 +1234,6 @@
               <span class="lens two"></span>
               <span class="lens three"></span>
             </div>
-
-            <img
-              class="phone-back-logo"
-              src="./logo.png"
-              alt=""
-            >
-
           </div>
 
           <div class="phone phone-front">
