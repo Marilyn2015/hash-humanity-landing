@@ -19,67 +19,8 @@
 
   <meta name="theme-color" content="#000000">
 
-  <meta
-    name="robots"
-    content="index,follow,max-image-preview:large"
-  >
-
   <link rel="icon" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
-
-  <!-- OPEN GRAPH -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Hash Humanity">
-  <meta property="og:title" content="Join Hash Humanity | Real is rare.">
-
-  <meta
-    property="og:description"
-    content="A human-first social network built around real people, real conversation, and HumanKey."
-  >
-
-  <meta
-    property="og:url"
-    content="https://hashhumanity.world/join.html"
-  >
-
-  <meta
-    property="og:image"
-    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
-  >
-
-  <meta
-    property="og:image:secure_url"
-    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
-  >
-
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-
-  <meta
-    property="og:image:alt"
-    content="Hash Humanity. Real is rare."
-  >
-
-  <meta
-    name="twitter:card"
-    content="summary_large_image"
-  >
-
-  <meta
-    name="twitter:title"
-    content="Join Hash Humanity | Real is rare."
-  >
-
-  <meta
-    name="twitter:description"
-    content="A human-first social network built around real people and real conversation."
-  >
-
-  <meta
-    name="twitter:image"
-    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
-  >
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
@@ -87,13 +28,10 @@
   <style>
     :root {
       --bg: #000;
-      --surface: #070708;
-      --surface-2: #0b0b0d;
+      --surface: #09090b;
       --text: #f5f5f7;
       --muted: #9b9ba1;
-      --dim: #68686e;
       --line: rgba(255,255,255,.10);
-      --line-strong: rgba(255,255,255,.17);
       --max: 1040px;
     }
 
@@ -101,49 +39,38 @@
       box-sizing: border-box;
     }
 
-    html {
-      background: #000;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
+    html,
     body {
       margin: 0;
-      min-width: 320px;
-      min-height: 100svh;
-      overflow-x: hidden;
-
+      min-height: 100%;
+      background: #000;
       color: var(--text);
-
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(255,255,255,.075),
-          transparent 24%
-        ),
-        #000;
-
       font-family:
         -apple-system,
         BlinkMacSystemFont,
         "SF Pro Display",
-        "SF Pro Text",
         "Helvetica Neue",
         Arial,
         sans-serif;
+    }
 
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(255,255,255,.08),
+          transparent 26%
+        ),
+        #000;
     }
 
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
     }
 
     button,
@@ -153,31 +80,23 @@
       font: inherit;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
-    }
-
     .wrap {
       width: min(calc(100% - 40px), var(--max));
-      margin-inline: auto;
+      margin: 0 auto;
     }
-
-    /* HEADER */
 
     .site-header {
       position: fixed;
-      inset: 0 0 auto 0;
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
 
-      padding-top: env(safe-area-inset-top);
+      background: rgba(0,0,0,.80);
+      border-bottom: 1px solid rgba(255,255,255,.06);
 
-      background: rgba(0,0,0,.76);
-
-      backdrop-filter: blur(24px) saturate(140%);
-      -webkit-backdrop-filter: blur(24px) saturate(140%);
-
-      border-bottom: 1px solid rgba(255,255,255,.055);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
     }
 
     .header-inner {
@@ -187,103 +106,36 @@
       align-items: center;
       justify-content: space-between;
 
-      gap: 14px;
+      gap: 12px;
     }
 
     .brand {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-
       gap: 9px;
-
-      min-width: 0;
 
       font-size: 15px;
       font-weight: 650;
-
-      letter-spacing: -.02em;
-
-      white-space: nowrap;
     }
 
     .brand-logo {
       width: 30px;
       height: 30px;
 
-      flex: 0 0 auto;
-
       object-fit: contain;
 
-      border: 0;
-      border-radius: 0;
-
       background: transparent;
-
-      box-shadow: none;
+      border: 0;
       filter: none;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-
-      gap: 7px;
+      gap: 8px;
     }
 
-    .lang-switch {
-      position: relative;
-    }
-
-    .lang-btn {
-      padding: 8px 7px;
-
-      border: 0;
-
-      background: transparent;
-
-      color: #d4d4d8;
-
-      font-size: 12px;
-      font-weight: 650;
-
-      cursor: pointer;
-    }
-
-    .lang-menu {
-      position: absolute;
-
-      top: calc(100% + 10px);
-      right: 0;
-
-      display: none;
-
-      min-width: 155px;
-
-      margin: 0;
-      padding: 8px;
-
-      list-style: none;
-
-      border: 1px solid var(--line);
-      border-radius: 10px;
-
-      background: rgba(18,18,20,.98);
-
-      box-shadow:
-        0 24px 60px rgba(0,0,0,.65);
-
-      z-index: 1200;
-    }
-
-    .header-link {
-      padding: 8px 10px;
-
-      color: #d1d1d5;
-
-      font-size: 13px;
-      font-weight: 550;
-    }
-
+    .header-link,
     .header-enter {
       min-height: 35px;
 
@@ -291,30 +143,34 @@
       align-items: center;
       justify-content: center;
 
-      padding: 0 14px;
+      padding: 0 13px;
 
-      border: 1px solid rgba(255,255,255,.16);
       border-radius: 7px;
-
-      background: rgba(255,255,255,.055);
-
-      color: #fff;
 
       font-size: 12px;
       font-weight: 650;
     }
 
-    /* HERO */
+    .header-link {
+      color: #d3d3d7;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.035);
+    }
+
+    .header-enter {
+      color: #000;
+      background: #fff;
+      border: 1px solid #fff;
+    }
 
     main {
-      padding-top: 126px;
-      padding-bottom: 74px;
+      padding-top: 120px;
+      padding-bottom: 80px;
     }
 
     .hero {
-      max-width: 850px;
-
-      margin-bottom: 46px;
+      max-width: 760px;
+      margin-bottom: 42px;
     }
 
     .eyebrow {
@@ -323,15 +179,14 @@
 
       gap: 9px;
 
-      margin-bottom: 19px;
+      margin-bottom: 18px;
 
-      color: #99999f;
+      color: var(--muted);
 
       font-size: 10px;
       font-weight: 700;
 
       letter-spacing: .17em;
-
       text-transform: uppercase;
     }
 
@@ -343,5 +198,443 @@
 
       background: #fff;
 
-      box-shadow:
-        0 0 18
+      box-shadow: 0 0 18px rgba(255,255,255,.85);
+    }
+
+    h1 {
+      margin: 0;
+
+      font-size: clamp(48px, 8vw, 84px);
+      line-height: .95;
+
+      letter-spacing: -.055em;
+
+      font-weight: 680;
+    }
+
+    .hero p {
+      max-width: 660px;
+
+      margin: 24px 0 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .form-shell {
+      max-width: 720px;
+
+      padding: 28px;
+
+      border: 1px solid var(--line);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.035),
+          rgba(255,255,255,.012)
+        );
+    }
+
+    .form-kicker {
+      margin-bottom: 8px;
+
+      color: var(--muted);
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .form-title {
+      margin: 0 0 8px;
+
+      font-size: 28px;
+      letter-spacing: -.03em;
+    }
+
+    .form-intro {
+      margin: 0 0 24px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+
+      margin-bottom: 16px;
+    }
+
+    .field label {
+      color: #d7d7da;
+
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 8px;
+
+      background: #050506;
+
+      color: #fff;
+
+      outline: none;
+
+      padding: 13px 14px;
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: rgba(255,255,255,.35);
+    }
+
+    .submit-btn {
+      width: 100%;
+      min-height: 48px;
+
+      border: 0;
+      border-radius: 8px;
+
+      background: #fff;
+      color: #000;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      cursor: pointer;
+    }
+
+    .submit-btn:disabled {
+      opacity: .55;
+      cursor: default;
+    }
+
+    .status {
+      min-height: 20px;
+
+      margin-top: 14px;
+
+      color: #d4d4d8;
+
+      font-size: 13px;
+    }
+
+    .privacy-note {
+      margin-top: 14px;
+
+      color: #77777d;
+
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+
+      border-top: 1px solid rgba(255,255,255,.06);
+
+      color: #77777d;
+
+      font-size: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(calc(100% - 28px), var(--max));
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .header-link {
+        display: none;
+      }
+
+      main {
+        padding-top: 105px;
+      }
+
+      .form-shell {
+        padding: 20px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+
+      <a class="brand" href="index.html">
+        <img
+          class="brand-logo"
+          src="logo.png"
+          alt="Hash Humanity"
+        >
+        <span>Hash Humanity</span>
+      </a>
+
+      <div class="header-actions">
+        <a
+          class="header-link"
+          href="index.html"
+        >
+          Back
+        </a>
+
+        <a
+          class="header-enter"
+          href="https://hashhumanity.world/universe"
+        >
+          Enter
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <section class="hero">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Join Hash Humanity
+        </div>
+
+        <h1>
+          Come be human with us.
+        </h1>
+
+        <p>
+          Hash Humanity is a social network built around real people,
+          real conversation, and HumanKey.
+        </p>
+
+      </section>
+
+      <section class="form-shell">
+
+        <div class="form-kicker">
+          Request access
+        </div>
+
+        <h2 class="form-title">
+          Join the network.
+        </h2>
+
+        <p class="form-intro">
+          Tell us a little about yourself and how you want to be part of Hash Humanity.
+        </p>
+
+        <form id="joinForm">
+
+          <div class="field">
+            <label for="name">Name</label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="role">I'm interested as a</label>
+
+            <select
+              id="role"
+              name="role"
+              required
+            >
+              <option value="">Choose one</option>
+              <option value="member">Member</option>
+              <option value="creator">Creator</option>
+              <option value="builder">Builder</option>
+              <option value="partner">Partner</option>
+              <option value="press">Press</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Tell us anything you'd like us to know."
+            ></textarea>
+          </div>
+
+          <button
+            class="submit-btn"
+            id="submitBtn"
+            type="submit"
+          >
+            Request an invite
+          </button>
+
+          <div
+            class="status"
+            id="status"
+            aria-live="polite"
+          ></div>
+
+          <div class="privacy-note">
+            Your request is submitted securely through the Hash Humanity join system.
+          </div>
+
+        </form>
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Hash Humanity. Real is rare.
+    </div>
+  </footer>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "hashhumanity-58b9a.firebaseapp.com",
+      projectId: "hashhumanity-58b9a",
+      storageBucket: "hashhumanity-58b9a.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    let submitJoinInquiry = null;
+
+    try {
+      firebase.initializeApp(firebaseConfig);
+
+      const functions = firebase
+        .app()
+        .functions("us-central1");
+
+      submitJoinInquiry =
+        functions.httpsCallable("submitJoinInquiry");
+
+    } catch (error) {
+      console.error("Firebase initialization failed:", error);
+    }
+
+    const form =
+      document.getElementById("joinForm");
+
+    const submitBtn =
+      document.getElementById("submitBtn");
+
+    const status =
+      document.getElementById("status");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const name =
+        document.getElementById("name").value.trim();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const role =
+        document.getElementById("role").value;
+
+      const message =
+        document.getElementById("message").value.trim();
+
+      if (!name || !email || !role) {
+        status.textContent =
+          "Please complete the required fields.";
+
+        return;
+      }
+
+      if (!submitJoinInquiry) {
+        status.textContent =
+          "The request service is currently unavailable.";
+
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      status.textContent = "";
+
+      try {
+        await submitJoinInquiry({
+          name,
+          email,
+          role,
+          message,
+          sourceLocation: "join_page"
+        });
+
+        form.reset();
+
+        status.textContent =
+          "Request sent.";
+
+      } catch (error) {
+        console.error(error);
+
+        status.textContent =
+          "Could not send your request. Please try again.";
+      }
+
+      submitBtn.disabled = false;
+      submitBtn.textContent =
+        "Request an invite";
+    });
+  </script>
+
+</body>
+</html>
