@@ -27,18 +27,83 @@
   <link rel="icon" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
 
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Hash Humanity">
+
+  <meta
+    property="og:title"
+    content="Join Hash Humanity | Real is rare."
+  >
+
+  <meta
+    property="og:description"
+    content="A human-first social network built around real people, real conversation, and HumanKey."
+  >
+
+  <meta
+    property="og:url"
+    content="https://hashhumanity.world/join.html"
+  >
+
+  <meta
+    property="og:image"
+    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
+  >
+
+  <meta
+    property="og:image:secure_url"
+    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
+  >
+
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <meta
+    property="og:image:alt"
+    content="Hash Humanity. Real is rare."
+  >
+
+  <!-- X / OTHER PREVIEW SYSTEMS -->
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="Join Hash Humanity | Real is rare."
+  >
+
+  <meta
+    name="twitter:description"
+    content="A human-first social network built around real people and real conversation."
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://hashhumanity.world/og-card-globe-dark-1200x630.jpg.png"
+  >
+
+  <!-- FIREBASE -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-functions-compat.js"></script>
 
   <style>
     :root {
       --bg: #000;
+      --surface: #070708;
+      --surface-2: #0b0b0d;
+
       --text: #f5f5f7;
       --muted: #9b9ba1;
-      --dim: #6e6e73;
-      --line: rgba(255,255,255,.10);
-      --line-strong: rgba(255,255,255,.18);
-      --max: 980px;
+      --dim: #68686e;
+
+      --line: rgba(255,255,255,.09);
+      --line-strong: rgba(255,255,255,.17);
+
+      --max: 1040px;
     }
 
     * {
@@ -47,24 +112,25 @@
 
     html {
       background: #000;
-      scroll-behavior: smooth;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
+
       min-width: 320px;
       min-height: 100svh;
-      width: 100%;
+
       overflow-x: hidden;
 
       color: var(--text);
 
       background:
         radial-gradient(
-          circle at 50% -8%,
-          rgba(255,255,255,.07),
-          transparent 27%
+          circle at 50% -4%,
+          rgba(255,255,255,.075),
+          transparent 26%
         ),
         #000;
 
@@ -108,7 +174,6 @@
       margin-inline: auto;
     }
 
-
     /* HEADER */
 
     .site-header {
@@ -119,12 +184,13 @@
 
       padding-top: env(safe-area-inset-top);
 
-      background: rgba(0,0,0,.78);
+      background: rgba(0,0,0,.76);
 
       backdrop-filter: blur(24px) saturate(140%);
       -webkit-backdrop-filter: blur(24px) saturate(140%);
 
-      border-bottom: 1px solid rgba(255,255,255,.055);
+      border-bottom:
+        1px solid rgba(255,255,255,.055);
     }
 
     .header-inner {
@@ -134,7 +200,7 @@
       align-items: center;
       justify-content: space-between;
 
-      gap: 12px;
+      gap: 14px;
     }
 
     .brand {
@@ -161,7 +227,7 @@
 
       object-fit: contain;
 
-      background: #000;
+      background: transparent;
 
       border: 0;
       border-radius: 0;
@@ -182,13 +248,13 @@
     }
 
     .lang-btn {
+      padding: 8px 7px;
+
       border: 0;
 
       background: transparent;
 
-      color: #d4d4d8;
-
-      padding: 8px 7px;
+      color: #d5d5d9;
 
       font-size: 12px;
       font-weight: 650;
@@ -240,10 +306,13 @@
 
       padding: 0 14px;
 
-      border: 1px solid rgba(255,255,255,.16);
+      border:
+        1px solid rgba(255,255,255,.16);
+
       border-radius: 7px;
 
-      background: rgba(255,255,255,.055);
+      background:
+        rgba(255,255,255,.055);
 
       color: #fff;
 
@@ -251,34 +320,35 @@
       font-weight: 650;
     }
 
-
     /* MAIN */
 
     main {
-      padding-top: 120px;
-      padding-bottom: 72px;
+      padding-top: 126px;
+      padding-bottom: 76px;
     }
 
-    .hero {
-      max-width: 830px;
+    /* HERO */
 
-      margin-bottom: 42px;
+    .hero {
+      max-width: 850px;
+
+      margin-bottom: 46px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
 
-      gap: 8px;
+      gap: 9px;
 
-      margin-bottom: 18px;
+      margin-bottom: 19px;
 
-      color: #98989d;
+      color: #99999f;
 
       font-size: 10px;
       font-weight: 700;
 
-      letter-spacing: .16em;
+      letter-spacing: .17em;
 
       text-transform: uppercase;
     }
@@ -292,7 +362,7 @@
       background: #fff;
 
       box-shadow:
-        0 0 16px rgba(255,255,255,.75);
+        0 0 18px rgba(255,255,255,.75);
     }
 
     .hero h1 {
@@ -311,7 +381,7 @@
     }
 
     .hero h1 em {
-      color: #79797e;
+      color: #76767c;
 
       font-style: normal;
       font-weight: 560;
@@ -320,14 +390,14 @@
     .lead {
       max-width: 690px;
 
-      margin: 24px 0 0;
+      margin: 25px 0 0;
 
       color: var(--muted);
 
       font-size:
         clamp(17px, 1.7vw, 21px);
 
-      line-height: 1.52;
+      line-height: 1.54;
 
       letter-spacing: -.02em;
     }
@@ -338,39 +408,59 @@
       font-weight: 600;
     }
 
-
-    /* FORM */
+    /* FORM CARD */
 
     .form-shell {
       position: relative;
 
-      overflow: hidden;
-
       padding: 1px;
+
+      overflow: hidden;
 
       border-radius: 18px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,.17),
-          rgba(255,255,255,.04) 36%,
-          rgba(255,255,255,.08)
+          rgba(255,255,255,.18),
+          rgba(255,255,255,.035) 38%,
+          rgba(255,255,255,.09)
         );
+    }
+
+    .form-shell::before {
+      content: "";
+
+      position: absolute;
+
+      width: 340px;
+      height: 340px;
+
+      top: -220px;
+      right: -60px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255,255,255,.055);
+
+      filter: blur(65px);
+
+      pointer-events: none;
     }
 
     .panel {
       position: relative;
 
-      padding: 36px;
+      padding: 38px;
 
       border-radius: 17px;
 
       background:
         radial-gradient(
-          circle at 85% -10%,
-          rgba(255,255,255,.06),
-          transparent 34%
+          circle at 88% -5%,
+          rgba(255,255,255,.055),
+          transparent 32%
         ),
         #060607;
 
@@ -381,7 +471,7 @@
     .form-intro {
       max-width: 650px;
 
-      margin-bottom: 30px;
+      margin-bottom: 31px;
     }
 
     .form-kicker {
@@ -394,7 +484,7 @@
       font-size: 10px;
       font-weight: 700;
 
-      letter-spacing: .16em;
+      letter-spacing: .17em;
 
       text-transform: uppercase;
     }
@@ -405,7 +495,7 @@
       color: #f5f5f7;
 
       font-size:
-        clamp(29px, 4vw, 42px);
+        clamp(30px, 4vw, 43px);
 
       line-height: 1;
 
@@ -423,8 +513,10 @@
 
       font-size: 14px;
 
-      line-height: 1.55;
+      line-height: 1.58;
     }
+
+    /* FIELDS */
 
     .row {
       display: grid;
@@ -464,10 +556,13 @@
 
       outline: none;
 
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 9px;
+      border:
+        1px solid rgba(255,255,255,.11);
 
-      background: rgba(255,255,255,.035);
+      border-radius: 8px;
+
+      background:
+        rgba(255,255,255,.035);
 
       color: #f5f5f7;
 
@@ -485,7 +580,7 @@
     }
 
     textarea {
-      min-height: 140px;
+      min-height: 142px;
 
       padding: 14px 15px;
 
@@ -496,15 +591,17 @@
 
     input::placeholder,
     textarea::placeholder {
-      color: #616166;
+      color: #606066;
     }
 
     input:focus,
     select:focus,
     textarea:focus {
-      border-color: rgba(255,255,255,.30);
+      border-color:
+        rgba(255,255,255,.30);
 
-      background: rgba(255,255,255,.05);
+      background:
+        rgba(255,255,255,.05);
 
       box-shadow:
         0 0 0 3px rgba(255,255,255,.035);
@@ -543,10 +640,11 @@
       color: #fff;
     }
 
-    .submit {
-      min-height: 51px;
+    /* SUBMIT */
 
+    .submit {
       width: 100%;
+      min-height: 52px;
 
       display: inline-flex;
       align-items: center;
@@ -554,7 +652,9 @@
 
       gap: 9px;
 
-      margin-top: 2px;
+      margin-top: 3px;
+
+      padding: 0 18px;
 
       border: 1px solid #fff;
       border-radius: 8px;
@@ -570,11 +670,14 @@
 
       transition:
         transform .18s ease,
-        opacity .18s ease;
+        opacity .18s ease,
+        background .18s ease;
     }
 
     .submit:hover {
       transform: translateY(-1px);
+
+      background: #ededf0;
     }
 
     .submit:disabled {
@@ -612,6 +715,8 @@
       }
     }
 
+    /* STATUS */
+
     .status {
       display: none;
 
@@ -619,10 +724,9 @@
 
       padding: 13px 14px;
 
-      border-radius: 9px;
+      border-radius: 8px;
 
       font-size: 13px;
-
       line-height: 1.45;
     }
 
@@ -641,13 +745,13 @@
     }
 
     .status.success {
-      color: #efeff1;
+      color: #f3f3f5;
 
       border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(255,255,255,.13);
 
       background:
-        rgba(255,255,255,.04);
+        rgba(255,255,255,.045);
     }
 
     .privacy-note {
@@ -660,7 +764,6 @@
       line-height: 1.5;
     }
 
-
     /* FOOTER */
 
     .site-footer {
@@ -668,7 +771,8 @@
         22px 0
         calc(22px + env(safe-area-inset-bottom));
 
-      border-top: 1px solid var(--line);
+      border-top:
+        1px solid var(--line);
 
       color: #77777c;
 
@@ -698,7 +802,7 @@
 
       object-fit: contain;
 
-      background: #000;
+      background: transparent;
 
       border: 0;
       border-radius: 0;
@@ -706,7 +810,6 @@
       box-shadow: none;
       filter: none;
     }
-
 
     /* MOBILE */
 
@@ -744,12 +847,12 @@
       }
 
       main {
-        padding-top: 88px;
-        padding-bottom: 50px;
+        padding-top: 92px;
+        padding-bottom: 52px;
       }
 
       .hero {
-        margin-bottom: 30px;
+        margin-bottom: 31px;
 
         text-align: center;
       }
@@ -766,11 +869,11 @@
         margin-inline: auto;
 
         font-size:
-          clamp(49px, 13vw, 67px);
+          clamp(48px, 13vw, 67px);
       }
 
       .lead {
-        max-width: 360px;
+        max-width: 370px;
 
         margin:
           18px auto 0;
@@ -779,7 +882,7 @@
       }
 
       .panel {
-        padding: 24px;
+        padding: 25px;
 
         border-radius: 15px;
       }
@@ -817,12 +920,7 @@
       }
 
       .submit {
-        min-height: 48px;
-      }
-
-      .footer-logo {
-        width: 20px;
-        height: 20px;
+        min-height: 49px;
       }
 
       .footer-inner {
@@ -830,8 +928,12 @@
 
         text-align: center;
       }
-    }
 
+      .footer-logo {
+        width: 20px;
+        height: 20px;
+      }
+    }
 
     @media (max-width: 430px) {
 
@@ -853,19 +955,19 @@
       }
 
       main {
-        padding-top: 82px;
-        padding-bottom: 42px;
+        padding-top: 84px;
+        padding-bottom: 44px;
       }
 
       .hero h1 {
-        max-width: 340px;
+        max-width: 350px;
 
         font-size:
           clamp(45px, 13.5vw, 58px);
       }
 
       .lead {
-        max-width: 320px;
+        max-width: 325px;
 
         font-size: 14px;
       }
@@ -891,7 +993,6 @@
         min-height: 115px;
       }
     }
-
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -931,7 +1032,6 @@
 
       </a>
 
-
       <nav
         class="header-actions"
         aria-label="Join page navigation"
@@ -946,13 +1046,10 @@
             aria-haspopup="listbox"
             aria-expanded="false"
           >
-
             <span id="langBtnLabel">
               EN
             </span>
-
           </button>
-
 
           <ul
             class="lang-menu"
@@ -963,7 +1060,6 @@
 
         </div>
 
-
         <a
           class="header-link"
           href="index.html"
@@ -971,7 +1067,6 @@
         >
           Back
         </a>
-
 
         <a
           class="header-enter"
@@ -987,7 +1082,6 @@
 
   </header>
 
-
   <main class="wrap">
 
     <section class="hero">
@@ -1002,11 +1096,9 @@
 
       </div>
 
-
       <h1 data-i18n-html="h1">
         Come be <em>human</em> with us.
       </h1>
-
 
       <p
         class="lead"
@@ -1018,7 +1110,6 @@
       </p>
 
     </section>
-
 
     <div class="form-shell">
 
@@ -1033,11 +1124,9 @@
             REQUEST ACCESS
           </span>
 
-
           <h2 data-i18n="form_title">
             Join the network.
           </h2>
-
 
           <p data-i18n="form_intro">
             Send us your information below. We review every request and will follow up using the email address you provide.
@@ -1045,8 +1134,10 @@
 
         </div>
 
-
-        <div id="formWrap">
+        <form
+          id="joinForm"
+          novalidate
+        >
 
           <div class="row">
 
@@ -1059,9 +1150,9 @@
                 Your name
               </label>
 
-
               <input
                 id="name"
+                name="name"
                 type="text"
                 autocomplete="name"
                 maxlength="120"
@@ -1070,7 +1161,6 @@
               >
 
             </div>
-
 
             <div class="field">
 
@@ -1081,9 +1171,9 @@
                 Email
               </label>
 
-
               <input
                 id="email"
+                name="email"
                 type="email"
                 autocomplete="email"
                 maxlength="254"
@@ -1094,7 +1184,6 @@
 
           </div>
 
-
           <div class="field">
 
             <label
@@ -1104,8 +1193,10 @@
               What brings you here?
             </label>
 
-
-            <select id="role">
+            <select
+              id="role"
+              name="role"
+            >
 
               <option
                 value=""
@@ -1160,7 +1251,6 @@
 
           </div>
 
-
           <div class="field">
 
             <label
@@ -1171,9 +1261,9 @@
               <span class="optional">(optional)</span>
             </label>
 
-
             <textarea
               id="message"
+              name="message"
               maxlength="2000"
               placeholder="What are you hoping to do on Hash Humanity? Any questions?"
               data-i18n-placeholder="ph_message"
@@ -1181,11 +1271,10 @@
 
           </div>
 
-
           <button
             id="submitBtn"
             class="submit"
-            type="button"
+            type="submit"
           >
 
             <span class="spinner"></span>
@@ -1199,7 +1288,6 @@
 
           </button>
 
-
           <div
             id="status"
             class="status"
@@ -1207,19 +1295,20 @@
             aria-live="polite"
           ></div>
 
-
-          <p class="privacy-note">
-            Your information is submitted through Hash Humanity's server-side join request system.
+          <p
+            class="privacy-note"
+            data-i18n="privacy_note"
+          >
+            Your request is submitted directly through Hash Humanity's secure join request system.
           </p>
 
-        </div>
+        </form>
 
       </section>
 
     </div>
 
   </main>
-
 
   <footer class="site-footer">
 
@@ -1239,7 +1328,6 @@
 
       </div>
 
-
       <span data-i18n="footer_tag">
         Real is rare.
       </span>
@@ -1248,9 +1336,7 @@
 
   </footer>
 
-
   <noscript>
-
     <div
       style="
         padding:18px;
@@ -1262,9 +1348,7 @@
     >
       JavaScript is required to submit a join request.
     </div>
-
   </noscript>
-
 
   <script>
     const yearElement =
@@ -1275,15 +1359,9 @@
         new Date().getFullYear();
     }
 
-
     let functions = null;
 
-
-    function initializeFirebase(tries) {
-
-      const attempt =
-        tries || 0;
-
+    function initializeFirebase(tries = 0) {
 
       if (
         typeof firebase !== "undefined" &&
@@ -1298,7 +1376,6 @@
           ) {
 
             firebase.initializeApp({
-
               apiKey:
                 "AIzaSyBT7P7DAfV-I9ESe6f9Jdp5ioCyGIK0d9A",
 
@@ -1310,17 +1387,14 @@
 
               projectId:
                 "hashhumanity-58b9a"
-
             });
 
           }
-
 
           functions =
             firebase
               .app()
               .functions("us-central1");
-
 
           return;
 
@@ -1333,28 +1407,22 @@
 
           return;
         }
-
       }
 
-
-      if (attempt < 40) {
+      if (tries < 40) {
 
         setTimeout(
           function () {
             initializeFirebase(
-              attempt + 1
+              tries + 1
             );
           },
           100
         );
-
       }
-
     }
 
-
-    initializeFirebase(0);
-
+    initializeFirebase();
 
     function translated(
       key,
@@ -1371,6 +1439,8 @@
       return fallback;
     }
 
+    const form =
+      document.getElementById("joinForm");
 
     const nameInput =
       document.getElementById("name");
@@ -1390,7 +1460,6 @@
     const statusElement =
       document.getElementById("status");
 
-
     function setStatus(
       message,
       type
@@ -1403,7 +1472,6 @@
         "status show " + type;
     }
 
-
     function clearStatus() {
 
       statusElement.textContent = "";
@@ -1411,7 +1479,6 @@
       statusElement.className =
         "status";
     }
-
 
     function setLoading(
       loading
@@ -1426,7 +1493,6 @@
       );
     }
 
-
     function isValidEmail(
       value
     ) {
@@ -1436,11 +1502,15 @@
       );
     }
 
+    async function submitJoinRequest(
+      event
+    ) {
 
-    async function submitJoinRequest() {
+      if (event) {
+        event.preventDefault();
+      }
 
       clearStatus();
-
 
       const name =
         nameInput.value.trim();
@@ -1453,7 +1523,6 @@
 
       const message =
         messageInput.value.trim();
-
 
       if (!name) {
 
@@ -1470,7 +1539,6 @@
         return;
       }
 
-
       if (!email) {
 
         setStatus(
@@ -1485,7 +1553,6 @@
 
         return;
       }
-
 
       if (!isValidEmail(email)) {
 
@@ -1502,7 +1569,6 @@
         return;
       }
 
-
       if (!role) {
 
         setStatus(
@@ -1518,7 +1584,6 @@
         return;
       }
 
-
       if (!functions) {
 
         setStatus(
@@ -1532,9 +1597,7 @@
         return;
       }
 
-
       setLoading(true);
-
 
       try {
 
@@ -1543,37 +1606,24 @@
             "submitJoinInquiry"
           );
 
-
         await submitJoinInquiry({
-
           name: name,
-
           email: email,
-
           role: role,
-
           message: message,
-
           sourceLocation:
-            "onboarding_page"
-
+            "join_page"
         });
-
 
         setStatus(
           translated(
             "success",
-            "Thank you. Your request has been sent."
+            "Request sent."
           ),
           "success"
         );
 
-
-        nameInput.value = "";
-        emailInput.value = "";
-        roleInput.value = "";
-        messageInput.value = "";
-
+        form.reset();
 
       } catch (error) {
 
@@ -1582,47 +1632,24 @@
           error
         );
 
-
-        let messageText =
+        setStatus(
           translated(
             "err_submit",
             "We could not send your request right now. Please try again."
-          );
-
-
-        if (
-          error &&
-          error.message
-        ) {
-
-          console.error(
-            "Firebase function message:",
-            error.message
-          );
-
-        }
-
-
-        setStatus(
-          messageText,
+          ),
           "err"
         );
-
 
       } finally {
 
         setLoading(false);
-
       }
-
     }
 
-
-    submitButton.addEventListener(
-      "click",
+    form.addEventListener(
+      "submit",
       submitJoinRequest
     );
-
 
     [
       nameInput,
@@ -1640,39 +1667,10 @@
         "change",
         clearStatus
       );
-
     });
-
-
-    document.addEventListener(
-      "keydown",
-      function (event) {
-
-        if (
-          event.key === "Enter" &&
-          event.target.tagName !== "TEXTAREA"
-        ) {
-
-          if (
-            document.activeElement === nameInput ||
-            document.activeElement === emailInput ||
-            document.activeElement === roleInput
-          ) {
-
-            event.preventDefault();
-
-            submitJoinRequest();
-          }
-
-        }
-
-      }
-    );
   </script>
 
-
   <script src="i18n.js"></script>
-
 
   <script>
     if (window.HH_I18N) {
