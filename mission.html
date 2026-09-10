@@ -2,41 +2,1792 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
 
-  <title>Hash Humanity — Mission</title>
+  <meta name="format-detection" content="telephone=no" />
+
+  <title>Hash Humanity — Mission & HumanKey</title>
 
   <meta
     name="description"
-    content="Hash Humanity is a human-verified social space built for real conversations, real communities, and real people."
+    content="Why Hash Humanity exists, how HumanKey works, and why proof of personhood can make bot farms, duplicate identities, impersonation, spam, and manufactured engagement dramatically harder to scale."
   />
 
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+
+  <meta
+    name="robots"
+    content="index,follow,max-image-preview:large"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Hash Humanity" />
+
+  <meta
+    property="og:title"
+    content="Hash Humanity — The Mission"
+  />
+
+  <meta
+    property="og:description"
+    content="The internet has an identity problem. HumanKey is designed to put a real human behind every account."
+  />
+
+  <meta
+    property="og:url"
+    content="https://hashhumanity.promo/mission.html"
+  />
+
+  <link
+    rel="canonical"
+    href="https://hashhumanity.promo/mission.html"
+  />
 
   <link rel="icon" href="logo.png" />
-  <link rel="stylesheet" href="./style.css?v=2" />
+  <link rel="apple-touch-icon" href="logo.png" />
+
+  <style>
+
+    :root {
+      --bg: #000;
+      --surface: #09090b;
+      --surface-2: #101012;
+
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --soft: #6e6e73;
+
+      --line: rgba(255,255,255,.10);
+      --line-strong: rgba(255,255,255,.17);
+
+      --max: 1240px;
+
+      --radius-lg: 42px;
+      --radius-md: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: #000;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 50% -10%,
+          rgba(255,255,255,.07),
+          transparent 28%
+        ),
+        #000;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .wrap {
+      width: min(calc(100% - 40px), var(--max));
+      margin-inline: auto;
+    }
+
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+
+      z-index: 1000;
+
+      padding-top:
+        env(safe-area-inset-top);
+
+      background:
+        rgba(0,0,0,.62);
+
+      backdrop-filter:
+        blur(26px)
+        saturate(140%);
+
+      -webkit-backdrop-filter:
+        blur(26px)
+        saturate(140%);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+    }
+
+    .header-inner {
+      height: 68px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 10px;
+
+      white-space: nowrap;
+
+      font-size: 15px;
+      font-weight: 650;
+
+      letter-spacing: -.02em;
+    }
+
+    .brand img {
+      width: 29px;
+      height: 29px;
+
+      object-fit: contain;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+    }
+
+    .lang-switch {
+      position: relative;
+    }
+
+    .lang-btn {
+      border: 0;
+      background: transparent;
+
+      color: #d8d8dc;
+
+      font: inherit;
+
+      padding: 9px;
+
+      font-size: 13px;
+      font-weight: 650;
+
+      cursor: pointer;
+    }
+
+    .lang-menu {
+      position: absolute;
+
+      top: calc(100% + 10px);
+      right: 0;
+
+      min-width: 150px;
+
+      margin: 0;
+      padding: 8px;
+
+      list-style: none;
+
+      display: none;
+
+      border:
+        1px solid var(--line);
+
+      background:
+        rgba(19,19,21,.95);
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 24px 60px rgba(0,0,0,.58);
+    }
+
+    .nav-link {
+      color: #cacacf;
+
+      padding: 10px 12px;
+
+      font-size: 14px;
+      font-weight: 550;
+    }
+
+    .nav-cta,
+    .primary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      border-radius: 999px;
+
+      background: #fff;
+      color: #000;
+
+      font-weight: 650;
+    }
+
+    .nav-cta {
+      min-height: 38px;
+
+      padding: 0 17px;
+
+      font-size: 13px;
+    }
+
+    .primary-cta {
+      min-height: 54px;
+
+      padding: 0 24px;
+
+      font-size: 16px;
+    }
+
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .mission-hero {
+      min-height: 100svh;
+
+      padding-top: 150px;
+      padding-bottom: 90px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+
+      gap: 8px;
+
+      margin-bottom: 28px;
+
+      color: #c7c7cb;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #fff;
+
+      box-shadow:
+        0 0 20px rgba(255,255,255,.9);
+    }
+
+    .mission-hero h1 {
+      max-width: 1100px;
+
+      margin: 0;
+
+      font-size:
+        clamp(64px, 9vw, 128px);
+
+      line-height: .88;
+
+      letter-spacing: -.07em;
+
+      font-weight: 700;
+    }
+
+    .mission-hero h1 em {
+      display: block;
+
+      color: #7e7e83;
+
+      font-style: normal;
+      font-weight: 590;
+    }
+
+    .mission-intro {
+      max-width: 760px;
+
+      margin-top: 48px;
+      margin-left: auto;
+    }
+
+    .mission-intro .lead {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size:
+        clamp(19px, 2vw, 27px);
+
+      line-height: 1.48;
+
+      letter-spacing: -.025em;
+    }
+
+    .mission-intro strong {
+      color: #f3f3f5;
+      font-weight: 600;
+    }
+
+    .mission-rule {
+      width: 100%;
+      height: 1px;
+
+      margin: 35px 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.2),
+          rgba(255,255,255,.03)
+        );
+    }
+
+    .mission-pull {
+      margin: 0;
+
+      color: #737378;
+
+      font-size: 14px;
+    }
+
+
+    /* =========================================================
+       LARGE STATEMENT
+       ========================================================= */
+
+    .big-statement {
+      padding: 160px 0;
+
+      text-align: center;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .big-statement-inner {
+      max-width: 1060px;
+    }
+
+    .kicker {
+      display: inline-block;
+
+      margin-bottom: 27px;
+
+      color: #77777c;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .18em;
+
+      text-transform: uppercase;
+    }
+
+    .big-statement h2 {
+      margin: 0;
+
+      font-size:
+        clamp(48px, 7.5vw, 102px);
+
+      line-height: .96;
+
+      letter-spacing: -.06em;
+
+      font-weight: 650;
+    }
+
+    .big-statement h2 em {
+      color: #7f7f84;
+
+      font-style: normal;
+      font-weight: 560;
+    }
+
+    .big-statement p {
+      max-width: 780px;
+
+      margin: 35px auto 0;
+
+      color: var(--muted);
+
+      font-size:
+        clamp(18px, 1.7vw, 23px);
+
+      line-height: 1.55;
+
+      letter-spacing: -.02em;
+    }
+
+
+    /* =========================================================
+       PROBLEM
+       ========================================================= */
+
+    .problem-section {
+      padding: 130px 0;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+
+      grid-template-columns:
+        .85fr 1.15fr;
+
+      gap: 90px;
+    }
+
+    .sticky-title {
+      position: sticky;
+
+      top: 120px;
+
+      align-self: start;
+    }
+
+    .sticky-title h2 {
+      margin: 0;
+
+      font-size:
+        clamp(48px, 5.5vw, 78px);
+
+      line-height: .98;
+
+      letter-spacing: -.055em;
+
+      font-weight: 650;
+    }
+
+    .sticky-title h2 em {
+      display: block;
+
+      color: #7e7e83;
+
+      font-style: normal;
+      font-weight: 560;
+    }
+
+    .problem-content {
+      display: grid;
+      gap: 24px;
+    }
+
+    .problem-block {
+      padding: 34px 0;
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+    .problem-block:first-child {
+      padding-top: 0;
+    }
+
+    .problem-block span {
+      color: #67676c;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+
+      text-transform: uppercase;
+    }
+
+    .problem-block h3 {
+      margin: 14px 0 14px;
+
+      font-size:
+        clamp(28px, 3vw, 42px);
+
+      line-height: 1.05;
+
+      letter-spacing: -.04em;
+
+      font-weight: 620;
+    }
+
+    .problem-block p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+
+      line-height: 1.6;
+
+      letter-spacing: -.015em;
+    }
+
+
+    /* =========================================================
+       BOT CAPABILITY SECTION
+       ========================================================= */
+
+    .bot-section {
+      padding: 150px 0;
+    }
+
+    .bot-heading {
+      max-width: 900px;
+
+      margin-bottom: 70px;
+    }
+
+    .bot-heading h2 {
+      margin: 0;
+
+      font-size:
+        clamp(52px, 7vw, 94px);
+
+      line-height: .96;
+
+      letter-spacing: -.06em;
+
+      font-weight: 650;
+    }
+
+    .bot-heading h2 em {
+      color: #7f7f84;
+
+      font-style: normal;
+    }
+
+    .bot-heading p {
+      max-width: 730px;
+
+      margin: 30px 0 0;
+
+      color: var(--muted);
+
+      font-size: 20px;
+
+      line-height: 1.55;
+    }
+
+    .bot-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0,1fr));
+
+      gap: 14px;
+    }
+
+    .bot-card {
+      min-height: 310px;
+
+      padding: 36px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 30px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.035),
+          rgba(255,255,255,.008)
+        );
+    }
+
+    .bot-card-number {
+      color: #66666b;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+    }
+
+    .bot-card h3 {
+      margin: 60px 0 16px;
+
+      max-width: 440px;
+
+      font-size:
+        clamp(28px, 3vw, 40px);
+
+      line-height: 1.05;
+
+      letter-spacing: -.04em;
+
+      font-weight: 620;
+    }
+
+    .bot-card p {
+      margin: 0;
+
+      max-width: 500px;
+
+      color: var(--muted);
+
+      font-size: 17px;
+
+      line-height: 1.58;
+    }
+
+
+    /* =========================================================
+       SCALE SECTION
+       ========================================================= */
+
+    .scale-section {
+      padding: 140px 0;
+
+      border-top:
+        1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+
+      text-align: center;
+    }
+
+    .scale-number {
+      display: block;
+
+      font-size:
+        clamp(82px, 16vw, 210px);
+
+      line-height: .8;
+
+      font-weight: 700;
+
+      letter-spacing: -.08em;
+
+      color: #fff;
+    }
+
+    .scale-label {
+      display: block;
+
+      margin-top: 34px;
+
+      color: #8a8a90;
+
+      font-size:
+        clamp(18px, 2vw, 25px);
+
+      letter-spacing: -.02em;
+    }
+
+    .scale-copy {
+      max-width: 780px;
+
+      margin: 38px auto 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       1 HUMAN 1 ACCOUNT
+       ========================================================= */
+
+    .one-section {
+      padding: 170px 0;
+
+      text-align: center;
+    }
+
+    .ratio {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: clamp(22px, 5vw, 70px);
+
+      margin: 30px 0 40px;
+    }
+
+    .ratio-number {
+      font-size:
+        clamp(120px, 20vw, 270px);
+
+      line-height: .75;
+
+      letter-spacing: -.09em;
+
+      font-weight: 700;
+    }
+
+    .ratio-divider {
+      color: #505055;
+
+      font-size:
+        clamp(76px, 12vw, 150px);
+
+      font-weight: 300;
+    }
+
+    .ratio-labels {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      max-width: 610px;
+
+      margin-inline: auto;
+
+      color: #85858a;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .18em;
+
+      text-transform: uppercase;
+    }
+
+    .one-section h2 {
+      max-width: 900px;
+
+      margin: 70px auto 0;
+
+      font-size:
+        clamp(42px, 6vw, 80px);
+
+      line-height: 1;
+
+      letter-spacing: -.055em;
+
+      font-weight: 650;
+    }
+
+    .one-section h2 em {
+      color: #7f7f84;
+      font-style: normal;
+    }
+
+    .one-section p {
+      max-width: 760px;
+
+      margin: 32px auto 0;
+
+      color: var(--muted);
+
+      font-size: 20px;
+
+      line-height: 1.58;
+    }
+
+
+    /* =========================================================
+       HUMANKEY DEEP DIVE
+       ========================================================= */
+
+    .humankey-section {
+      padding: 150px 0;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .humankey-heading {
+      max-width: 930px;
+
+      margin-bottom: 80px;
+    }
+
+    .humankey-heading h2 {
+      margin: 0;
+
+      font-size:
+        clamp(55px, 8vw, 104px);
+
+      line-height: .92;
+
+      letter-spacing: -.065em;
+
+      font-weight: 670;
+    }
+
+    .humankey-heading h2 em {
+      display: block;
+
+      color: #7e7e83;
+
+      font-style: normal;
+      font-weight: 560;
+    }
+
+    .humankey-heading p {
+      max-width: 760px;
+
+      margin: 32px 0 0;
+
+      color: var(--muted);
+
+      font-size: 20px;
+
+      line-height: 1.55;
+    }
+
+    .hk-flow {
+      display: grid;
+
+      gap: 0;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .hk-step {
+      display: grid;
+
+      grid-template-columns:
+        90px 1fr 1fr;
+
+      gap: 36px;
+
+      padding: 46px 0;
+
+      border-bottom:
+        1px solid var(--line);
+
+      align-items: start;
+    }
+
+    .hk-num {
+      color: #5d5d62;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      letter-spacing: .16em;
+    }
+
+    .hk-step h3 {
+      margin: 0;
+
+      font-size:
+        clamp(28px, 3vw, 40px);
+
+      line-height: 1.08;
+
+      letter-spacing: -.04em;
+
+      font-weight: 620;
+    }
+
+    .hk-step p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 17px;
+
+      line-height: 1.62;
+    }
+
+
+    /* =========================================================
+       WHAT CHANGES
+       ========================================================= */
+
+    .change-section {
+      padding: 160px 0;
+    }
+
+    .change-heading {
+      max-width: 900px;
+
+      margin-bottom: 70px;
+    }
+
+    .change-heading h2 {
+      margin: 0;
+
+      font-size:
+        clamp(50px, 7vw, 92px);
+
+      line-height: .96;
+
+      letter-spacing: -.06em;
+
+      font-weight: 650;
+    }
+
+    .change-heading h2 em {
+      color: #7f7f84;
+
+      font-style: normal;
+    }
+
+    .change-list {
+      border-top:
+        1px solid var(--line);
+    }
+
+    .change-item {
+      display: grid;
+
+      grid-template-columns:
+        80px 1fr;
+
+      gap: 30px;
+
+      padding: 38px 0;
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+    .change-item span {
+      color: #5f5f64;
+
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: .14em;
+    }
+
+    .change-item strong {
+      display: block;
+
+      margin-bottom: 9px;
+
+      color: #f1f1f3;
+
+      font-size:
+        clamp(24px, 3vw, 36px);
+
+      letter-spacing: -.035em;
+    }
+
+    .change-item p {
+      max-width: 780px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 17px;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================================================
+       PRIVACY
+       ========================================================= */
+
+    .privacy-section {
+      padding: 150px 0;
+    }
+
+    .privacy-panel {
+      padding: 80px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius-lg);
+
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(255,255,255,.09),
+          transparent 26%
+        ),
+        linear-gradient(
+          145deg,
+          #101012,
+          #050506
+        );
+    }
+
+    .privacy-panel h2 {
+      max-width: 840px;
+
+      margin: 0;
+
+      font-size:
+        clamp(48px, 7vw, 88px);
+
+      line-height: .96;
+
+      letter-spacing: -.06em;
+
+      font-weight: 650;
+    }
+
+    .privacy-panel h2 em {
+      color: #7f7f84;
+      font-style: normal;
+    }
+
+    .privacy-panel > p {
+      max-width: 760px;
+
+      margin: 30px 0 0;
+
+      color: var(--muted);
+
+      font-size: 20px;
+
+      line-height: 1.55;
+    }
+
+    .privacy-points {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 14px;
+
+      margin-top: 56px;
+    }
+
+    .privacy-point {
+      padding: 26px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,.018);
+    }
+
+    .privacy-point strong {
+      display: block;
+
+      margin-bottom: 11px;
+
+      font-size: 18px;
+
+      letter-spacing: -.025em;
+    }
+
+    .privacy-point p {
+      margin: 0;
+
+      color: #8d8d92;
+
+      font-size: 15px;
+
+      line-height: 1.55;
+    }
+
+
+    /* =========================================================
+       LIMITS
+       ========================================================= */
+
+    .limits {
+      padding: 140px 0;
+
+      border-top:
+        1px solid var(--line);
+    }
+
+    .limits-inner {
+      max-width: 900px;
+    }
+
+    .limits h2 {
+      margin: 0;
+
+      font-size:
+        clamp(44px, 6vw, 76px);
+
+      line-height: .98;
+
+      letter-spacing: -.055em;
+
+      font-weight: 650;
+    }
+
+    .limits h2 em {
+      color: #7f7f84;
+
+      font-style: normal;
+    }
+
+    .limits p {
+      margin: 30px 0 0;
+
+      color: var(--muted);
+
+      font-size: 19px;
+
+      line-height: 1.62;
+    }
+
+
+    /* =========================================================
+       FINAL CTA
+       ========================================================= */
+
+    .mission-close {
+      padding: 80px 0 120px;
+    }
+
+    .close-panel {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 88px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:
+        var(--radius-lg);
+
+      background:
+        radial-gradient(
+          circle at 80% 10%,
+          rgba(255,255,255,.12),
+          transparent 28%
+        ),
+        linear-gradient(
+          145deg,
+          #111113,
+          #050506 60%,
+          #020202
+        );
+    }
+
+    .close-panel h2 {
+      max-width: 950px;
+
+      margin: 0;
+
+      font-size:
+        clamp(60px, 8.5vw, 118px);
+
+      line-height: .88;
+
+      letter-spacing: -.07em;
+
+      font-weight: 680;
+    }
+
+    .close-panel h2 em {
+      color: #7f7f84;
+
+      font-style: normal;
+      font-weight: 570;
+    }
+
+    .close-panel p {
+      max-width: 730px;
+
+      margin: 32px 0 0;
+
+      color: var(--muted);
+
+      font-size: 19px;
+
+      line-height: 1.55;
+    }
+
+    .mission-actions {
+      display: flex;
+
+      gap: 14px;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+
+      margin-top: 35px;
+    }
+
+    .secondary-cta {
+      min-height: 54px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 22px;
+
+      border:
+        1px solid var(--line-strong);
+
+      border-radius: 999px;
+
+      color: #e4e4e7;
+
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .site-footer {
+      border-top:
+        1px solid var(--line);
+
+      padding:
+        26px 0
+        calc(26px + env(safe-area-inset-bottom));
+
+      color: #77777c;
+
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 18px;
+
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color: #aaaab0;
+    }
+
+    .footer-brand img {
+      width: 22px;
+      height: 22px;
+    }
+
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
+
+    @media (max-width: 820px) {
+
+      .wrap {
+        width:
+          min(
+            calc(100% - 26px),
+            var(--max)
+          );
+      }
+
+      .header-inner {
+        height: 60px;
+      }
+
+      .brand {
+        font-size: 14px;
+      }
+
+      .brand img {
+        width: 27px;
+        height: 27px;
+      }
+
+      .nav-link {
+        display: none;
+      }
+
+      .lang-btn {
+        font-size: 12px;
+        padding: 7px;
+      }
+
+      .nav-cta {
+        min-height: 35px;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+      }
+
+
+      .mission-hero {
+        min-height: auto;
+
+        padding-top: 118px;
+        padding-bottom: 92px;
+      }
+
+      .eyebrow {
+        margin-bottom: 21px;
+
+        font-size: 10px;
+      }
+
+      .mission-hero h1 {
+        font-size:
+          clamp(57px, 17vw, 88px);
+
+        line-height: .89;
+      }
+
+      .mission-intro {
+        margin-top: 37px;
+        margin-left: 0;
+      }
+
+      .mission-intro .lead {
+        font-size: 18px;
+      }
+
+
+      .big-statement {
+        padding: 104px 0;
+      }
+
+      .big-statement h2 {
+        font-size:
+          clamp(44px, 13vw, 70px);
+      }
+
+      .big-statement p {
+        font-size: 17px;
+      }
+
+
+      .problem-section {
+        padding: 96px 0;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+
+        gap: 58px;
+      }
+
+      .sticky-title {
+        position: static;
+      }
+
+      .sticky-title h2 {
+        font-size:
+          clamp(46px, 13vw, 68px);
+      }
+
+      .problem-block h3 {
+        font-size:
+          clamp(28px, 8vw, 37px);
+      }
+
+      .problem-block p {
+        font-size: 17px;
+      }
+
+
+      .bot-section {
+        padding: 100px 0;
+      }
+
+      .bot-heading {
+        margin-bottom: 45px;
+      }
+
+      .bot-heading h2 {
+        font-size:
+          clamp(46px, 13vw, 70px);
+      }
+
+      .bot-heading p {
+        font-size: 17px;
+      }
+
+      .bot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bot-card {
+        min-height: 0;
+
+        padding: 28px;
+
+        border-radius: 24px;
+      }
+
+      .bot-card h3 {
+        margin-top: 38px;
+
+        font-size:
+          clamp(29px, 8vw, 38px);
+      }
+
+
+      .scale-section {
+        padding: 100px 0;
+      }
+
+      .scale-number {
+        font-size:
+          clamp(88px, 30vw, 150px);
+      }
+
+      .scale-copy {
+        font-size: 17px;
+      }
+
+
+      .one-section {
+        padding: 115px 0;
+      }
+
+      .ratio {
+        gap: 19px;
+      }
+
+      .ratio-number {
+        font-size:
+          clamp(110px, 35vw, 160px);
+      }
+
+      .ratio-divider {
+        font-size:
+          clamp(64px, 20vw, 90px);
+      }
+
+      .ratio-labels {
+        max-width: 370px;
+
+        font-size: 10px;
+      }
+
+      .one-section h2 {
+        margin-top: 55px;
+
+        font-size:
+          clamp(42px, 12vw, 64px);
+      }
+
+      .one-section p {
+        font-size: 17px;
+      }
+
+
+      .humankey-section {
+        padding: 105px 0;
+      }
+
+      .humankey-heading {
+        margin-bottom: 55px;
+      }
+
+      .humankey-heading h2 {
+        font-size:
+          clamp(52px, 15vw, 78px);
+      }
+
+      .humankey-heading p {
+        font-size: 17px;
+      }
+
+      .hk-step {
+        grid-template-columns:
+          48px 1fr;
+
+        gap: 20px;
+
+        padding: 36px 0;
+      }
+
+      .hk-step p {
+        grid-column: 2;
+
+        font-size: 16px;
+      }
+
+
+      .change-section {
+        padding: 105px 0;
+      }
+
+      .change-heading h2 {
+        font-size:
+          clamp(46px, 13vw, 68px);
+      }
+
+      .change-item {
+        grid-template-columns:
+          45px 1fr;
+
+        gap: 17px;
+
+        padding: 32px 0;
+      }
+
+      .change-item strong {
+        font-size:
+          clamp(24px, 7vw, 32px);
+      }
+
+      .change-item p {
+        font-size: 16px;
+      }
+
+
+      .privacy-section {
+        padding: 95px 0;
+      }
+
+      .privacy-panel {
+        padding: 48px 23px;
+
+        border-radius: 28px;
+      }
+
+      .privacy-panel h2 {
+        font-size:
+          clamp(43px, 12vw, 64px);
+      }
+
+      .privacy-panel > p {
+        font-size: 17px;
+      }
+
+      .privacy-points {
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+      }
+
+
+      .limits {
+        padding: 95px 0;
+      }
+
+      .limits h2 {
+        font-size:
+          clamp(42px, 12vw, 62px);
+      }
+
+      .limits p {
+        font-size: 17px;
+      }
+
+
+      .mission-close {
+        padding: 65px 0 85px;
+      }
+
+      .close-panel {
+        padding: 53px 24px;
+
+        border-radius: 29px;
+      }
+
+      .close-panel h2 {
+        font-size:
+          clamp(58px, 17vw, 86px);
+      }
+
+      .close-panel p {
+        font-size: 17px;
+      }
+
+      .mission-actions {
+        align-items: stretch;
+
+        flex-direction: column;
+      }
+
+      .primary-cta,
+      .secondary-cta {
+        width: 100%;
+      }
+
+
+      .footer-inner {
+        justify-content: center;
+
+        text-align: center;
+      }
+
+      .footer-brand {
+        width: 100%;
+
+        justify-content: center;
+      }
+
+    }
+
+
+    @media (max-width: 430px) {
+
+      .wrap {
+        width: calc(100% - 20px);
+      }
+
+      .site-header {
+        background:
+          rgba(0,0,0,.78);
+      }
+
+      .header-inner {
+        height: 58px;
+      }
+
+      .brand {
+        gap: 7px;
+
+        font-size: 13px;
+      }
+
+      .brand img {
+        width: 26px;
+        height: 26px;
+      }
+
+      .actions {
+        gap: 0;
+      }
+
+      .mission-hero {
+        padding-top: 104px;
+        padding-bottom: 78px;
+      }
+
+      .mission-hero h1 {
+        font-size:
+          clamp(53px, 16.7vw, 73px);
+      }
+
+      .mission-intro .lead {
+        font-size: 16px;
+      }
+
+      .bot-card {
+        padding: 25px 22px;
+      }
+
+      .privacy-panel {
+        padding: 43px 20px;
+      }
+
+      .close-panel {
+        padding: 46px 20px;
+      }
+
+    }
+
+  </style>
 </head>
 
+
 <body class="mission-body">
-  <header>
+
+
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
+
+  <header class="site-header">
+
     <div class="wrap header-inner">
-      <a class="brand" href="index.html" aria-label="Hash Humanity home">
-        <img src="logo.png" alt="Hash Humanity logo" />
-        <span>Hash Humanity</span>
+
+      <a
+        class="brand"
+        href="index.html"
+        aria-label="Hash Humanity home"
+      >
+
+        <img
+          src="logo.png"
+          alt="Hash Humanity logo"
+        />
+
+        <span>
+          Hash Humanity
+        </span>
+
       </a>
 
-      <nav class="actions" aria-label="Mission page navigation">
+
+      <nav
+        class="actions"
+        aria-label="Mission page navigation"
+      >
+
         <div class="lang-switch">
+
           <button
-            class="btn lang-btn"
+            class="lang-btn"
             id="langBtn"
             type="button"
             aria-haspopup="listbox"
             aria-expanded="false"
           >
-            <span id="langBtnLabel">EN</span>
+
+            <span id="langBtnLabel">
+              EN
+            </span>
+
           </button>
+
 
           <ul
             class="lang-menu"
@@ -44,228 +1795,1353 @@
             role="listbox"
             aria-label="Language selection"
           ></ul>
+
         </div>
 
-        <a class="btn" href="index.html" data-i18n="back">
-          ← Back
-        </a>
 
         <a
-          class="btn primary"
+          class="nav-link"
+          href="index.html"
+        >
+          Home
+        </a>
+
+
+        <a
+          class="nav-cta"
           href="https://hashhumanity.world"
           target="_blank"
           rel="noopener"
-          data-i18n="launch"
         >
           Enter
         </a>
+
       </nav>
+
     </div>
+
   </header>
 
-  <main class="wrap mission-page">
-    <section class="mission-hero">
-      <div>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
 
-          <span data-i18n="eyebrow">
-            Human-verified social space
-          </span>
-        </div>
+  <main>
 
-        <h1 data-i18n-html="h1">
-          The internet is better<br />
-          when it feels <em>human</em>.
-        </h1>
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="mission-hero wrap">
+
+      <div class="eyebrow">
+
+        <span class="eyebrow-dot"></span>
+
+        <span>
+          The mission behind Hash Humanity
+        </span>
+
       </div>
 
+
+      <h1>
+
+        The internet has<br />
+
+        <em>
+          an identity problem.
+        </em>
+
+      </h1>
+
+
       <div class="mission-intro">
-        <p class="lead" data-i18n-html="lead">
-          Hash Humanity is a place for
-          <strong>real people to meet, talk, and build community</strong>—
-          without bot accounts, fake engagement, or automated noise getting in
-          the way.
+
+        <p class="lead">
+
+          Online, an account looks like a person.
+
+          <strong>
+            But an account is not proof of a person.
+          </strong>
+
+          One operator can control dozens, thousands, or potentially
+          millions of identities. Software can speak, react, follow,
+          post, amplify, impersonate, and manufacture activity at a
+          speed no human population can match.
+
         </p>
+
 
         <div class="mission-rule"></div>
 
-        <p class="mission-small" data-i18n-html="pull">
-          <span>The internet was built for people</span>, not bots.
+
+        <p class="mission-pull">
+
+          Hash Humanity starts with a different question:
+          who is actually human?
+
         </p>
+
       </div>
+
     </section>
 
-    <section class="mission-statement">
-      <span class="kicker" data-i18n="c1_idx">
-        01 — The idea
-      </span>
 
-      <h2 data-i18n="c1_h2">
-        Real people. Real rooms. Real conversation.
-      </h2>
 
-      <p data-i18n="c1_p">
-        Every account begins with proof that there is a real, live person
-        behind it. Hash Humanity is built for people who want online spaces to
-        feel real again.
-      </p>
+    <!-- =====================================================
+         CORE IDEA
+         ===================================================== -->
+
+    <section class="big-statement">
+
+      <div class="wrap big-statement-inner">
+
+        <span class="kicker">
+          THE CORE IDEA
+        </span>
+
+
+        <h2>
+
+          The internet does not need
+          more accounts.
+
+          <br />
+
+          <em>
+            It needs accountable humans.
+          </em>
+
+        </h2>
+
+
+        <p>
+
+          Hash Humanity is built around proof of personhood.
+          Before an account becomes another voice in the network,
+          HumanKey is designed to establish that a real, live,
+          unique person is standing behind it.
+
+        </p>
+
+      </div>
+
     </section>
 
-    <section class="mission-principles">
-      <article class="principle">
-        <span class="principle-number">02</span>
 
-        <div>
-          <span class="kicker" data-i18n="c2_idx">
-            HumanKey
+
+    <!-- =====================================================
+         PROBLEM
+         ===================================================== -->
+
+    <section class="problem-section">
+
+      <div class="wrap section-grid">
+
+
+        <div class="sticky-title">
+
+          <span class="kicker">
+            THE PROBLEM
           </span>
 
-          <h3 data-i18n="c2_h2">
-            Proof of humanity, built in.
-          </h3>
+          <h2>
 
-          <p data-i18n="c2_p">
-            HumanKey helps confirm that a real person is creating an account
-            and helps reduce duplicate accounts before they enter the community.
-          </p>
+            The internet cannot
+            reliably tell
+
+            <em>
+              a crowd from a machine.
+            </em>
+
+          </h2>
+
         </div>
-      </article>
 
-      <article class="principle">
-        <span class="principle-number">03</span>
 
-        <div>
-          <span class="kicker" data-i18n="c3_idx">
-            Your space
-          </span>
+        <div class="problem-content">
 
-          <h3 data-i18n="c3_h2">
-            Community without the noise.
-          </h3>
 
-          <p data-i18n="c3_p">
-            Join chat rooms, find your people, and start conversations in a
-            network designed for human participation—not automated activity.
-          </p>
+          <article class="problem-block">
+
+            <span>
+              01 / ACCOUNT CREATION
+            </span>
+
+            <h3>
+              Creating another identity is cheap.
+            </h3>
+
+            <p>
+
+              On conventional platforms, creating another account can
+              require little more than another email address, phone
+              number, automated registration workflow, or compromised
+              credential. When identities are disposable, abuse becomes
+              inexpensive to repeat.
+
+            </p>
+
+          </article>
+
+
+          <article class="problem-block">
+
+            <span>
+              02 / SCALE
+            </span>
+
+            <h3>
+              Automation changes the size of the problem.
+            </h3>
+
+            <p>
+
+              A human has limited time and attention. Software does not
+              operate under the same constraint. Automated systems can
+              create posts, replies, follows, reactions, messages, and
+              account activity continuously and at large scale.
+
+            </p>
+
+          </article>
+
+
+          <article class="problem-block">
+
+            <span>
+              03 / FALSE CONSENSUS
+            </span>
+
+            <h3>
+              Ten thousand accounts can look like ten thousand people.
+            </h3>
+
+            <p>
+
+              Account counts are often interpreted as social evidence.
+              Likes, follows, replies, reposts, and repeated talking
+              points can create the appearance of popularity or
+              consensus even when a smaller number of operators are
+              coordinating the activity behind them.
+
+            </p>
+
+          </article>
+
+
+          <article class="problem-block">
+
+            <span>
+              04 / DISPOSABILITY
+            </span>
+
+            <h3>
+              A ban means less when another account costs nothing.
+            </h3>
+
+            <p>
+
+              When an abusive identity can immediately be replaced,
+              moderation becomes an endless game of account removal.
+              The platform removes an account while the underlying
+              operator simply returns under another one.
+
+            </p>
+
+          </article>
+
+
+          <article class="problem-block">
+
+            <span>
+              05 / TRUST
+            </span>
+
+            <h3>
+              Eventually people stop knowing what is real.
+            </h3>
+
+            <p>
+
+              When humans cannot reliably distinguish genuine people
+              from automated identities, coordinated accounts,
+              impersonators, or synthetic activity, trust in the
+              conversation itself begins to erode.
+
+            </p>
+
+          </article>
+
+
         </div>
-      </article>
 
-      <article class="principle principle-highlight">
-        <span class="principle-number">04</span>
+      </div>
 
-        <div>
-          <span class="kicker" data-i18n="c4_idx">
-            How it works
+    </section>
+
+
+
+    <!-- =====================================================
+         BOT CAPABILITIES
+         ===================================================== -->
+
+    <section class="bot-section">
+
+      <div class="wrap">
+
+
+        <div class="bot-heading">
+
+          <span class="kicker">
+            WHAT AUTOMATION CAN DO
           </span>
 
-          <h3 data-i18n="c4_h2">
-            One clean path into a human network.
-          </h3>
 
-          <div class="mission-steps">
-            <div class="mission-step">
-              <span>01</span>
+          <h2>
 
-              <p data-i18n-html="step1">
-                <strong>Verify your humanity.</strong>
-                Complete a quick HumanKey liveness check to help confirm you
-                are a real person.
+            A bot does not need to
+            be intelligent.
+
+            <br />
+
+            <em>
+              It needs to be scalable.
+            </em>
+
+          </h2>
+
+
+          <p>
+
+            Modern automation, account farms, generative AI,
+            stolen credentials, and coordinated operators can combine
+            to perform activity that once required large numbers
+            of people.
+
+          </p>
+
+        </div>
+
+
+        <div class="bot-grid">
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              01
+            </span>
+
+            <h3>
+              Manufacture engagement.
+            </h3>
+
+            <p>
+
+              Automated identities can follow accounts, react to posts,
+              repost material, generate comments, and repeatedly amplify
+              the same message, creating activity that appears organic.
+
+            </p>
+
+          </article>
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              02
+            </span>
+
+            <h3>
+              Simulate public opinion.
+            </h3>
+
+            <p>
+
+              Coordinated account networks can repeat narratives,
+              overwhelm replies, create apparent agreement, or make a
+              fringe position appear significantly more popular than it
+              actually is.
+
+            </p>
+
+          </article>
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              03
+            </span>
+
+            <h3>
+              Impersonate people and institutions.
+            </h3>
+
+            <p>
+
+              Fake accounts can copy names, photographs, branding,
+              writing styles, or organizational identities and use
+              those identities for fraud, misinformation, phishing,
+              or social engineering.
+
+            </p>
+
+          </article>
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              04
+            </span>
+
+            <h3>
+              Reach people at machine speed.
+            </h3>
+
+            <p>
+
+              Automated systems can send messages, post content, scrape
+              information, test responses, and target large audiences
+              far faster than a single human operator could manually.
+
+            </p>
+
+          </article>
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              05
+            </span>
+
+            <h3>
+              Adapt content with AI.
+            </h3>
+
+            <p>
+
+              Generative systems can produce large amounts of unique
+              text, images, audio, and other synthetic material,
+              reducing one of the traditional signals that exposed
+              repetitive automated campaigns.
+
+            </p>
+
+          </article>
+
+
+          <article class="bot-card">
+
+            <span class="bot-card-number">
+              06
+            </span>
+
+            <h3>
+              Return after removal.
+            </h3>
+
+            <p>
+
+              If account creation remains cheap, deleting malicious
+              accounts addresses the symptom rather than the underlying
+              operator. A new identity can simply take the old one's
+              place.
+
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SCALE
+         ===================================================== -->
+
+    <section class="scale-section">
+
+      <div class="wrap">
+
+        <span class="kicker">
+          THE SCALE IS REAL
+        </span>
+
+
+        <span class="scale-number">
+          1.6M
+        </span>
+
+
+        <span class="scale-label">
+
+          bot-driven or fake account signups blocked
+          per hour by Microsoft
+
+        </span>
+
+
+        <p class="scale-copy">
+
+          Microsoft reported blocking an average of roughly
+          1.6 million bot-driven or fake account signup attempts
+          every hour during the period described in its 2025
+          Digital Defense Report.
+
+          The important point is not Microsoft itself.
+          It is what the number demonstrates: automated identity
+          creation exists at industrial scale.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         1 HUMAN 1 ACCOUNT
+         ===================================================== -->
+
+    <section class="one-section">
+
+      <div class="wrap">
+
+        <span class="kicker">
+          THE HASH HUMANITY MODEL
+        </span>
+
+
+        <div class="ratio">
+
+          <span class="ratio-number">
+            1
+          </span>
+
+          <span class="ratio-divider">
+            :
+          </span>
+
+          <span class="ratio-number">
+            1
+          </span>
+
+        </div>
+
+
+        <div class="ratio-labels">
+
+          <span>
+            HUMAN
+          </span>
+
+          <span>
+            ACCOUNT
+          </span>
+
+        </div>
+
+
+        <h2>
+
+          One person should not be able
+          to look like
+
+          <em>
+            ten thousand people.
+          </em>
+
+        </h2>
+
+
+        <p>
+
+          HumanKey is designed around one human, one account.
+
+          That changes the economics of abuse.
+
+          If every additional account requires another unique human
+          rather than another script, disposable email address, or
+          automated registration, large-scale manipulation becomes
+          dramatically more difficult and expensive to organize.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         HUMANKEY
+         ===================================================== -->
+
+    <section class="humankey-section">
+
+      <div class="wrap">
+
+
+        <div class="humankey-heading">
+
+          <span class="kicker">
+            HUMANKEY
+          </span>
+
+
+          <h2>
+
+            Proof of humanity.
+
+            <em>
+              Not proof of identity.
+            </em>
+
+          </h2>
+
+
+          <p>
+
+            HumanKey is Hash Humanity's proof-of-personhood system.
+
+            Its job is not to learn who you are.
+
+            Its job is to establish that a real, live person is
+            requesting access and that the same person has not already
+            enrolled another account.
+
+          </p>
+
+        </div>
+
+
+        <div class="hk-flow">
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              01
+            </span>
+
+            <h3>
+              Consent comes first.
+            </h3>
+
+            <p>
+
+              HumanKey begins only after the user explicitly agrees
+              to the verification process. Camera access and biometric
+              processing are not intended to occur silently in the
+              background.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              02
+            </span>
+
+            <h3>
+              Liveness checks for a real person.
+            </h3>
+
+            <p>
+
+              A liveness challenge helps determine whether the camera
+              is seeing a live participant rather than a static image,
+              simple replay, or other basic presentation attack.
+
+              Liveness does not make spoofing mathematically impossible,
+              but it raises the difficulty substantially compared with
+              ordinary account registration.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              03
+            </span>
+
+            <h3>
+              A biometric representation is created.
+            </h3>
+
+            <p>
+
+              The system derives a mathematical facial representation
+              suitable for comparison.
+
+              The purpose of that representation is duplicate-person
+              detection, not creating a public identity profile.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              04
+            </span>
+
+            <h3>
+              HumanKey checks for another enrollment.
+            </h3>
+
+            <p>
+
+              The new representation is compared against existing
+              enrolled representations to determine whether the same
+              person appears to have already created an account.
+
+              This is the mechanism that supports the one-human,
+              one-account model.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              05
+            </span>
+
+            <h3>
+              Personhood becomes a privacy-preserving proof.
+            </h3>
+
+            <p>
+
+              After successful verification, the system can use a
+              derived proof or nullifier-style identifier so the
+              platform can recognize that personhood requirements
+              have been satisfied without requiring a public name,
+              address, government identity, or other unnecessary
+              identifying information.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              06
+            </span>
+
+            <h3>
+              A passkey becomes the everyday credential.
+            </h3>
+
+            <p>
+
+              After enrollment, authentication can use a passkey rather
+              than repeatedly scanning the user's face.
+
+              Passkeys use public-key cryptography and are designed to
+              provide passwordless authentication that is resistant to
+              many forms of credential phishing.
+
+            </p>
+
+          </article>
+
+
+          <article class="hk-step">
+
+            <span class="hk-num">
+              07
+            </span>
+
+            <h3>
+              Biometrics return only when necessary.
+            </h3>
+
+            <p>
+
+              The normal goal is not continuous facial verification.
+
+              Biometric verification is reserved for enrollment and
+              carefully controlled recovery scenarios where HumanKey
+              needs to re-establish that the returning person is the
+              previously enrolled human.
+
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         WHAT IT CHANGES
+         ===================================================== -->
+
+    <section class="change-section">
+
+      <div class="wrap">
+
+
+        <div class="change-heading">
+
+          <span class="kicker">
+            WHAT THIS CHANGES
+          </span>
+
+
+          <h2>
+
+            Human verification does not
+            fix the internet by itself.
+
+            <br />
+
+            <em>
+              It changes what is possible.
+            </em>
+
+          </h2>
+
+        </div>
+
+
+        <div class="change-list">
+
+
+          <article class="change-item">
+
+            <span>
+              01
+            </span>
+
+            <div>
+
+              <strong>
+                Bot farms become harder to scale.
+              </strong>
+
+              <p>
+
+                Scripts can create unlimited software processes.
+                They cannot create unlimited unique human beings.
+
+                Requiring unique personhood places a physical constraint
+                in front of digital account creation.
+
               </p>
+
             </div>
 
-            <div class="mission-step">
-              <span>02</span>
+          </article>
 
-              <p data-i18n-html="step2">
-                <strong>Set up your passkey.</strong>
-                Create a secure, passwordless way to access your account.
+
+          <article class="change-item">
+
+            <span>
+              02
+            </span>
+
+            <div>
+
+              <strong>
+                Disposable accounts become less disposable.
+              </strong>
+
+              <p>
+
+                If one person cannot simply create another verified
+                identity, losing an account carries more consequence.
+
+                That can make bans, rate limits, and reputation systems
+                more meaningful.
+
               </p>
+
             </div>
 
-            <div class="mission-step">
-              <span>03</span>
+          </article>
 
-              <p data-i18n-html="step3">
-                <strong>Enter the conversation.</strong>
-                Join community chat rooms and connect with other verified
-                humans.
+
+          <article class="change-item">
+
+            <span>
+              03
+            </span>
+
+            <div>
+
+              <strong>
+                Account counts become more meaningful.
+              </strong>
+
+              <p>
+
+                A verified account does not prove that the person is
+                truthful, wise, or acting in good faith.
+
+                It does provide stronger evidence that there is a
+                distinct person behind that presence.
+
               </p>
+
             </div>
+
+          </article>
+
+
+          <article class="change-item">
+
+            <span>
+              04
+            </span>
+
+            <div>
+
+              <strong>
+                Manufactured crowds become more expensive.
+              </strong>
+
+              <p>
+
+                Coordinated groups can still organize.
+
+                But requiring another verified human for another
+                account makes it much harder for a single operator or
+                automated system to cheaply multiply itself into an
+                artificial crowd.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="change-item">
+
+            <span>
+              05
+            </span>
+
+            <div>
+
+              <strong>
+                Anonymous does not have to mean artificial.
+              </strong>
+
+              <p>
+
+                A person can choose not to reveal their civil identity
+                while still proving that a unique human stands behind
+                the account.
+
+                Personhood and public identity are not the same thing.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="change-item">
+
+            <span>
+              06
+            </span>
+
+            <div>
+
+              <strong>
+                Reputation can belong to a persistent human presence.
+              </strong>
+
+              <p>
+
+                When identities are harder to throw away and replace,
+                behavior can carry history.
+
+                Users remain responsible for what they build,
+                contribute, and say under that persistent presence.
+
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PRIVACY
+         ===================================================== -->
+
+    <section class="privacy-section">
+
+      <div class="wrap">
+
+
+        <div class="privacy-panel">
+
+          <span class="kicker">
+            PRIVACY BY DESIGN
+          </span>
+
+
+          <h2>
+
+            Prove you are human.
+
+            <br />
+
+            <em>
+              Not who you are.
+            </em>
+
+          </h2>
+
+
+          <p>
+
+            Proof of personhood should not require turning a social
+            network into an identity database.
+
+            HumanKey is designed around data minimization:
+            process what is necessary to establish personhood and
+            uniqueness, then use secure credentials and privacy-preserving
+            proofs for ordinary access.
+
+          </p>
+
+
+          <div class="privacy-points">
+
+
+            <article class="privacy-point">
+
+              <strong>
+                No public legal identity required
+              </strong>
+
+              <p>
+
+                Users can participate without publishing their
+                government name or other civil identity information.
+
+              </p>
+
+            </article>
+
+
+            <article class="privacy-point">
+
+              <strong>
+                Face verification is not ordinary login
+              </strong>
+
+              <p>
+
+                Passkeys are intended to handle routine authentication
+                after successful HumanKey enrollment.
+
+              </p>
+
+            </article>
+
+
+            <article class="privacy-point">
+
+              <strong>
+                Uniqueness, not surveillance
+              </strong>
+
+              <p>
+
+                The biometric system exists to establish one-person,
+                one-account uniqueness, not to track a person's activity
+                around the network.
+
+              </p>
+
+            </article>
+
+
           </div>
+
         </div>
-      </article>
+
+      </div>
+
     </section>
+
+
+
+    <!-- =====================================================
+         WHAT HUMANKEY DOES NOT CLAIM
+         ===================================================== -->
+
+    <section class="limits">
+
+      <div class="wrap limits-inner">
+
+        <span class="kicker">
+          IMPORTANT DISTINCTION
+        </span>
+
+
+        <h2>
+
+          A verified human can still be
+
+          <em>
+            wrong, dishonest, or an asshole.
+          </em>
+
+        </h2>
+
+
+        <p>
+
+          HumanKey proves personhood, not character.
+
+          It cannot determine whether a statement is true.
+          It cannot prevent humans from coordinating.
+          It cannot eliminate harassment, fraud, misinformation,
+          manipulation, or bad judgment.
+
+          What it can do is remove one of the internet's most powerful
+          force multipliers: the ability for one operator to cheaply
+          masquerade as an unlimited number of independent people.
+
+        </p>
+
+
+        <p>
+
+          That distinction matters.
+
+          Hash Humanity is not trying to create a network where everyone
+          agrees.
+
+          It is trying to create one where disagreement is actually
+          happening between people.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FINAL
+         ===================================================== -->
 
     <section class="mission-close">
-      <span class="kicker" data-i18n="c5_idx">
-        05 — The mission
-      </span>
 
-      <h2 data-i18n="c5_h2">
-        Make online spaces feel real again.
-      </h2>
+      <div class="wrap">
 
-      <p data-i18n="c5_p">
-        Hash Humanity is designed to reduce bot activity, fake accounts,
-        duplicate accounts, spam, and manufactured engagement—so people can
-        spend more time actually connecting.
-      </p>
 
-      <div class="mission-actions">
-        <a
-          class="btn primary"
-          href="https://hashhumanity.world"
-          target="_blank"
-          rel="noopener"
-          data-i18n="launch_now"
-        >
-          Enter Hash Humanity
-        </a>
+        <div class="close-panel">
 
-        <a class="btn" href="join.html" data-i18n="contact_us">
-          Get in touch
-        </a>
+          <span class="kicker">
+            THE MISSION
+          </span>
+
+
+          <h2>
+
+            Make the internet
+
+            <br />
+
+            <em>
+              human again.
+            </em>
+
+          </h2>
+
+
+          <p>
+
+            Hash Humanity is an experiment in what social media can
+            become when the network begins with a scarce resource
+            software cannot manufacture:
+
+            a real human being.
+
+          </p>
+
+
+          <div class="mission-actions">
+
+
+            <a
+              class="primary-cta"
+              href="https://hashhumanity.world"
+              target="_blank"
+              rel="noopener"
+            >
+
+              Enter Hash Humanity
+
+              <span aria-hidden="true">
+                ↗
+              </span>
+
+            </a>
+
+
+            <a
+              class="secondary-cta"
+              href="index.html"
+            >
+
+              Back to home
+
+            </a>
+
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
+
+
   </main>
 
-  <footer class="wrap">
-    <span>© <span id="year"></span> Hash Humanity</span>
 
-    <span class="tag" data-i18n="footer_tag">
-      Real people make better spaces.
-    </span>
+
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
+
+  <footer class="site-footer">
+
+    <div class="wrap footer-inner">
+
+
+      <div class="footer-brand">
+
+        <img
+          src="logo.png"
+          alt=""
+        />
+
+        <span>
+          Hash Humanity
+        </span>
+
+      </div>
+
+
+      <span>
+        © <span id="year"></span> Hash Humanity
+      </span>
+
+
+      <span>
+        Real is rare.
+      </span>
+
+
+    </div>
+
   </footer>
 
+
+
   <noscript>
+
     <div
       style="
         padding:18px;
-        color:#111111;
-        background:#ffffff;
-        border-top:1px solid #dcdcdc;
+        color:#fff;
+        background:#000;
+        border-top:1px solid #222;
         text-align:center;
       "
     >
+
       Hash Humanity is a human-first social network.
+
       <a
         href="https://hashhumanity.world"
-        style="color:#111111;font-weight:700;text-decoration:underline;"
+        style="
+          color:#fff;
+          font-weight:700;
+          text-decoration:underline;
+        "
       >
+
         Enter Hash Humanity
+
       </a>
+
     </div>
+
   </noscript>
+
+
+
+  <script>
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
 
   <script src="i18n.js"></script>
 
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
 
     if (window.HH_I18N) {
       window.HH_I18N.init("mission");
     }
+
   </script>
+
+
 </body>
 </html>
